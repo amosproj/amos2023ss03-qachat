@@ -9,6 +9,7 @@
 - [Vision](#Vision)
 - [Setup](#Setup)
 - [Documentation](#Documentation)
+- [LLM-Research](/Documentation/LLM-Research/LLM-Research.md)
 - [Slackbot](/QAChat/SlackBot/README.md)
 
 ## About
