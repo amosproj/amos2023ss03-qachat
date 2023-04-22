@@ -1,6 +1,4 @@
 # QAChat in Cooperation with QAWARE (AMOS SS 2023)
-Something something something
-
 
 <p align="center">
   <img src="./QAChat/assets/QAware.png" alt="" width="250"/>
