@@ -9,7 +9,7 @@
 - [Vision](#Vision)
 - [Setup](#Setup)
 - [Documentation](#Documentation)
-- [Chatbot (Needs Edit)](/QAChat/)
+- [Slackbot](/QAChat/SlackBot/README.md)
 
 ## About
 *QAChat* evaluates newly developed LLMs for the use in a chatbot. The best suited network is trained on provided data that is collected from existing communication and documentation sources. The model is available for users to ask questions through a Slack bot integration.
@@ -19,7 +19,7 @@ In recent times, LLMs have evolved rapidly, opening up new, previously unimagine
 
 
 ## Setup
-1. )
+1. First Step
 
 ## Documentation
 - For the Team Google Sheet go to: [Google Sheet](https://docs.google.com/spreadsheets/d/1YPjbiAhNvHcSZrW76hD67fqGCg3-shARfk5d4C8jOtA)
