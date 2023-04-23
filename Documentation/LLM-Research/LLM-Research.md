@@ -8,4 +8,5 @@ Therefore also include some usefull links in the files
 ## Researched Topics
 
 - [Topic 1](/Documentation/LLM-Research/LLM-Research.md)
+- [LLM - Models](/Documentation/LLM-Research/LLM-Models.md) - (Emanuel)
 - ...
