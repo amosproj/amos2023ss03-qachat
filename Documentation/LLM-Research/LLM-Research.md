@@ -7,6 +7,7 @@ Therefore also include some usefull links in the files
 
 ## Researched Topics
 
-- [Topic 1](/Documentation/LLM-Research/LLM-Research.md)
-- [LLM - Models](/Documentation/LLM-Research/LLM-Models.md) - (Emanuel)
-- ...
+- [Index-Search](/Documentation/LLM-Research/LLM_Index_Search.md)
+- [Semantic-Search](/Documentation/LLM-Research/LLM_Semantic_Search.md)
+- [Fintuning](/Documentation/LLM-Research/FinetuneLLM.md)
+- [LLM - Models](/Documentation/LLM-Research/LLM-Models.md)
