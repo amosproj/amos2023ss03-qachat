@@ -1,4 +1,6 @@
 # LLM Models
+**Author: Emanuel Erben**
+**Date: 26.April.2023**
 
 # FAISS - Facebook AI Similarity Search
 [FAISS](https://engineering.fb.com/2017/03/29/data-infrastructure/faiss-a-library-for-efficient-similarity-search/) is a interesting and effective library & model to do quick similarity search. It is programmed in C++ but is usable with Python.
