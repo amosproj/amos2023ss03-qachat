@@ -3,5 +3,5 @@ Software architecture description
 
 Links to different Documentations:
 
-- [Slackbot-Research](/Documentation/Slack_Bot_Requirements.md)
+- [Slackbot-Research](/Documentation/Slack/SlackBotRequirements.md)
 - [LLM-Research](/Documentation/LLM-Research)
