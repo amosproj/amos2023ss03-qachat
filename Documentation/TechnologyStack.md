@@ -1,4 +1,4 @@
-# Requirements for a Slack Bot
+# Technology Stack
 **Author:** Jesse Palarus, Amela Pucic, Hafidz Arifin  
 **Date:** May 2023
 
