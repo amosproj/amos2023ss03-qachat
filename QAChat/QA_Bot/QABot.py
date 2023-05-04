@@ -1,4 +1,5 @@
-import QA_Bot.APIInterface as APIInterface
+import QAChat.QA_Bot.APIInterface as APIInterface
+
 import json
 from supabase import create_client, Client
 from langchain.embeddings import HuggingFaceInstructEmbeddings
@@ -40,5 +41,6 @@ class QABot:
         if self.answer is None:
             self.answer = ""
         self.answer += ": Resolved Questions:" + str(self.i)
+        self.i += 1
 
         self.api_interface.forward_answer(self.answer)

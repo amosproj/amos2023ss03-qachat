@@ -1,5 +1,5 @@
 import tkinter as tk
-from Slack_Bot.BaseAgent import BaseAgent
+from BaseAgent import BaseAgent
 
 '''
     This is just an easy Testing Bot for testing reasons and should not be part of the final release. 

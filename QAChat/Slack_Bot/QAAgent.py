@@ -1,4 +1,4 @@
-from Slack_Bot.BaseAgent import BaseAgent
+from BaseAgent import BaseAgent
 
 class QAAgent(BaseAgent):
 

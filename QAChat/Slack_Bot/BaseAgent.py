@@ -1,10 +1,9 @@
-import QA_Bot.APIInterface
-
+import QAChat.QA_Bot.APIInterface as APIInterface
 
 class BaseAgent:
 
     def __init__(self):
-        self.api_interface = QA_Bot.APIInterface.APIInterface()
+        self.api_interface = APIInterface.APIInterface()
 
     def receive_question(self, question):
         self.api_interface.listen_for_requests(question, self)

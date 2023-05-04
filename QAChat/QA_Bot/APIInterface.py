@@ -1,13 +1,12 @@
-from QA_Bot.QABot import QABot
-import Slack_Bot.BaseAgent
-
+from QAChat.QA_Bot.QABot import QABot
+import QAChat.Slack_Bot.BaseAgent as BaseAgent
 
 class APIInterface:
 
     def __init__(self, qa_bot=None):
         self.qa_bot = qa_bot
         # TODO: This needs remodeling to handle multiple Request at once maybe ???
-        self.sender: Slack_Bot.BaseAgent = None
+        self.sender: BaseAgent = None
 
     # forwards the question sent by the slackbot to the qabot
     def listen_for_requests(self, question, sender):
