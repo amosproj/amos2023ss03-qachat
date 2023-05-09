@@ -2,9 +2,9 @@
 **Author:** Amela Pucic
 **Date:** May 2023
 
-## For examples take look into the [PEP 8- Syle Guide for Python](https://peps.python.org/pep-0008/)
+## Take look into the [PEP 8- Syle Guide for Python](https://peps.python.org/pep-0008/)
 ## Code Layout
-- Indentation
+- use auto formatting from PyCharm default setting
 - Maximum Line Length are 79 characters
 - Lines should break before a Binary Operator
 
