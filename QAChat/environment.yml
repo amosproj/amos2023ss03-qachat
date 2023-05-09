@@ -1,0 +1,17 @@
+name: QAChat
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - numpy
+  - openai
+  - selenium
+  - slack_sdk
+  - pip=21.2.4
+  - pip:
+      - atlassian-python-api
+      - langchain
+      - panda
+      - supabase
+      - InstructorEmbedding
+      - sentence-transformers
