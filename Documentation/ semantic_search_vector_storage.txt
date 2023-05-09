@@ -1,0 +1,10 @@
+In this document, my focus is on Supabase, which was proposed as part of the technical stack. Supabase uses pgvector, an open-source vector similarity search for PostgreSQL, to handle embeddings.
+
+Regarding confidentiality, pgvector implements cosine similarity, squared Euclidean (L2-Squared), and inner product space for comparing vectors. 
+Usability is not limited to a particular programming language and can be used with any language that supports a Postgres client.
+Regarding possible storage space, each vector requires (4 * dimensions + 8) bytes of storage. Therefore, to store 1,000,000 embeddings (based on GPT4 embeddings dimensions as 1536), we would need 6.15 GB of storage. A source supporting this information can be found at https://stablecog.com/blog/the-best-vector-database-for-stablecogs-semantic-search and  https://openai.com/blog/new-and-improved-embedding-model
+
+Concerning access speed, an article testing online Postgres by querying 5 million embeddings found it took just 152.037 ms. However, the speed depends heavily on the hardware of the service provider. A source supporting this information can be found at https://postgresml.org/blog/tuning-vector-recall-while-generating-query-embeddings-in-the-database.
+
+Overall, it seems that pgvector is a good solution for handling embeddings and conducting similarity searches.
+*Regarding integrity, I was not able to find valuable information. However, given that PostgreSQL is a reputable database management system, it is likely to have measures to ensure data integrity.
