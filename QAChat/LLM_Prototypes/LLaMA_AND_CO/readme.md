@@ -1,4 +1,4 @@
-# T5 with Langchain
+# LLaMA und Co with Langchain
 **Author:** Amela Pucic, Hafidz Arifin, Jesse Palarus
 **Date:** May 2023
 
