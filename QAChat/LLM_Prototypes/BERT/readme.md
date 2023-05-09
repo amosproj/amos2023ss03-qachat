@@ -1,4 +1,4 @@
-# BERT with Langchain
+# BERT
 **Author:** Jesse Palarus
 **Date:** May 2023
 
