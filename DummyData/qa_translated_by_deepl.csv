@@ -1,0 +1,201 @@
+Question;Answer
+How are our development processes structured?;Our development processes are based on agile methods such as Scrum and Kanban.
+Which programming languages are mainly used in QAWare?;At QAWare, Java, Python and JavaScript dominate as preferred code languages.
+Which frameworks and tools do we use?;We work with Angular, React, Spring Boot, and Django, to name a few.
+What is the preferred cloud platform in the enterprise?;We rely on AWS, but Google Cloud and Microsoft Azure are also used.
+What does the training offer for employees look like?;Internal and external training and workshops are offered on a regular basis.
+Where can I find information on the latest technology trends?;Our in-house Confluence wiki contains up-to-date information and resources.
+How can I get involved in a new project?;Reach out to your team leader or project manager to discuss opportunities for collaboration.
+What security measures are taken at QAWare?;Access controls, regular updates and security training are just some of the security policies applied.
+How do we maintain the quality of our software?;Code reviews, automated tests and continuous integration are fixed components of our quality assurance.
+What project management tools do we use?;Jira, Trello and Asana are among the common tools for project management.
+How does communication take place within the teams?;Slack, Microsoft Teams and email are the primary means of communication.
+How can I get access to the source code of a project?;Please contact your team leader or the person responsible for the repository to obtain appropriate permissions.
+How do I request vacation or inform about sick days?;Use our HR system to request vacation and report sick days.
+What benefits does QAWare offer its employees?;Flexible working hours, home office options and further training opportunities are among our employee benefits.
+How can I register for an internal training?;Registration for internal training is possible via the training system or the responsible training coordinator.
+How are code changes integrated into the main branch?;Changes are added to the main branch using pull requests and code reviews.
+What databases do we use?;MySQL, PostgreSQL and MongoDB are examples of database systems used.
+How is onboarding organized for new employees?;An induction program and personal mentors will support you during your first weeks at the company.
+Where can I find company policies and procedures?;Our Confluence wiki contains all relevant information on policies and procedures.
+How are the teams organized at QAWare?;Teams are usually structured by project or department and consist of developers, testers and project managers.
+How do I create an SSH connection to QAWare servers?;Use the command ssh benutzername@server.qaware.de and enter your password when prompted.
+How can I set up my SSH keys for the QAWare infrastructure?;Run ssh-keygen to generate a new key pair and copy the public key to the ~/.ssh/authorized_keys directory on the target server.
+How do I securely transfer files to QAWare servers via SSH?;Use the scp tool by entering the command scp /path/to/local/file benutzername@server.qaware.de:/pfad/zum/zielverzeichnis.
+How do I execute commands on QAWare servers over an SSH connection?;Use the command ssh benutzername@server.qaware.de 'command', where 'command' is the command to execute.
+Can I set up a multi-hop SSH connection with QAWare?;Yes, use the -J parameter of SSH, e.g. ssh -J benutzername@jumpserver.qaware.de benutzername@zielserver.qaware.de.
+How do I change the default SSH port on QAWare?;Edit the /etc/ssh/sshd_config file on the server and change the port 22 line to the desired port. Then restart the SSH service.
+How can I establish an SSH connection with QAWare without a password request?;Make sure that your SSH public key is stored in the ~/.ssh/authorized_keys directory on the target server and that the permissions are set correctly.
+Is there a recommended encryption for SSH connections with QAWare?;Use the encryption algorithms chacha20-poly1305@openssh.com, aes256-gcm@openssh.com or aes128-gcm@openssh.com for optimal security.
+How do I monitor active SSH connections on QAWare servers?;Run the command ss -tnp | grep sshd to display a list of active SSH connections and associated process IDs.
+What measures does QAWare take to ensure the security of SSH connections?;QAWare relies on strict security policies such as regular software updates, encryption and two-factor authentication for SSH access.
+How can I secure my SSH connection at QAWare with a VPN connection?;Establish a VPN connection to the QAWare network and then use the SSH connection as usual. The VPN connection encrypts all data traffic.
+How can I create a Workday report?;To generate a Workday report, navigate to the report generation interface, select the desired data sources and filter options, and then click Generate Report.
+What integrations does Workday offer for QAWare projects?;Workday provides QAWare with various interfaces, including those for CRM, project management, time tracking, and financial systems.
+Can I track project progress with Workday?;Yes, Workday allows you to track the status of projects using dashboards, milestones, and timelines.
+Where can I find training resources for Workday?;The Workday Community and Help Center provide extensive training materials, including user guides, videos, and webinars.
+How do I set up notifications in Workday?;To configure notification settings in Workday, navigate to the Notification Center and select the desired events and recipients.
+How can working hours be recorded in Workday?;To document your hours worked in Workday, open the time tracking feature and enter your hours worked, breaks, and project affiliations.
+Can I also do resource planning with Workday?;Workday supports resource scheduling with QAWare, including assigning people to projects and availability analysis.
+How do I create a project plan in Workday?;To create a project plan in Workday, navigate to the Projects module, click New Project, and then add tasks, milestones, and resources.
+How do I import data from other systems into Workday?;To import data from external sources into Workday, use the provided import templates and follow the instructions to upload and process the files.
+How can I submit a leave request in Workday?;"To submit a leave request to QAWare in Workday, open the ""Absence"" section and fill out the appropriate request form."
+How do I create a microservice architecture in QAWare?;Follow QAWare's internal guides and best practices for implementing microservices.
+What are QAWare's code review policies?;Pay attention to company-wide standards and guidelines for conducting code reviews.
+What deployment strategy does QAWare use?;QAWare relies on continuous deployment with automated testing and integration into the production environment.
+How should we handle errors and exceptions in QAWare?;Implement robust error handling mechanisms and logging, according to internal policies.
+Which programming languages does QAWare prefer?;QAWare relies mainly on Java, JavaScript and Python, but is open to using other languages when appropriate.
+How does version control work with QAWare?;We use Git and follow established workflows for branching and merging.
+What frameworks does QAWare use for web applications?;QAWare relies on React and Angular on the frontend and Spring Boot on the backend.
+What does the testing process look like at QAWare?;Write unit, integration and system tests to ensure code quality and functionality.
+Which database systems are used by QAWare?;QAWare uses relational databases such as PostgreSQL and NoSQL databases such as MongoDB, depending on project requirements.
+How do we handle documentation at QAWare?;Create meaningful and up-to-date documentation for each section of code, according to the company's internal guidelines.
+How can we at QAWare optimize the performance of our applications?;Use profiling tools and optimize code with internal best practices in mind.
+What security practices does QAWare follow?;Follow company security policies to ensure confidentiality, integrity, and availability of data.
+How does QAWare foster collaboration between teams?;QAWare relies on regular meetings, code reviews, and knowledge sharing to strengthen collaboration and communication.
+How do we manage the dependencies of our projects at QAWare?;Use dependency management tools such as Maven, Gradle, or npm to manage and update dependencies.
+What does the development process look like at QAWare?;QAWare follows the Agile development process, divided into sprints and supported by stand-up meetings to review progress.
+How do I set up a new project in QAWare for Microsoft Teams?;To create a new project in QAWare for Microsoft Teams, first navigate to the appropriate Team section, click Add New Project and follow the instructions in the wizard.
+What are QAWare's communication policies for using Microsoft Teams?;When using Microsoft Teams at QAWare, it is important to communicate politely and professionally, share clear and concise information, and address colleagues' concerns and questions.
+How can I create a private group chat in Microsoft Teams with QAWare?;"To start a private group chat on QAWare in Microsoft Teams, click on the chat icon in the left sidebar, select ""New Chat"" and add the desired participants."
+Does QAWare have any recommended Microsoft Teams bot integrations for developers?;Some recommended Microsoft Teams bot integrations for QAWare developers are the GitHub bot, Jira cloud bot, and Azure DevOps bot to improve collaboration and productivity.
+How does QAWare organize access to channels and conversations in Microsoft Teams?;QAWare organizes access to channels and conversations in Microsoft Teams by using roles and permissions to ensure that only authorized employees have access to relevant information.
+Where can I find documentation for the Microsoft Teams applications and integrations used by QAWare?;"Documentation for Microsoft Teams applications and integrations used at QAWare is available on the internal Confluence Wiki under the ""Microsoft Teams"" category."
+How do I create a survey in Microsoft Teams with QAWare?;"To create a survey in Microsoft Teams on QAWare, select the desired team or channel, click the ""+"" icon below the text box, and select the ""Forms"" app to configure the survey."
+Does QAWare have special Microsoft Teams etiquette for video conferencing?;Microsoft Teams etiquette for video conferencing at QAWare includes keeping agreed meeting times, muting the microphone when not in use, and avoiding background noise.
+At QAWare, can we invite external guests to our Microsoft Teams meetings?;Yes, QAWare allows external guests to be invited to Microsoft Teams meetings as long as they have a valid email address and the invitation has been approved by the team administrator.
+How can I start a recording at Zoom?;To start recording in Zoom, click the Record button in the bottom menu bar during a meeting.
+Is there any way to change the background in Zoom?;"Yes, in the zoom settings under ""Virtual background"" you can select different backgrounds or upload your own images."
+How do I activate the breakout rooms in Zoom for a meeting?;During a Zoom meeting, you can enable breakout rooms by clicking the Breakout Rooms icon in the bottom menu bar and setting the desired number of rooms.
+What setting should I choose to save my Zoom meeting?;To secure your Zoom meeting, you should set a password, enable wait time, and allow access only to logged-in users.
+Can I do screen sharing in Zoom?;"To share your screen in Zoom, click the ""Split Screen"" button in the bottom menu bar and select the desired content."
+How do I increase the audio quality in a Zoom meeting?;"To improve audio quality in Zoom, go to Audio Settings and select ""Auto Volume Control"" and ""Suppress Background Noise""."
+How can I activate the full screen mode in Zoom?;To turn on full screen mode in Zoom, click the Full Screen icon in the upper right corner of the meeting window.
+How do I create a Zoom invitation for a QAWare meeting?;To create a Zoom invitation for a QAWare meeting, schedule a new meeting in your Zoom account and add the relevant QAWare employees as attendees.
+How do I view my Zoom meeting attendee list?;To view the list of participants in a Zoom meeting, click the Participants icon in the bottom menu bar.
+Can I create a survey in Zoom?;Yes, you can create a survey in Zoom by enabling the survey feature in Advanced Features and configuring a new survey.
+How do I unlock the hand lift function in Zoom?;To use the raise hand function in Zoom, click the Reactions icon in the bottom menu bar and select Raise Hand.
+Is there a way to mute the sound for all participants in Zoom?;To mute all participants in a Zoom meeting, click the Mute All button in the participants list.
+How do I create a new virtual desktop?;"To create a new virtual desktop, navigate to ""Control Panel > Virtual Desktops > Create New Desktop"" and follow the steps displayed."
+What are the requirements for virtual desktops?;To use virtual desktops, you need a stable Internet connection, a web browser (current version), and QAWare permissions.
+Can I personalize my virtual desktop?;Yes, you can customize your virtual desktop by selecting Desktop Properties > Personalization from the Settings menu and making the desired changes.
+How do I access my files in virtual desktops?;"To access your files, click on ""File Explorer"" in the main menu and navigate to the desired location."
+How can I install applications on virtual desktops?;"To install software on virtual desktops, navigate to ""Control Panel > Software Management"" and locate the desired application from the list."
+How do I perform updates on virtual desktops?;"Updates run automatically in the background, but you can start them manually by going to ""Control Panel > Update Management"" and clicking ""Check for Updates""."
+How do I protect my virtual desktop from unauthorized access?;Make sure you use a strong password and enable two-factor authentication in your QAWare account security settings.
+Can I use virtual desktops on multiple devices?;Yes, virtual desktops are available across devices and can be used on computers, tablets, and smartphones.
+How can I optimize the performance of my virtual desktop?;"To improve performance, close unneeded applications and windows and check resource usage in the Task Manager under ""Control Panel > Task Manager""."
+How do I create groups in virtual desktops for collaboration?;To create a group, select Group Management > New Group from the main menu and enter the required information.
+How do I share files in virtual desktops with my colleagues?;"To share files, right-click the file in File Explorer and select ""Sharing > Sharing Options"" from the context menu."
+How can I contact support for Virtueldesktops?;"To reach support, select ""Help > Support"" from the main menu and send a request with a detailed description of your problem."
+How are virtual desktops at QAWare designed for security and data protection?;QAWare enforces high security standards and privacy policies when implementing virtual desktops, including encryption, two-factor authentication, and regular security audits.
+What programming languages are supported in QAWare's virtual desktop environment?;Several programming languages are supported in QAWare's virtual desktop environment, including Java, Python, C++, JavaScript and Ruby.
+How do I get access to QAWare-specific tools and resources in virtual desktops?;"To access QAWare-specific tools, navigate to ""Control Panel > QAWare Tools"" and select the desired application or resource."
+How is QAWare's virtual desktops integrated with the company's internal communications?;QAWare's virtual desktops are integrated with the corporate communications system, allowing you to send and receive messages directly from the virtual desktop environment.
+Can I synchronize my QAWare developer profile with Virtueldesktops?;"Yes, you can synchronize your QAWare developer profile with Virtueldesktops by selecting ""Profile > Synchronization"" in the settings and following the necessary steps."
+How can I manage my projects in QAWare's virtual desktops with version control?;"To manage projects with version control, use the built-in Git tool in Virtueldesktops, which you can find under ""Control Panel > Git Management""."
+How do I get training or tutorials on how to effectively use virtual desktops with QAWare?;"To receive training or tutorials, visit the QAWare internal learning portal under ""Help > Learning Portal"" and search for relevant courses or tutorials."
+Are there performance reports or monitoring tools for QAWare's virtual desktops?;"Yes, there are monitoring tools in the virtual desktop environment, which you can find under ""Control Panel > Performance Monitoring"" to monitor system resources and application performance."
+How do I create custom workspaces in QAWare's virtual desktops?;To create custom workspaces, navigate to Desktop Properties > Workspaces and select Create New Workspace to configure your own layouts and settings.
+How can I access QAWare's internal documentation while using virtual desktops?;"To access the internal documentation, use the built-in documentation browser in Virtueldesktops, which you can find under ""Help > Documentation Browser""."
+What is the URL of our QAWare GitHub repository?;The URL of our QAWare GitHub repository is https://github.com/QAWare.
+What is QAWare's branching strategy for GitHub projects?;At QAWare, we use the GitFlow branching strategy for our GitHub projects.
+How do I initiate a pull request in the QAWare repository?;"To create a pull request in the QAWare repository, go to your feature branch and click on the ""New Pull Request"" button."
+What is the recommended way to integrate changes from the main branch into my feature branch?;To apply updates from the main branch, perform a rebase instead of a merge.
+Does QAWare have specific commit message policies?;Yes, at QAWare we use the Conventional Commits policy for our commit messages.
+How should I write the commit messages in QAWare?;"Commit messages should be written in the form ""type(category): Short description"", e.g. ""feat(authentication): Implement login functionality""."
+How can I report a bug in a QAWare GitHub project?;To report a bug in a QAWare GitHub project, create a new issue and use the provided bug template.
+What kind of tests does QAWare apply to GitHub projects?;QAWare uses unit, integration, and end-to-end testing for its GitHub projects.
+How do I run tests for a QAWare project on GitHub?;To run tests for a QAWare project on GitHub, follow the instructions in the README file for that project.
+Does QAWare have code review guidelines for GitHub projects?;Yes, QAWare has code review policies to ensure that the code is of high quality and complies with the project guidelines.
+How long should I wait for feedback on my pull request to QAWare?;You should receive feedback on your pull request within 48 hours.
+Is there an automatic CI/CD pipeline for QAWare projects on GitHub?;Yes, QAWare projects on GitHub use an automated CI/CD pipeline that performs tests, builds, and deployments.
+How do I request a code review from a colleague at QAWare?;To request a code review from a colleague, add the desired reviewer in the pull request page and mark them in the comments.
+What are the main programming languages used in QAWare projects on GitHub?;QAWare projects on GitHub mainly use Java, JavaScript, Python and Ruby.
+Does QAWare have a list of supported technology stacks for GitHub projects?;Yes, QAWare has a list of preferred technology stacks that should be used for GitHub projects. This list is available on the internal Confluence wiki.
+How are environment variables managed in QAWare projects on GitHub?;Environment variables are managed via .env files and secret repository settings.
+How do I use Linter in GitHub projects with QAWare?;With QAWare, linters are executed automatically via build scripts or Git hooks. The configurations for this are included in the respective project repository.
+Does QAWare have templates for creating new GitHub projects?;Yes, QAWare has project templates that can be used when setting up new GitHub projects. They are available in the internal documentation.
+How can I migrate an existing GitHub project to the QAWare repository?;To migrate an existing GitHub project, contact the QAWare repository administrator and follow the instructions provided.
+What are the QAWare permission levels for GitHub repositories?;QAWare's permission levels for GitHub repositories are Read, Write, and Admin.
+How can I request access to a private QAWare GitHub repository?;To gain access to a private QAWare GitHub repository, contact the repository administrator or your supervisor.
+How is documentation managed for QAWare projects on GitHub?;Documentation for QAWare projects is mostly maintained in the repository itself or in the internal Confluence wiki.
+Does QAWare have a list of internal code libraries that can be used in GitHub projects?;Yes, QAWare has a list of internal code libraries that can be used in GitHub projects. This list is available on the internal Confluence wiki.
+How is version management done for QAWare projects on GitHub?;Version management in QAWare projects is done by Semantic Versioning and Git tags.
+How can I update the dependencies of a QAWare project on GitHub?;To update the dependencies of a QAWare project, use the package manager used for that project (e.g. npm, Maven, Gradle) and follow the instructions in the project README.
+What is the usual process for fixing security vulnerabilities in QAWare projects on GitHub?;To address security vulnerabilities in QAWare projects, create a new issue with the appropriate vulnerability template and work closely with the security team to resolve the issues.
+How can I find out about upcoming maintenance or outages of the GitHub services used by QAWare?;Information about upcoming maintenance or outages is provided via internal communication channels, such as email or Slack.
+How can I access the QAWare Google Drive?;Open your browser and go to drive.google.com, then log in with your QAWare account.
+How do I create a new document on QAWare Google Drive?;"In Google Drive, select the ""New"" option and click ""Google Docs"" or the desired file format."
+Can I share files directly from my QAWare Google Drive?;Yes, click the file you want and select the Share icon or the Share option from the right-click menu.
+How can shared QAWare Google Drive documents be edited together?;If the document has been shared, all authorized people can edit the document at the same time by opening it and making changes.
+How do I make files available in QAWare Google Drive for external partners?;"Create a ""share link"" for the file and send it to the appropriate person or group."
+How can I revoke access to shared files in QAWare Google Drive?;"Open the file, go to ""Share"" and remove the permission of the corresponding person or group."
+Is there a way to version files in QAWare Google Drive?;Yes, Google Drive automatically creates a version history for each file, which you can view in detail.
+How do I find a specific file on QAWare Google Drive?;Use the search bar at the top of Google Drive to search by file name, content, or other criteria.
+How do I create a folder in QAWare Google Drive?;"Click ""New"" and select ""Folder"" from the menu to create a new folder."
+Can I synchronize files from QAWare Google Drive on my computer?;Yes, download and install the Google Drive app to sync files between your computer and Google Drive.
+How can I restrict sharing of QAWare Google Drive files if needed?;Open the file's sharing settings and adjust the access settings as needed.
+How can I archive files in QAWare Google Drive?;"Create an archive folder and move the files there or mark them with the tag ""Archived""."
+How can I expand the storage space in QAWare Google Drive?;Please contact QAWare's IT department to extend the storage space.
+What happens when I delete a file in QAWare Google Drive?;The file will be moved to the recycle bin and automatically deleted after 30 days, unless it is restored first.
+How can I make files available offline in QAWare Google Drive?;"Enable the ""Available offline"" option in the file settings or in the Google Drive app on your device."
+Which JetBrains products are used with QAWare?;The main JetBrains products used at QAWare are IntelliJ IDEA, PhpStorm, PyCharm, WebStorm, ReSharper and TeamCity.
+How does QAWare integrate IntelliJ IDEA into its workflow?;IntelliJ IDEA is used as the preferred IDE for Java and Kotlin development at QAWare, using customized plug-ins and settings for efficient programming.
+How is ReSharper used in QAWare projects?;ReSharper is used at QAWare to improve productivity and code quality in .NET projects by providing automatic refactoring, code analysis and bug fixes.
+What are the benefits of QAWare using PhpStorm?;By using PhpStorm with QAWare, developers benefit from a powerful IDE for PHP development, including efficient code navigation, automatic error recovery, and framework integration.
+To what extent does QAWare use PyCharm for its Python projects?;PyCharm is used at QAWare for Python development, allowing developers to benefit from intelligent code completion, real-time code analysis, and scientific library integration.
+How is WebStorm used for front-end development at QAWare?;QAWare uses WebStorm as the main IDE for JavaScript, TypeScript, HTML, and CSS development, increasing productivity with powerful features such as intelligent code completion and automatic error recovery.
+How has QAWare integrated TeamCity into its CI/CD pipeline?;TeamCity was incorporated into QAWare as a central platform for Continuous Integration and Continuous Deployment to ensure an automated and reliable system for building, testing and deploying software.
+What plugins does QAWare use in IntelliJ IDEA for efficient development?;Some of QAWare's favorite IntelliJ IDEA plugins include SonarLint, Lombok, Checkstyle IDEA, and GitToolBox, all of which help improve code quality and developer productivity.
+How does QAWare improve code quality with ReSharper?;QAWare uses ReSharper to perform static code analysis, promote best practices, and enable automatic refactoring and bug fixes to improve code quality.
+How does QAWare use PhpStorm to integrate PHP frameworks?;QAWare relies on PhpStorm for integrating PHP frameworks such as Symfony, Laravel and Zend to accelerate the development of scalable and maintainable applications.
+How many monitors does QAWare provide to its employees?;Each employee at QAWare is given two screens to work efficiently.
+What kind of keyboard is provided by QAWare?;QAWare offers ergonomic keyboards to promote employee comfort and health.
+Can employees use their own mouse?;Yes, employees are allowed to bring and use their preferred mouse as long as it is compatible with the company's internal systems.
+What kind of laptop do employees receive?;QAWare provides its employees with powerful, up-to-date laptops to effectively manage their tasks.
+Is there any way to request an ergonomic chair?;Yes, ergonomic chairs can be requested by employees from Human Resources.
+Are headsets available for conference calls?;QAWare provides its employees with high-quality headsets to ensure optimal communication during conference calls.
+How to request additional technical equipment?;Employees can request additional equipment through the internal ticket system and the IT team will review the need.
+What software licenses are provided by QAWare?;QAWare provides licenses for the required software, such as development environments, project management tools and collaboration software.
+Is there training on how to use the technology provided?;Yes, QAWare offers regular training and workshops to familiarize employees with the tools and technologies provided.
+Does QAWare provide mobile devices for its employees?;Yes, QAWare offers company cell phones and tablets to its employees to facilitate communication and collaboration.
+What are the opening hours of the QAWare office?;The QAWare office is open weekdays from 8:00 am to 6:00 pm.
+Where can I find the kitchen in the QAWare office?;The kitchen is located on the first floor, next to the lounge.
+Are parking spaces available for employees?;There is company parking behind the building for the staff.
+Is there a dress code at QAWare?;QAWare prefers a casual dress code as long as it is appropriate and professional.
+Where can I park my bike at QAWare?;There is a covered bike rack in the back of the building.
+How does the access control system work at QAWare?;Employees receive a personalized access card with which they can open the doors.
+Does QAWare have a quiet room?;Yes, there is a rest room on the second floor where employees can relax.
+Where are the restrooms located in the QAWare office?;Toilets can be found on each floor next to the staircase.
+Are pets allowed in the QAWare office?;Yes, well behaved pets are allowed at QAWare as long as they do not cause a disturbance.
+Who is the contact person for technical problems in the office?;In case of technical difficulties, contact IT support at the internal extension 112.
+Where can I find printers and copiers in the office?;Printers and copiers are located near the reception area.
+How is smoking regulated in the QAWare office?;Smoking is not permitted inside the building, but there is a designated smoking area outside.
+Does QAWare offer a company pension plan?;Yes, QAWare offers an attractive company pension plan for its employees.
+Who is responsible for vacation scheduling and approval?;For leave requests, please contact your team leader or Human Resources.
+What are the main languages spoken at QAWare?;German and English are the most commonly used languages in the company.
+Are team events common at QAWare?;Yes, QAWare regularly hosts team events and company parties to promote cohesion and communication.
+Does QAWare have a canteen?;Yes, there is a canteen on the first floor that offers fresh and healthy meals.
+Where can I reserve meeting rooms in the QAWare office?;Meeting rooms can be booked via the company's internal reservation system.
+Is there a way to shower in the office?;Yes, showers are available for employees in the basement.
+What is the remote working policy at QAWare?;QAWare allows its employees flexible working models, including remote work as agreed with the team.
+Who is the contact person for personnel matters?;For personnel matters, please contact the Human Resources Department at the internal extension 210.
+Is QAWare environmentally conscious?;QAWare places a high value on sustainability and is committed to environmentally friendly practices in the office.
+Does QAWare have a company agreement?;Yes, QAWare has a company agreement that can be viewed on the company intranet.
+What kind of projects does QAWare mainly handle?;QAWare works on a variety of projects, from web and mobile development to artificial intelligence and cloud computing.
+Does QAWare have a buddy program for new employees?;Yes, QAWare offers a buddy program where experienced colleagues assist new employees.
+What is the performance appraisal process at QAWare?;Performance appraisals take place annually and include an interview with the team leader and self-reflection.
+Is overtime common at QAWare?;QAWare values work-life balance and encourages employees to keep overtime to a minimum.
+How are the break times regulated at QAWare?;Employees at QAWare can arrange their break times independently and flexibly, as long as working hours are respected.
+Is there a way to arrange childcare at QAWare?;QAWare offers its employees assistance in finding suitable childcare options nearby.
+What does health management look like at QAWare?;QAWare offers regular health checks, ergonomic workstations and sports activities for its employees.
+How is the corporate structure of QAWare organized?;QAWare's organization is divided into different teams, each belonging to different business units.
+Can you tell me more about the hierarchy at QAWare?;QAWare has a flat hierarchy that promotes collaboration and communication between team members.
+How many employees does QAWare have?;QAWare currently employs around 200 dedicated professionals in various areas of software development and IT consulting.
+Where is QAWare's headquarters located?;QAWare is headquartered in the city of Munich, Germany.
+Who is the CEO of QAWare?;The managing director of QAWare is Dr. Anna Müller.
+In which industries does QAWare operate?;QAWare operates in a variety of industries, including financial services, healthcare, telecommunications and retail.
+What is the vision of QAWare?;QAWare's vision is to passionately develop and operate mission-critical digital products while providing appropriate solutions and leveraging architecture, methodology and platform expertise.
+How long is the probationary period at QAWare?;The trial period at QAWare is usually three months.
+What kind of work culture does QAWare foster?;QAWare fosters an open, collaborative, and innovative work culture where employees can realize their potential and succeed together.
