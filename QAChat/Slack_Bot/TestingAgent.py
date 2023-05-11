@@ -1,10 +1,21 @@
 import tkinter as tk
+from slack_bolt import App
 from BaseAgent import BaseAgent
+import slack
+from slack_bolt.adapter.socket_mode import SocketModeHandler
+import re
 
 '''
     This is just an easy Testing Bot for testing reasons and should not be part of the final release. 
     Its purpose is to send and receive answers from our system, without having a functioning SlackBot or other.
 '''
+
+SLACK_TOKEN = "INSERT"
+SLACK_APP_TOKEN = "INSERT"
+app = App(token=SLACK_TOKEN)
+SIGNING_SECRET = "INSERT"
+client = slack.WebClient(token=SLACK_TOKEN)
+client.chat_postMessage(channel='#bot-test', text='Hi')
 
 
 class TestingAgent(BaseAgent):
@@ -33,7 +44,21 @@ class TestingAgent(BaseAgent):
         self.result_label.config(text=answer)
 
 
+@app.message(re.compile('.*'))
+def process_question(body, say):
+    text = body['event']['text']
+    say("I cannot answer if " + text)
+
+
+@app.event("app_mention")
+def mention_handler(body, say):
+    user = body['user']
+    say(f"Hi there, <@{user}>!")
+
+
 if __name__ == '__main__':
-    root = tk.Tk()
-    gui = TestingAgent(root)
-    root.mainloop()
+    handler = SocketModeHandler(app, SLACK_APP_TOKEN)
+    handler.start()
+    # root = tk.Tk()
+    # gui = TestingAgent(root)
+    # root.mainloop()

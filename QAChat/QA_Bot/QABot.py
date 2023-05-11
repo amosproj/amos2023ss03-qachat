@@ -1,7 +1,6 @@
 import QAChat.QA_Bot.APIInterface as APIInterface
 
 import json
-from supabase import create_client, Client
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 
 
