@@ -5,11 +5,13 @@ from slack_sdk import WebClient
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_bolt import App
 import re
+from dotenv import load_dotenv
+import os
 
-
-SLACK_TOKEN = "TOKEN"
-SLACK_APP_TOKEN = "APP_TOKEN"
-SIGNING_SECRET = "SIGNING_SECRET"
+load_dotenv("tokens.env")
+SLACK_TOKEN = os.getenv("SLACK_TOKEN")
+SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN")
+SIGNING_SECRET = os.getenv("SIGNING_SECRET")
 
 
 class QAAgent(BaseAgent):
