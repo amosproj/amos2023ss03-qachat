@@ -1,5 +1,8 @@
-import QAChat.QA_Bot.APIInterface as APIInterface
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Emanuel Erben
+# SPDX-FileCopyrightText: 2023 Felix Nützel
 
+import QAChat.QA_Bot.APIInterface as APIInterface
 import json
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 

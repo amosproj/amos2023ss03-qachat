@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Emanuel Erben
+# SPDX-FileCopyrightText: 2023 Felix Nützel
+
 import tkinter as tk
 from BaseAgent import BaseAgent
 
@@ -27,7 +31,7 @@ class TestingAgent(BaseAgent):
 
     def receive_question(self, question=None, user_id=None):
         input_text = self.entry.get()
-        self.api_interface.listen_for_requests(input_text, self)
+        self.api_interface.listen_for_requests(input_text, self, user_id)
 
     def receive_answer(self, answer, user_id=None):
         self.result_label.config(text=answer)

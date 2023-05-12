@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Emanuel Erben
+# SPDX-FileCopyrightText: 2023 Felix Nützel
+
 from QAChat.QA_Bot.QABot import QABot
 import QAChat.Slack_Bot.BaseAgent as BaseAgent
 

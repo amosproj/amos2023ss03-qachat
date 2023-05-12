@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Emanuel Erben
+# SPDX-FileCopyrightText: 2023 Felix Nützel
+
 from queue import Queue
 from threading import Thread
 from BaseAgent import BaseAgent
