@@ -8,8 +8,8 @@ In total, one can achieve a maximum score of 600 points.
 
 ## Results
 
-| Score                 | OpenAI | LLaMA | Instruct | E5  |
-|-----------------------|--------|-------|----------|-----|
-| English               | 563    |   34  | 576      | 525 |
-| German                | 501    |   63  | 473      | 355 |
-| German + DeepL        | 476    |       | 491      | 424 |
+| Score                 | OpenAI | LLaMA | Instruct | E5  | Gecko |
+|-----------------------|--------|-------|----------|-----|-------|
+| English               | 563    |   34  | 576      | 525 | 562   |
+| German                | 501    |   63  | 473      | 355 | 462   |
+| German + DeepL        | 476    |       | 491      | 424 | 494   |

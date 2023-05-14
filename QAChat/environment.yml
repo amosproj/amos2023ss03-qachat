@@ -12,6 +12,7 @@ dependencies:
       - atlassian-python-api
       - langchain
       - panda
+      - slackclient
       - supabase
       - InstructorEmbedding
       - sentence-transformers
