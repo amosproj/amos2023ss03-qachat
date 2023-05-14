@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 
 import tkinter as tk
-from BaseAgent import BaseAgent
+from base_agent import BaseAgent
 
 '''
     This is just an easy Testing Bot for testing reasons and should not be part of the final release. 

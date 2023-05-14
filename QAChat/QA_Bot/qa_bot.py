@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2023 Emanuel Erben
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 
-import QAChat.QA_Bot.APIInterface as APIInterface
+import QAChat.QA_Bot.api_interface as APIInterface
 import json
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 

@@ -4,7 +4,7 @@
 
 from queue import Queue
 from threading import Thread
-from BaseAgent import BaseAgent
+from base_agent import BaseAgent
 from slack_sdk import WebClient
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_bolt import App
