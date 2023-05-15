@@ -20,14 +20,10 @@ class DeepL_Translator():
         self.translator = deepl.Translator(DEEPL_TOKEN)
 
 
-        # Create a queue to hold responses
-        self.translation_que = Queue()
 
 
-
-
-    def receive_question(self, question):
-        result = self.translator.translate_text(question,source_lang="DE", target_lang="EN-US")
+    def receive_question(self, text):
+        result = self.translator.translate_text(text, target_lang="EN-US")
         return result.text
 
 if __name__ == '__main__':
