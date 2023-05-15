@@ -17,7 +17,7 @@
 *QAChat* evaluates newly developed LLMs for the use in a chatbot. The best suited network is trained on provided data that is collected from existing communication and documentation sources. The model is available for users to ask questions through a Slack bot integration.
 
 ## Vision
-In recent times, LLMs have evolved rapidly, opening up new, previously unimagined areas of application. *QAChat* takes advantage of these developments to provide users with a simple and convenient point of contact. This allows a general language model to be trained on specific knowledge and thus answer context-specific questions through an interface integrated into an already used communication tool.
+QAchat envisions an environment in which access to knowledge is just a message away. We aim to leverage the rapid advancement in language model technologies to create a seamless interface that enables employees to get their questions answered accurately, quickly, efficiently, and with ease - by a general language model that is trained on specific knowledge. Our goal is to provide a simple and convenient point of contact, with an easy-to-use interface that is integrated into widely used communication tools, and to make knowledge accessible to everyone - irrespective of their geographical location, language or technical ability.
 
 
 ## Setup
