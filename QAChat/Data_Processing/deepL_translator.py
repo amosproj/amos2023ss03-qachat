@@ -21,7 +21,15 @@ class DeepLTranslator:
         result = self.translator.translate_text(text, target_lang="EN-US")
         return result.text
 
+    def translate_german_english(self, text):
+        result = self.translator.translate_text(text, target_lang="EN-US")
+        return result.text
+
+    def translate_english_german(self, text):
+        result = self.translator.translate_text(text, target_lang="DE")
+        return result.text
+
 
 if __name__ == '__main__':
     translator = DeepLTranslator()
-    print(translator.receive_question("Test"))
+    print(translator.receive_question("Hallo wie geht es dir?"))

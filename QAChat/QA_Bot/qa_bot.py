@@ -6,7 +6,7 @@ import QAChat.QA_Bot.api_interface as APIInterface
 import json
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 
-from QAChat.Data_Processing.deepL_translator import DeepL_Translator
+from QAChat.Data_Processing.deepL_translator import DeepLTranslator
 
 
 class QABot:
@@ -30,7 +30,7 @@ class QABot:
         return "Test"
 
     def translate_question(self, question):
-        return DeepL_Translator().receive_question(question)
+        return DeepLTranslator().receive_question(question)
 
     def answer_question(self, question, user_id):
 
