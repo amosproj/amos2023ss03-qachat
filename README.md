@@ -14,7 +14,7 @@
 - [Slackbot](/QAChat/SlackBot/README.md)
 
 ## About
-*QAChat* evaluates newly developed LLMs for the use in a chatbot. The best suited network is trained on provided data that is collected from existing communication and documentation sources. The model is available for users to ask questions through a Slack bot integration.
+*QAChat* evaluates newly developed LLMs to create a chatbot that provides users with accurate, reliable and context-specific answers to their questions - with a focus on accessibility and ease of use. The best suited network is trained on provided data that is collected from existing communication and documentation sources. The model is made available to users through a Slackbot integration, where questions can be asked and answers are provided.
 
 ## Vision
 *QAchat* envisions an environment in which access to knowledge is just a message away. We aim to leverage the rapid advancement in language model technologies to create a seamless interface that enables employees to get their questions answered accurately, quickly, efficiently, and with ease - by a general language model that is trained on specific knowledge. Our goal is to provide a simple and convenient point of contact, with an easy-to-use interface that is integrated into widely used communication tools, and to make knowledge accessible to everyone - irrespective of their geographical location, language or technical ability.
