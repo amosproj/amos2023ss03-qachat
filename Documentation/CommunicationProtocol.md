@@ -1,110 +1,62 @@
 # Communication Protocols 
 ##  REST API
+REST API (Representational State Transfer Application Programming Interface) is a software architectural style that defines a set of constraints for creating web services. It is commonly used to build web services that are lightweight, maintainable, and scalable. REST APIs rely on HTTP methods such as GET, POST, PUT, and DELETE to interact with resources and allow clients to retrieve, create, update, and delete data. The simplicity of the REST architecture makes it easy to develop and integrate with other applications and services, making it a popular choice for building web-based systems and APIs.
 
-```seq
-participant Client
-participant Server
+<img width="444" alt="image" src="https://github.com/amosproj/amos2023ss03-qachat/assets/33463794/447c707c-3774-4a28-b90f-94e20025665d">
 
-Client->Server: GET /api/items
-Server-->Client: HTTP 200 OK
-Server-->Client: [ { id: 1, name: "Item 1" }, { id: 2, name: "Item 2" } ]
-
-Client->Server: POST /api/items
-Server-->Client: HTTP 201 Created
-Server-->Client: { id: 3, name: "Item 3" }
-
-Client->Server: PUT /api/items/3
-Server-->Client: HTTP 204 No Content
-
-Client->Server: DELETE /api/items/2
-Server-->Client: HTTP 204 No Content
-
-```  
-####Advantage 
+### Advantage 
 
 - simple to implement
 - platform independence
 
-####Disadvantage
+### Disadvantage
 
 - lack of real-time communication
 - requires additional data such as headers 
 
 ##  WebSocket
 
-```seq
-participant Client
-participant Server
+WebSocket is a communication protocol that enables real-time, bidirectional communication between a client and server over a single, long-lived connection. It allows for instant updates to be pushed from the server to the client without the client having to constantly poll the server for new data. WebSocket is commonly used in web applications that require real-time updates, such as online gaming and financial trading platforms.
 
-Client->Server: WebSocket handshake request
-Server-->Client: WebSocket handshake response
+<img width="344" alt="image" src="https://github.com/amosproj/amos2023ss03-qachat/assets/33463794/90cc8e71-89ca-4fc0-8ab9-041abf6d75b3">
 
-Client->Server: WebSocket message
-Server-->Client: WebSocket message
-
-Client->Server: WebSocket message
-Server-->Client: WebSocket message
-
-Client->Server: WebSocket close request
-Server-->Client: WebSocket close response
-
-```
-
-####Advantage 
+### Advantage 
 
 - real-time communication
 - bi-directional communication
 
-####Disadvantage
+### Disadvantage
 
 - complexer than REST
 - lack of scalability 
 
 ##  Message Queueing
-```seq
-participant Sender
-participant Queue
-participant Receiver
+Message Queuing is a communication pattern where messages are sent asynchronously between systems through a message broker. The sender of the message does not wait for a response from the receiver and can continue with other tasks, allowing for asynchronous processing. The message broker acts as an intermediary, ensuring reliable delivery and message ordering. This communication pattern is commonly used in distributed systems and microservices architectures to decouple components and improve scalability.
 
-Sender->Queue: Message 1
-Queue->Receiver: Message 1
-Receiver-->Queue: Acknowledgement 1
-Queue-->Sender: Acknowledgement 1
+<img width="444" alt="image" src="https://github.com/amosproj/amos2023ss03-qachat/assets/33463794/4fe04ed1-75cc-4f73-af23-ab141d15ece1">
 
-Sender->Queue: Message 2
-Queue->Receiver: Message 2
-Receiver-->Queue: Acknowledgement 2
-Queue-->Sender: Acknowledgement 2
-```
-####Advantage 
+### Advantage 
 
 - asynchronous processing
 - scalability 
 
-####Disadvantage
+### Disadvantage
 
 - complex to implement 
 - costly in cloud-based archticture
 
 ##  gRPC
-```seq
+gRPC is a high-performance, open-source, and platform-neutral Remote Procedure Call (RPC) framework that enables efficient communication between microservices. It uses Protocol Buffers as the default interface definition language, which allows for efficient data serialization and deserialization. gRPC supports multiple programming languages and provides features like bidirectional streaming, flow control, and error handling, making it suitable for high-throughput and low-latency applications.
 
-participant Client
-participant Server
+<img width="301" alt="image" src="https://github.com/amosproj/amos2023ss03-qachat/assets/33463794/c46686bd-0bcc-4c99-bfa2-71632bd5398a">
 
-Client->Server: CreateChannel()
-Client->Server: CreateMessage(message)
-Server->Client: SendAck()
-Server->Client: ProcessMessage(message)
-Server->Client: SendResponse()
-Client->Server: CloseChannel()
-```
-####Advantage 
+
+### Advantage 
 
 - asynchronous processing
 - high performance 
 
-####Disadvantage
+### Disadvantage
 
 - challenging to implement
 
