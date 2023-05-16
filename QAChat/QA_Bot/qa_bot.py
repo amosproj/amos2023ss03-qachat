@@ -19,7 +19,7 @@ class QABot:
     def __init__(self, embeddings=None, database=None):
         self.answer = None
         self.context = None
-        load_dotenv("tokens.env")
+        load_dotenv("../tokens.env")
 
         self.embeddings = embeddings
         if embeddings is None:
@@ -75,11 +75,12 @@ class QABot:
         """
         return [context.page_content for context in self.database.similarity_search(question, k=3)]
 
-
     def translate_question(self, question):
         return DeepLTranslator().receive_question(question)
 
-    
+    def translate_answer(self, answer):
+        return DeepLTranslator().translate_english_german(answer)
+
     def answer_question(self, question: str, user_id) -> str:
         """
             This method takes a user's question as input and returns an appropriate answer.
@@ -95,7 +96,8 @@ class QABot:
             >> answer_question("What is the color of the sky?")
             'The sky is blue during a clear day.'
         """
-
+        question = self.translate_question(question)
         context = self.__sim_search(question)
         answer = self.__answer_question_with_context(question, context)
+        answer = self.translate_answer(answer)
         return answer
