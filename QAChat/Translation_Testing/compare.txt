@@ -1,0 +1,1074 @@
+Question;Answer
+Question;Answer
+Frage;Antwort
+Wie sind unsere Entwicklungsprozesse strukturiert?;Unsere Entwicklungsabläufe basieren auf agilen Methoden wie Scrum und Kanban.
+How are our development processes structured?;Our development processes are based on agile methods such as Scrum and Kanban.
+Wie sind unsere Entwicklungsprozesse aufgebaut?;Unsere Entwicklungsprozesse basieren auf agilen Methoden wie Scrum und Kanban.
+Welche Programmiersprachen werden hauptsächlich bei QAWare verwendet?;Bei QAWare dominieren Java
+Which programming languages are mainly used in QAWare?;In QAWare Java dominates
+Welche Programmiersprachen werden in QAWare hauptsächlich verwendet?;In QAWare dominiert Java
+ Python und JavaScript als bevorzugte Code-Sprachen.
+ Python and JavaScript as preferred code languages.
+ Python und JavaScript als bevorzugte Programmiersprachen.
+Welche Frameworks und Tools setzen wir ein?;Wir arbeiten mit Angular
+Which frameworks and tools do we use?;We work with Angular
+Welche Frameworks und Tools verwenden wir?;Wir arbeiten mit Angular
+ React
+ React
+ Reagieren Sie
+Was ist die bevorzugte Cloud-Plattform im Unternehmen?;Wir setzen auf AWS
+What is the preferred cloud platform in the company?;We rely on AWS
+Welche Cloud-Plattform wird im Unternehmen bevorzugt; wir setzen auf AWS
+ aber auch Google Cloud und Microsoft Azure kommen zum Einsatz.
+ but Google Cloud and Microsoft Azure are also used.
+ aber auch Google Cloud und Microsoft Azure werden genutzt.
+Wie sieht das Schulungsangebot für Mitarbeiter aus?;Interne und externe Fortbildungen sowie Workshops werden regelmäßig angeboten.
+What training is offered to employees?;Internal and external training courses and workshops are offered on a regular basis.
+Welche Schulungen werden den Mitarbeitern angeboten?;Es werden regelmäßig interne und externe Schulungen und Workshops angeboten.
+Wo finde ich Informationen zu den neuesten Technologietrends?;Unser firmeneigenes Confluence-Wiki enthält aktuelle Informationen und Ressourcen.
+Where can I find information on the latest technology trends?;Our proprietary Confluence wiki contains up-to-date information and resources.
+Wo finde ich Informationen über die neuesten Technologietrends? Unser eigenes Confluence-Wiki enthält aktuelle Informationen und Ressourcen.
+Wie kann ich mich in ein neues Projekt einbringen?;Wende dich an deinen Teamleiter oder Projektmanager
+How can I get involved in a new project;Contact your team leader or project manager
+Wie kann ich mich an einem neuen Projekt beteiligen;Kontaktieren Sie Ihren Teamleiter oder Projektmanager
+ um Möglichkeiten zur Zusammenarbeit zu besprechen.
+ to discuss opportunities for collaboration.
+ um Möglichkeiten der Zusammenarbeit zu erörtern.
+Welche Sicherheitsmaßnahmen werden bei QAWare ergriffen?;Zugriffskontrollen
+What security measures are taken at QAWare?;Access controls
+Welche Sicherheitsmaßnahmen werden bei QAWare ergriffen; Zugangskontrollen
+ regelmäßige Updates und Sicherheitsschulungen sind nur einige der angewandten Sicherheitsrichtlinien.
+ regular updates and security training are just some of the security policies applied.
+ regelmäßige Aktualisierungen und Sicherheitsschulungen sind nur einige der angewandten Sicherheitsmaßnahmen.
+Wie pflegen wir die Qualität unserer Software?;Code-Reviews
+How do we maintain the quality of our software?;Code reviews
+Wie erhalten wir die Qualität unserer Software aufrecht?;Code Reviews
+ automatisierte Tests und Continuous Integration sind feste Bestandteile unserer Qualitätssicherung.
+ automated tests and continuous integration are fixed components of our quality assurance.
+ Automatisierte Tests und kontinuierliche Integration sind feste Bestandteile unserer Qualitätssicherung.
+Welche Projektmanagement-Tools verwenden wir?;Jira
+What project management tools do we use?;Jira
+Welche Projektmanagement-Tools verwenden wir?;Jira
+ Trello und Asana zählen zu den gängigen Werkzeugen für das Projektmanagement.
+ Trello and Asana are among the common tools for project management.
+ Trello und Asana gehören zu den gängigen Tools für das Projektmanagement.
+Wie erfolgt die Kommunikation innerhalb der Teams?;Slack
+How does communication take place within the teams?;Slack
+Wie erfolgt die Kommunikation innerhalb der Teams?;Slack
+ Microsoft Teams und E-Mail sind die primären Kommunikationsmittel.
+ Microsoft Teams and email are the primary means of communication.
+ Microsoft Teams und E-Mail sind die wichtigsten Kommunikationsmittel.
+Wie kann ich Zugriff auf den Quellcode eines Projekts erhalten?;Bitte kontaktiere deinen Teamleiter oder den Verantwortlichen für das Repository
+How can I get access to the source code of a project?;Please contact your team leader or the person responsible for the repository
+Wie erhalte ich Zugang zum Quellcode eines Projekts?;Bitte wenden Sie sich an Ihren Teamleiter oder an die für das Repository zuständige Person
+ um entsprechende Berechtigungen zu erhalten.
+ to obtain appropriate permissions.
+ um die entsprechenden Genehmigungen zu erhalten.
+Wie beantrage ich Urlaub oder informiere über Krankheitstage?;Nutze unser HR-System zur Beantragung von Urlaub und Meldung von Krankheitstagen.
+How do I request leave or inform about sick days;Use our HR system to request leave and report sick days.
+Wie beantrage ich Urlaub oder informiere über Krankheitstage? Nutzen Sie unser HR-System, um Urlaub zu beantragen und Krankheitstage zu melden.
+Welche Vorteile bietet QAWare seinen Mitarbeitern?;Flexible Arbeitszeiten
+What advantages does QAWare offer its employees?;Flexible working hours
+Welche Vorteile bietet QAWare seinen Mitarbeitern?;Flexible Arbeitszeiten
+ Homeoffice-Möglichkeiten und Weiterbildungschancen gehören zu unseren Mitarbeiterbenefits.
+ Home office options and further training opportunities are among our employee benefits.
+ Home-Office-Möglichkeiten und Weiterbildungsangebote gehören zu den Vorteilen für unsere Mitarbeiter.
+Wie kann ich mich für eine interne Schulung anmelden?;Eine Anmeldung zu internen Schulungen ist über das Fortbildungssystem oder den zuständigen Schulungskoordinator möglich.
+How can I register for internal training?;Registration for internal training is possible via the training system or the responsible training coordinator.
+Wie kann ich mich für interne Schulungen anmelden?;Die Anmeldung zu internen Schulungen ist über das Schulungssystem oder den zuständigen Schulungskoordinator möglich.
+Wie werden Codeänderungen in den Hauptzweig integriert?;Änderungen werden mittels Pull Requests und Code-Reviews in den Hauptzweig eingefügt.
+How are code changes integrated into the main branch;Changes are inserted into the main branch using pull requests and code reviews.
+Wie werden Codeänderungen in den Hauptzweig integriert? Änderungen werden mithilfe von Pull Requests und Code Reviews in den Hauptzweig eingefügt.
+Welche Datenbanken verwenden wir?;MySQL
+What databases do we use?;MySQL
+Welche Datenbanken verwenden wir?;MySQL
+ PostgreSQL und MongoDB sind Beispiele für eingesetzte Datenbanksysteme.
+ PostgreSQL and MongoDB are examples of database systems used.
+ PostgreSQL und MongoDB sind Beispiele für verwendete Datenbanksysteme.
+Wie ist das Onboarding für neue Mitarbeiter organisiert?;Ein Einführungsprogramm und persönliche Mentoren unterstützen dich während der ersten Wochen im Unternehmen.
+How is onboarding organized for new employees?;An induction program and personal mentors support you during your first weeks at the company.
+Wie ist das Onboarding für neue Mitarbeiter organisiert?;Ein Einführungsprogramm und persönliche Mentoren unterstützen Sie in den ersten Wochen im Unternehmen.
+Wo finde ich die Unternehmensrichtlinien und -verfahren?;Unser Confluence-Wiki enthält alle relevanten Informationen zu Richtlinien und Verfahren.
+Where can I find company policies and procedures?;Our Confluence wiki contains all relevant information on policies and procedures.
+Wo kann ich Unternehmensrichtlinien und -verfahren finden?;Unser Confluence-Wiki enthält alle relevanten Informationen zu Richtlinien und Verfahren.
+Wie sind die Teams bei QAWare organisiert?;Teams sind in der Regel nach Projekten oder Fachbereichen strukturiert und bestehen aus Entwicklern
+How are the teams organized at QAWare?;Teams are usually structured by projects or departments and consist of developers
+Wie sind die Teams bei QAWare organisiert?;Teams sind normalerweise nach Projekten oder Abteilungen strukturiert und bestehen aus Entwicklern
+ Testern und Projektmanagern.
+ Testers and project managers.
+ Prüfer und Projektleiter.
+Wie erstelle ich eine SSH-Verbindung zu QAWare-Servern?;Verwende den Befehl ssh benutzername@server.qaware.de und gib dein Passwort ein
+How do I create an SSH connection to QAWare servers?;Use the command ssh benutzername@server.qaware.de and enter your password
+Wie stelle ich eine SSH-Verbindung zu QAWare-Servern her?;Verwenden Sie den Befehl ssh benutzername@server.qaware.de und geben Sie Ihr Passwort ein
+ wenn du dazu aufgefordert wirst.
+ when you are asked to do so.
+ wenn Sie dazu aufgefordert werden.
+Wie kann ich meine SSH-Schlüssel für die QAWare-Infrastruktur einrichten?;Führe ssh-keygen aus
+How can I set up my SSH keys for the QAWare infrastructure;Run ssh-keygen
+Wie kann ich meine SSH-Schlüssel für die QAWare-Infrastruktur einrichten; ssh-keygen ausführen
+ um ein neues Schlüsselpaar zu generieren
+ to generate a new key pair
+ um ein neues Schlüsselpaar zu erzeugen
+Wie übertrage ich Dateien sicher über SSH zu QAWare-Servern?;Nutze das scp-Tool
+How do I transfer files securely over SSH to QAWare servers?;Use scp tool
+Wie übertrage ich Dateien sicher über SSH auf QAWare-Server?;Verwenden Sie das Tool scp
+ indem du den Befehl scp /pfad/zur/lokalen/datei benutzername@server.qaware.de:/pfad/zum/zielverzeichnis eingibst.
+ by entering the command scp /path/to/local/file benutzername@server.qaware.de:/pfad/zum/zielverzeichnis.
+ by entering the command scp /path/to/local/file benutzername@server.qaware.de:/pfad/zum/zielverzeichnis.
+Wie führe ich Befehle auf QAWare-Servern über eine SSH-Verbindung aus?;Verwende den Befehl ssh benutzername@server.qaware.de 'befehl'
+How to execute commands on QAWare servers via SSH connection;Use the command ssh benutzername@server.qaware.de 'command'.
+So führen Sie Befehle auf QAWare-Servern über eine SSH-Verbindung aus;Verwenden Sie den Befehl ssh benutzername@server.qaware.de 'command'.
+ wobei 'befehl' der auszuführende Befehl ist.
+ where 'command' is the command to be executed.
+ wobei 'Befehl' der auszuführende Befehl ist.
+Kann ich bei QAWare eine SSH-Verbindung mit mehreren Hops einrichten?;Ja
+Can I set up a multi-hop SSH connection with QAWare?;Yes
+Kann ich eine Multi-Hop-SSH-Verbindung mit QAWare einrichten?;Ja
+ benutze den -J-Parameter von SSH
+ use the -J parameter of SSH
+ den Parameter -J von SSH verwenden
+Wie ändere ich den Standard-SSH-Port bei QAWare?;Bearbeite die Datei /etc/ssh/sshd_config auf dem Server und ändere die Zeile Port 22 auf den gewünschten Port. Starte danach den SSH-Dienst neu.
+How do I change the default SSH port on QAWare?;Edit the /etc/ssh/sshd_config file on the server and change the port 22 line to the desired port. Then restart the SSH service.
+Wie ändere ich den Standard-SSH-Port auf QAWare?;Bearbeiten Sie die Datei /etc/ssh/sshd_config auf dem Server und ändern Sie die Zeile Port 22 auf den gewünschten Port. Starten Sie dann den SSH-Dienst neu.
+Wie kann ich bei QAWare eine SSH-Verbindung ohne Passwortabfrage aufbauen?;Stelle sicher
+How can I establish an SSH connection with QAWare without password request?;Make sure
+Wie kann ich eine SSH-Verbindung mit QAWare ohne Passwortabfrage herstellen?;Stellen Sie sicher, dass
+ dass dein öffentlicher SSH-Schlüssel im Verzeichnis ~/.ssh/authorized_keys auf dem Zielserver hinterlegt ist und die Berechtigungen korrekt gesetzt sind.
+ that your public SSH key is stored in the directory ~/.ssh/authorized_keys on the target server and the permissions are set correctly.
+ dass Ihr öffentlicher SSH-Schlüssel im Verzeichnis ~/.ssh/authorized_keys auf dem Zielserver gespeichert ist und die Berechtigungen korrekt gesetzt sind.
+Gibt es eine empfohlene Verschlüsselung für SSH-Verbindungen bei QAWare?;Verwende die Verschlüsselungsalgorithmen chacha20-poly1305@openssh.com
+Is there a recommended encryption for SSH connections in QAWare?;Use the encryption algorithms chacha20-poly1305@openssh.com
+Gibt es eine empfohlene Verschlüsselung für SSH-Verbindungen in QAWare?;Verwenden Sie die Verschlüsselungsalgorithmen chacha20-poly1305@openssh.com
+ aes256-gcm@openssh.com oder aes128-gcm@openssh.com für optimale Sicherheit.
+ aes256-gcm@openssh.com or aes128-gcm@openssh.com for optimum safety.
+ aes256-gcm@openssh.com oder aes128-gcm@openssh.com für optimale Sicherheit.
+Wie überwache ich aktive SSH-Verbindungen auf QAWare-Servern?;Führe den Befehl ss -tnp | grep sshd aus
+How do I monitor active SSH connections on QAWare servers?;Run the command ss -tnp | grep sshd
+Wie kann ich aktive SSH-Verbindungen auf QAWare-Servern überwachen?;Führen Sie den Befehl ss -tnp | grep sshd
+ um eine Liste der aktiven SSH-Verbindungen und zugehörigen Prozess-IDs anzuzeigen.
+ to display a list of active SSH connections and associated process IDs.
+ um eine Liste der aktiven SSH-Verbindungen und der zugehörigen Prozess-IDs anzuzeigen.
+Welche Maßnahmen ergreift QAWare
+What measures does QAWare take
+Welche Maßnahmen ergreift QAWare
+ um die Sicherheit der SSH-Verbindungen zu gewährleisten?;QAWare setzt auf strenge Sicherheitsrichtlinien wie regelmäßige Softwareaktualisierungen
+ to ensure the security of SSH connections?;QAWare relies on strict security policies such as regular software updates
+ um die Sicherheit von SSH-Verbindungen zu gewährleisten?;QAWare verlässt sich auf strenge Sicherheitsrichtlinien wie regelmäßige Software-Updates
+Wie kann ich meine SSH-Verbindung bei QAWare durch eine VPN-Verbindung absichern?;Stelle eine VPN-Verbindung zu QAWare-Netzwerk her und nutze anschließend die SSH-Verbindung wie gewohnt. Die VPN-Verbindung verschlüsselt den gesamten Datenverkehr.
+How can I secure my SSH connection to QAWare with a VPN connection?;Establish a VPN connection to QAWare network and then use the SSH connection as usual. The VPN connection encrypts all traffic.
+Wie kann ich meine SSH-Verbindung zu QAWare mit einer VPN-Verbindung sichern?;Stellen Sie eine VPN-Verbindung zum QAWare-Netzwerk her und verwenden Sie dann die SSH-Verbindung wie gewohnt. Die VPN-Verbindung verschlüsselt den gesamten Datenverkehr.
+Wie kann ich einen Workday-Bericht erstellen?;Um einen Workday-Bericht zu generieren
+How can I generate a Workday report?;To generate a Workday report
+Wie kann ich einen Workday-Bericht erstellen?;So erstellen Sie einen Workday-Bericht
+ navigiere zur Berichtserstellungsoberfläche
+ navigate to the report creation interface
+ zur Schnittstelle für die Berichterstellung navigieren
+Welche Integrationen bietet Workday für QAWare-Projekte?;Workday stellt QAWare diverse Schnittstellen zur Verfügung
+What integrations does Workday provide for QAWare projects?;Workday provides QAWare with various interfaces
+Welche Integrationen bietet Workday für QAWare-Projekte?;Workday bietet QAWare verschiedene Schnittstellen
+ darunter solche für CRM
+ including those for CRM
+ einschließlich solcher für CRM
+Kann ich mit Workday die Projektfortschritte verfolgen?;Ja
+Can I track project progress with Workday?;Yes
+Kann ich den Projektfortschritt mit Workday verfolgen?;Ja
+ Workday ermöglicht es Ihnen
+ Workday allows you to
+ Mit Workday können Sie
+Wo finde ich Schulungsressourcen für Workday?;Die Workday-Community und das Help Center bieten umfangreiche Schulungsmaterialien
+Where can I find training resources for Workday?;The Workday community and Help Center provide extensive training materials
+Wo finde ich Schulungsressourcen für Workday?;Die Workday-Community und das Help Center bieten umfangreiche Schulungsmaterialien
+ einschließlich Benutzerhandbüchern
+ including user manuals
+ einschließlich Benutzerhandbüchern
+Wie richte ich Benachrichtigungen in Workday ein?;Um Benachrichtigungseinstellungen in Workday zu konfigurieren
+How do I set up notifications in Workday?;To configure notification settings in Workday
+Wie richte ich Benachrichtigungen in Workday ein?;So konfigurieren Sie die Benachrichtigungseinstellungen in Workday
+ navigiere zum Benachrichtigungscenter und wähle die gewünschten Ereignisse und Empfänger aus.
+ navigate to the Notification Center and select the desired events and recipients.
+ Navigieren Sie zum Benachrichtigungscenter und wählen Sie die gewünschten Ereignisse und Empfänger aus.
+Wie lassen sich Arbeitszeiten in Workday erfassen?;Um Ihre Arbeitsstunden in Workday zu dokumentieren
+How to record working hours in Workday;To document your working hours in Workday
+So erfassen Sie Ihre Arbeitszeiten in Workday;So dokumentieren Sie Ihre Arbeitszeiten in Workday
+ öffnen Sie die Zeiterfassungsfunktion und geben Sie Ihre geleisteten Stunden
+ open the time tracking function and enter your hours worked
+ Öffnen Sie die Zeiterfassungsfunktion und geben Sie Ihre Arbeitsstunden ein.
+Kann ich mit Workday auch Ressourcenplanung betreiben?;Workday unterstützt bei QAWare die Planung von Ressourcen
+Can I also do resource planning with Workday?;Workday supports resource planning with QAWare
+Kann ich die Ressourcenplanung auch mit Workday durchführen?;Workday unterstützt die Ressourcenplanung mit QAWare
+ einschließlich der Zuweisung von Mitarbeitern zu Projekten und der Verfügbarkeitsanalyse.
+ including the assignment of employees to projects and availability analysis.
+ einschließlich der Zuweisung von Mitarbeitern zu Projekten und der Verfügbarkeitsanalyse.
+Wie erstelle ich in Workday einen Projektplan?;Um einen Projektplan in Workday zu erstellen
+How do I create a project plan in Workday?;To create a project plan in Workday
+Wie erstelle ich einen Projektplan in Workday?;So erstellen Sie einen Projektplan in Workday
+ navigiere zum Projektmodul
+ navigate to the project module
+ zum Projektmodul navigieren
+Wie importiere ich Daten aus anderen Systemen in Workday?;Um Daten aus externen Quellen in Workday zu importieren
+How do I import data from other systems into Workday?;To import data from external sources into Workday
+Wie kann ich Daten aus anderen Systemen in Workday importieren?;So importieren Sie Daten aus externen Quellen in Workday
+ verwenden Sie die bereitgestellten Importvorlagen und folgen den Anweisungen zum Hochladen und Verarbeiten der Dateien.
+ use the provided import templates and follow the instructions to upload and process the files.
+ verwenden Sie die bereitgestellten Importvorlagen und folgen Sie den Anweisungen zum Hochladen und Verarbeiten der Dateien.
+Wie kann ich in Workday einen Urlaubsantrag stellen?;Um bei QAWare einen Urlaubsantrag in Workday einzureichen
+How do I submit a leave request in Workday?;To submit a leave request in Workday with QAWare.
+Wie reiche ich einen Urlaubsantrag in Workday ein?;Um einen Urlaubsantrag in Workday mit QAWare einzureichen.
+ öffnen Sie den Bereich "Abwesenheit" und füllen das entsprechende Antragsformular aus.
+ open the "Absence" section and fill in the corresponding request form.
+ öffnen Sie die Rubrik "Abwesenheit" und füllen Sie das entsprechende Antragsformular aus.
+Wie erstelle ich eine Microservice-Architektur bei QAWare?;Folge den internen Leitfäden und Best Practices für die Implementierung von Microservices bei QAWare.
+How do I create a microservice architecture at QAWare;Follow the internal guides and best practices for implementing microservices at QAWare.
+Wie erstelle ich eine Microservice-Architektur bei QAWare;Folgen Sie den internen Leitfäden und Best Practices für die Implementierung von Microservices bei QAWare.
+Welche Code-Reviews-Richtlinien gelten bei QAWare?;Achte auf die unternehmensweiten Standards und Vorgaben für die Durchführung von Code-Reviews.
+What code review policies are in place at QAWare?;Be aware of company-wide standards and guidelines for conducting code reviews.
+Welche Richtlinien gibt es bei QAWare für Code-Reviews?; Kennen Sie die unternehmensweiten Standards und Richtlinien für die Durchführung von Code-Reviews.
+Welche Deployment-Strategie verwendet QAWare?;QAWare setzt auf Continuous Deployment mit automatisierten Tests und Integration in die Produktionsumgebung.
+What deployment strategy does QAWare use?;QAWare relies on continuous deployment with automated testing and integration into the production environment.
+Welche Bereitstellungsstrategie verwendet QAWare?;QAWare setzt auf eine kontinuierliche Bereitstellung mit automatisierten Tests und Integration in die Produktionsumgebung.
+Wie sollten wir Fehler und Ausnahmen bei QAWare behandeln?;Implementiere robuste Fehlerbehandlungsmechanismen und Logging
+How should we handle errors and exceptions in QAWare;Implement robust error handling mechanisms and logging.
+Wie sollten wir Fehler und Ausnahmen in QAWare behandeln? Implementieren Sie robuste Mechanismen zur Fehlerbehandlung und Protokollierung.
+ gemäß den internen Richtlinien.
+ in accordance with internal guidelines.
+ in Übereinstimmung mit den internen Richtlinien.
+Welche Programmiersprachen bevorzugt QAWare?;QAWare setzt hauptsächlich auf Java
+Which programming languages does QAWare prefer?;QAWare mainly relies on Java
+Welche Programmiersprachen werden von QAWare bevorzugt?;QAWare setzt hauptsächlich auf Java
+ JavaScript und Python
+ JavaScript and Python
+ JavaScript und Python
+Wie funktioniert die Versionskontrolle bei QAWare?;Wir nutzen Git und folgen den etablierten Workflows für Branching und Merging.
+How does version control work at QAWare?;We use Git and follow established workflows for branching and merging.
+Wie funktioniert die Versionskontrolle bei QAWare?;Wir verwenden Git und folgen etablierten Arbeitsabläufen für das Verzweigen und Zusammenführen.
+Welche Frameworks verwendet QAWare für Webanwendungen?;QAWare setzt auf React und Angular im Frontend und Spring Boot im Backend.
+What frameworks does QAWare use for web applications?;QAWare relies on React and Angular on the frontend and Spring Boot on the backend.
+Welche Frameworks verwendet QAWare für Webanwendungen?;QAWare setzt auf React und Angular im Frontend und Spring Boot im Backend.
+Wie sieht der Testprozess bei QAWare aus?;Schreibe Unit-
+What is the testing process in QAWare?;Write Unit-
+Wie sieht der Testprozess in QAWare aus?;Write Unit-
+ Integrations- und Systemtests
+ Integration and system testing
+ Integration und Systemprüfung
+Welche Datenbanksysteme werden bei QAWare eingesetzt?;QAWare verwendet relationale Datenbanken wie PostgreSQL und NoSQL-Datenbanken wie MongoDB
+What database systems does QAWare use?;QAWare uses relational databases like PostgreSQL and NoSQL databases like MongoDB
+Welche Datenbanksysteme verwendet QAWare?;QAWare verwendet relationale Datenbanken wie PostgreSQL und NoSQL-Datenbanken wie MongoDB
+ je nach Projektanforderungen.
+ depending on the project requirements.
+ je nach den Anforderungen des Projekts.
+Wie gehen wir bei QAWare mit der Dokumentation um?;Erstelle aussagekräftige und aktuelle Dokumentationen für jeden Codeabschnitt
+How do we handle documentation at QAWare;Create meaningful and up-to-date documentation for each code section.
+Wie gehen wir bei QAWare mit der Dokumentation um? Erstellen Sie eine aussagekräftige und aktuelle Dokumentation für jeden Codeabschnitt.
+ gemäß den unternehmensinternen Vorgaben.
+ in accordance with the company's internal guidelines.
+ in Übereinstimmung mit den internen Richtlinien des Unternehmens.
+Wie können wir bei QAWare die Performance unserer Anwendungen optimieren?;Nutze Profiling-Tools und optimiere den Code unter Berücksichtigung der internen Best Practices.
+At QAWare, how can we optimize the performance of our applications;Use profiling tools and optimize code with internal best practices in mind.
+Wie können wir bei QAWare die Leistung unserer Anwendungen optimieren? Verwenden Sie Profiling-Tools und optimieren Sie den Code mit Blick auf interne Best Practices.
+Welche Sicherheitspraktiken befolgt QAWare?;Beachte die Sicherheitsrichtlinien des Unternehmens
+What security practices does QAWare follow;Follow the company's security policies.
+Welche Sicherheitspraktiken wendet QAWare an? Befolgen Sie die Sicherheitsrichtlinien des Unternehmens.
+ um die Vertraulichkeit
+ around confidentiality
+ um Vertraulichkeit
+Wie fördert QAWare die Zusammenarbeit zwischen den Teams?;QAWare setzt auf regelmäßige Meetings
+How does QAWare promote collaboration between teams?;QAWare relies on regular meetings
+Wie fördert QAWare die Zusammenarbeit zwischen Teams?;QAWare setzt auf regelmäßige Treffen
+ Code-Reviews und Wissensaustausch
+ Code reviews and knowledge sharing
+ Code-Reviews und Wissensaustausch
+Wie verwalten wir bei QAWare die Abhängigkeiten unserer Projekte?;Verwende Dependency-Management-Tools wie Maven
+How do we manage the dependencies of our projects at QAWare;Use dependency management tools like Maven
+Wie verwalten wir die Abhängigkeiten unserer Projekte bei QAWare;Verwenden Sie Tools zur Verwaltung von Abhängigkeiten wie Maven
+ Gradle oder npm
+ Gradle or npm
+ Gradle oder npm
+Wie sieht der Entwicklungsprozess bei QAWare aus?;QAWare folgt dem Agile-Entwicklungsprozess
+What is the development process at QAWare?;QAWare follows the Agile development process
+Wie sieht der Entwicklungsprozess bei QAWare aus?;QAWare folgt dem agilen Entwicklungsprozess
+ unterteilt in Sprints und unterstützt durch stand-up Meetings
+ divided into sprints and supported by stand-up meetings
+ unterteilt in Sprints und unterstützt durch Stand-up-Meetings
+Wie richte ich ein neues Projekt in QAWare für Microsoft Teams ein?;Um ein neues Projekt in QAWare für Microsoft Teams zu erstellen
+How do I set up a new project in QAWare for Microsoft Teams?;To create a new project in QAWare for Microsoft Teams
+Wie richte ich ein neues Projekt in QAWare für Microsoft Teams ein?;So erstellen Sie ein neues Projekt in QAWare für Microsoft Teams
+ navigiere zuerst zum entsprechenden Team-Bereich
+ first navigate to the corresponding team area
+ zunächst zum entsprechenden Teambereich navigieren
+Welche Kommunikationsrichtlinien gelten bei QAWare für die Nutzung von Microsoft Teams?;Bei der Verwendung von Microsoft Teams bei QAWare ist es wichtig
+What are the communication guidelines for using Microsoft Teams at QAWare?;When using Microsoft Teams at QAWare it is important to
+Was sind die Kommunikationsrichtlinien für die Nutzung von Microsoft Teams bei QAWare? Bei der Nutzung von Microsoft Teams bei QAWare ist es wichtig
+ höflich und professionell zu kommunizieren
+ communicate politely and professionally
+ höflich und professionell zu kommunizieren
+Wie kann ich bei QAWare einen privaten Gruppenchat in Microsoft Teams erstellen?;Um bei QAWare in Microsoft Teams einen privaten Gruppenchat zu starten
+How can I create a private group chat in Microsoft Teams with QAWare?;To start a private group chat in Microsoft Teams with QAWare.
+Wie kann ich einen privaten Gruppenchat in Microsoft Teams mit QAWare erstellen?;Um einen privaten Gruppenchat in Microsoft Teams mit QAWare zu starten.
+ klicke auf das Chat-Symbol in der linken Seitenleiste
+ click on the chat icon in the left sidebar
+ Klicken Sie auf das Chat-Symbol in der linken Seitenleiste
+Gibt es bei QAWare empfohlene Microsoft Teams-Bot-Integrationen für Entwickler?;Einige empfohlene Microsoft Teams-Bot-Integrationen für QAWare Entwickler sind der GitHub-Bot
+Does QAWare have any recommended Microsoft Teams bot integrations for developers?;Some recommended Microsoft Teams bot integrations for QAWare developers are the GitHub bot
+Hat QAWare irgendwelche empfohlenen Microsoft Teams Bot-Integrationen für Entwickler?;Einige empfohlene Microsoft Teams Bot-Integrationen für QAWare-Entwickler sind der GitHub-Bot
+ Jira Cloud-Bot und der Azure DevOps-Bot
+ Jira Cloud Bot and the Azure DevOps Bot
+ Jira Cloud Bot und der Azure DevOps Bot
+Wie organisiert QAWare den Zugriff auf Kanäle und Unterhaltungen in Microsoft Teams?;QAWare organisiert den Zugriff auf Kanäle und Unterhaltungen in Microsoft Teams durch die Verwendung von Rollen und Berechtigungen
+How does QAWare organize access to channels and conversations in Microsoft Teams;QAWare organizes access to channels and conversations in Microsoft Teams through the use of roles and permissions
+Wie organisiert QAWare den Zugriff auf Kanäle und Unterhaltungen in Microsoft Teams;QAWare organisiert den Zugriff auf Kanäle und Unterhaltungen in Microsoft Teams durch die Verwendung von Rollen und Berechtigungen
+ um sicherzustellen
+ to ensure
+ um sicherzustellen
+Wo finde ich die Dokumentation für die von QAWare verwendeten Microsoft Teams-Anwendungen und -Integrationen?;Die Dokumentation für Microsoft Teams-Anwendungen und -Integrationen
+Where can I find the documentation for the Microsoft Teams applications and integrations used by QAWare?;The documentation for Microsoft Teams applications and integrations
+Wo finde ich die Dokumentation für die von QAWare verwendeten Microsoft Teams-Anwendungen und -Integrationen?;Die Dokumentation für Microsoft Teams-Anwendungen und -Integrationen
+ die bei QAWare verwendet werden
+ which are used with QAWare
+ die mit QAWare verwendet werden
+Wie erstelle ich bei QAWare eine Umfrage in Microsoft Teams?;Um bei QAWare eine Umfrage in Microsoft Teams zu erstellen
+How do I create a survey in Microsoft Teams with QAWare?;To create a survey in Microsoft Teams with QAWare
+Wie erstelle ich eine Umfrage in Microsoft Teams mit QAWare?;So erstellen Sie eine Umfrage in Microsoft Teams mit QAWare
+ wähle das gewünschte Team oder den Kanal aus
+ select the desired team or channel
+ Wählen Sie das gewünschte Team oder den gewünschten Kanal
+Gibt es bei QAWare spezielle Microsoft Teams-Etikette für Videokonferenzen?;Die Microsoft Teams-Etikette für Videokonferenzen bei QAWare beinhaltet das Einhalten von vereinbarten Meeting-Zeiten
+Does QAWare have special Microsoft Teams etiquette for video conferencing?;Microsoft Teams etiquette for video conferencing at QAWare includes adhering to agreed meeting times
+Gibt es bei QAWare einen speziellen Microsoft Teams-Knigge für Videokonferenzen?;Der Microsoft Teams-Knigge für Videokonferenzen bei QAWare beinhaltet die Einhaltung der vereinbarten Besprechungszeiten
+ das Stummschalten des Mikrofons bei Nichtgebrauch und das Vermeiden von Hintergrundgeräuschen.
+ muting the microphone when not in use and avoiding background noise.
+ Stummschaltung des Mikrofons, wenn es nicht benutzt wird, und Vermeidung von Hintergrundgeräuschen.
+Können wir bei QAWare externe Gäste zu unseren Microsoft Teams-Meetings einladen?;Ja
+Can we at QAWare invite external guests to our Microsoft Teams meetings?;Yes
+Können wir bei QAWare externe Gäste zu unseren Microsoft Teams-Besprechungen einladen?;Ja
+ bei QAWare können externe Gäste zu Microsoft Teams-Meetings eingeladen werden
+ at QAWare external guests can be invited to Microsoft Teams meetings
+ bei QAWare können externe Gäste zu Microsoft Teams Meetings eingeladen werden
+Wie kann ich bei Zoom eine Aufnahme starten?;Um eine Aufnahme in Zoom zu beginnen
+How can I start an exposure in Zoom?;To start an exposure in Zoom
+Wie starte ich eine Aufnahme in Zoom?;Um eine Aufnahme in Zoom zu starten
+ klicken Sie auf die Schaltfläche "Aufnahme" in der unteren Menüleiste während eines Meetings.
+ click the Record button in the bottom menu bar during a meeting.
+ Klicken Sie während einer Besprechung auf die Schaltfläche Aufzeichnen in der unteren Menüleiste.
+Gibt es eine Möglichkeit
+Is there a possibility
+Gibt es eine Möglichkeit
+ in Zoom den Hintergrund zu ändern?;Ja
+ change the background in Zoom?;Yes
+ den Hintergrund in Zoom ändern?;Ja
+Wie aktiviere ich die Breakout-Räume in Zoom für eine Besprechung?;Während eines Zoom-Meetings können Sie Breakout-Räume aktivieren
+How do I activate breakout rooms in Zoom for a meeting?;During a Zoom meeting, you can activate breakout rooms
+Wie aktiviere ich Nebenräume in Zoom für ein Meeting?;Während eines Zoom Meetings können Sie Nebenräume aktivieren
+ indem Sie auf das Symbol "Breakout-Räume" in der unteren Menüleiste klicken und die gewünschte Anzahl von Räumen festlegen.
+ by clicking the Breakout Rooms icon in the bottom menu bar and specifying the desired number of rooms.
+ indem Sie in der unteren Menüleiste auf das Symbol "Breakout Rooms" klicken und die gewünschte Anzahl an Räumen angeben.
+Welche Einstellung muss ich wählen
+Which setting do I have to choose
+Welche Einstellung muss ich wählen?
+ um mein Zoom-Meeting zu sichern?;Um Ihr Zoom-Meeting abzusichern
+ to secure my zoom meeting?;To secure your zoom meeting
+ um mein Zoom-Meeting zu sichern?;Um Ihr Zoom-Meeting zu sichern
+Kann ich in Zoom eine Bildschirmfreigabe durchführen?;Um Ihren Bildschirm in Zoom freizugeben
+Can I do a screen share in Zoom;To share your screen in Zoom.
+Kann ich eine Bildschirmfreigabe in Zoom machen;Um Ihren Bildschirm in Zoom freizugeben.
+ klicken Sie auf die Schaltfläche "Bildschirm teilen" in der unteren Menüleiste und wählen Sie den gewünschten Inhalt aus.
+ click the "Split Screen" button in the bottom menu bar and select the desired content.
+ Klicken Sie auf die Schaltfläche "Geteilter Bildschirm" in der unteren Menüleiste und wählen Sie den gewünschten Inhalt aus.
+Wie erhöhe ich die Audioqualität in einem Zoom-Meeting?;Um die Audioqualität in Zoom zu verbessern
+How do I increase the audio quality in a Zoom meeting?;To improve the audio quality in Zoom
+Wie kann ich die Audioqualität in einem Zoom-Meeting verbessern?;So verbessern Sie die Audioqualität in Zoom
+ gehen Sie zu den Audio-Einstellungen und wählen Sie "Automatische Lautstärkeregelung" und "Hintergrundgeräusche unterdrücken".
+ go to the audio settings and select "Automatic volume control" and "Suppress background noise".
+ Gehen Sie zu den Audioeinstellungen und wählen Sie "Automatische Lautstärkeregelung" und "Hintergrundgeräusche unterdrücken".
+Wie kann ich bei Zoom den Vollbildmodus aktivieren?;Um in Zoom den Vollbildmodus einzuschalten
+How can I enable full screen mode in Zoom?;To enable full screen mode in Zoom
+Wie kann ich den Vollbildmodus in Zoom aktivieren?;So aktivieren Sie den Vollbildmodus in Zoom
+ klicken Sie auf das Symbol "Vollbild" in der oberen rechten Ecke des Meeting-Fensters.
+ click the "Full Screen" icon in the upper right corner of the meeting window.
+ Klicken Sie auf das Symbol "Vollbild" in der oberen rechten Ecke des Besprechungsfensters.
+Wie erstelle ich eine Zoom-Einladung für ein QAWare-Meeting?;Um eine Zoom-Einladung für ein QAWare-Meeting zu erstellen
+How do I create a Zoom invitation for a QAWare meeting?;To create a Zoom invitation for a QAWare meeting
+Wie erstelle ich eine Zoom-Einladung für ein QAWare-Meeting? Um eine Zoom-Einladung für ein QAWare-Meeting zu erstellen
+ planen Sie ein neues Meeting in Ihrem Zoom-Konto und fügen Sie die relevanten QAWare-Mitarbeiter als Teilnehmer hinzu.
+ schedule a new meeting in your Zoom account and add the relevant QAWare employees as participants.
+ Planen Sie ein neues Meeting in Ihrem Zoom-Konto und fügen Sie die entsprechenden QAWare-Mitarbeiter als Teilnehmer hinzu.
+Wie kann ich meine Zoom-Meeting-Teilnehmerliste anzeigen?;Um die Liste der Teilnehmer in einem Zoom-Meeting anzuzeigen
+How can I view my Zoom meeting attendee list?;To view the list of attendees in a Zoom meeting.
+Wie kann ich die Liste meiner Zoom-Meeting-Teilnehmer anzeigen?;Um die Liste der Teilnehmer eines Zoom-Meetings anzuzeigen.
+ klicken Sie auf das Symbol "Teilnehmer" in der unteren Menüleiste.
+ click on the "Participant" icon in the bottom menu bar.
+ klicken Sie auf das Symbol "Teilnehmer" in der unteren Menüleiste.
+Kann ich in Zoom eine Umfrage erstellen?;Ja
+Can I create a survey in Zoom?;Yes
+Kann ich eine Umfrage in Zoom erstellen?;Ja
+ Sie können in Zoom eine Umfrage erstellen
+ You can create a survey in Zoom
+ Sie können eine Umfrage in Zoom erstellen
+Wie schalte ich die Handheben-Funktion in Zoom frei?;Um die Handheben-Funktion in Zoom zu nutzen
+How do I enable the hand lift function in Zoom?;To use the hand lift function in Zoom
+Wie aktiviere ich die Handlift-Funktion in Zoom?;So verwenden Sie die Handlift-Funktion in Zoom
+ klicken Sie auf das Symbol "Reaktionen" in der unteren Menüleiste und wählen Sie "Hand heben".
+ click on the "Reactions" icon in the bottom menu bar and select "Raise hand".
+ Klicken Sie auf das Symbol "Reaktionen" in der unteren Menüleiste und wählen Sie "Hand heben".
+Gibt es eine Möglichkeit
+Is there a possibility
+Gibt es eine Möglichkeit
+ in Zoom den Ton für alle Teilnehmer stummzuschalten?;Um alle Teilnehmer in einem Zoom-Meeting stummzuschalten
+ to mute the sound for all participants in Zoom?;To mute all participants in a Zoom meeting
+ um den Ton für alle Teilnehmer in Zoom stumm zu schalten;Um alle Teilnehmer in einem Zoom-Meeting stumm zu schalten
+Wie erstelle ich einen neuen Virtueldesktop?;Um einen neuen Virtueldesktop anzulegen
+How do I create a new virtual desktop?;To create a new virtual desktop
+Wie erstelle ich einen neuen virtuellen Desktop?;So erstellen Sie einen neuen virtuellen Desktop
+ navigieren Sie zu "Systemsteuerung > Virtueldesktops > Neuen Desktop erstellen" und befolgen Sie die angezeigten Schritte.
+ navigate to "Control Panel > Virtual Desktops > Create New Desktop" and follow the steps displayed.
+ Navigieren Sie zu "Systemsteuerung > Virtuelle Desktops > Neuen Desktop erstellen" und folgen Sie den angezeigten Schritten.
+Welche Voraussetzungen sind für Virtueldesktops notwendig?;Für die Nutzung von Virtueldesktops benötigen Sie eine stabile Internetverbindung
+What are the requirements for virtual desktops?;To use virtual desktops, you need a stable Internet connection.
+Was sind die Voraussetzungen für virtuelle Desktops?;Um virtuelle Desktops zu nutzen, benötigen Sie eine stabile Internetverbindung.
+ einen Webbrowser (aktuelle Version) und die QAWare-Berechtigungen.
+ a web browser (current version) and the QAWare permissions.
+ einen Webbrowser (aktuelle Version) und die QAWare-Berechtigungen.
+Kann ich meinen Virtueldesktop personalisieren?;Ja
+Can I personalize my virtual desktop?;Yes
+Kann ich meinen virtuellen Desktop personalisieren?;Ja
+ Sie können Ihren Virtueldesktop anpassen
+ You can customize your virtual desktop
+ Sie können Ihren virtuellen Desktop individuell anpassen
+Wie greife ich auf meine Dateien in Virtueldesktops zu?;Um auf Ihre Dateien zuzugreifen
+How to access my files in virtual desktops;To access your files
+Wie greife ich auf meine Dateien in virtuellen Desktops zu;So greifen Sie auf Ihre Dateien zu
+ klicken Sie im Hauptmenü auf "Datei-Explorer" und navigieren Sie zu dem gewünschten Speicherort.
+ click on "File Explorer" in the main menu and navigate to the desired location.
+ Klicken Sie im Hauptmenü auf "Datei-Explorer" und navigieren Sie zu dem gewünschten Speicherort.
+Wie kann ich Anwendungen auf Virtueldesktops installieren?;Um Software auf Virtueldesktops zu installieren
+How can I install applications on virtual desktops?;To install software on virtual desktops
+Wie kann ich Anwendungen auf virtuellen Desktops installieren?;So installieren Sie Software auf virtuellen Desktops
+ navigieren Sie zu "Systemsteuerung > Softwareverwaltung" und suchen Sie die gewünschte Anwendung aus der Liste.
+ navigate to "Control Panel > Software Management" and locate the desired application from the list.
+ Navigieren Sie zu "Systemsteuerung > Softwareverwaltung" und suchen Sie die gewünschte Anwendung in der Liste.
+Wie führe ich Updates auf Virtueldesktops durch?;Updates werden automatisch im Hintergrund ausgeführt
+How to perform updates on virtual desktops;Updates are performed automatically in the background
+So führen Sie Updates auf virtuellen Desktops durch;Updates werden automatisch im Hintergrund durchgeführt
+ aber Sie können sie manuell starten
+ but you can start it manually
+ aber Sie können ihn auch manuell starten
+Wie schütze ich meinen Virtueldesktop vor unbefugtem Zugriff?;Stellen Sie sicher
+How do I protect my virtual desktop from unauthorized access?;Make sure
+Wie kann ich meinen virtuellen Desktop vor unbefugtem Zugriff schützen?;Stellen Sie sicher, dass
+ dass Sie ein starkes Passwort verwenden
+ that you use a strong password
+ dass Sie ein sicheres Passwort verwenden
+Kann ich Virtueldesktops auf mehreren Geräten nutzen?;Ja
+Can I use virtual desktops on multiple devices?;Yes
+Kann ich virtuelle Desktops auf mehreren Geräten verwenden?;Ja
+ Virtueldesktops sind geräteübergreifend verfügbar und können auf Computern
+ Virtual desktops are available across devices and can be used on computers
+ Virtuelle Desktops sind geräteübergreifend verfügbar und können auf Computern verwendet werden
+Wie kann ich die Leistung meines Virtueldesktops optimieren?;Um die Leistung zu verbessern
+How can I optimize the performance of my virtual desktop?;To improve performance
+Wie kann ich die Leistung meines virtuellen Desktops optimieren?;Um die Leistung zu verbessern
+ schließen Sie nicht benötigte Anwendungen und Fenster
+ close unneeded applications and windows
+ nicht benötigte Anwendungen und Fenster schließen
+Wie erstelle ich Gruppen in Virtueldesktops für die Zusammenarbeit?;Um eine Gruppe zu erstellen
+How to create groups in virtual desktops for collaboration;To create a group
+So erstellen Sie Gruppen in virtuellen Desktops für die Zusammenarbeit;So erstellen Sie eine Gruppe
+ wählen Sie im Hauptmenü "Gruppenverwaltung > Neue Gruppe" und geben Sie die erforderlichen Informationen ein.
+ select "Group Management > New Group" in the main menu and enter the required information.
+ Wählen Sie im Hauptmenü "Gruppenverwaltung > Neue Gruppe" und geben Sie die erforderlichen Informationen ein.
+Wie teile ich Dateien in Virtueldesktops mit meinen Kollegen?;Um Dateien freizugeben
+How do I share files in virtual desktops with my colleagues?;To share files
+Wie gebe ich Dateien in virtuellen Desktops für meine Kollegen frei?;So geben Sie Dateien frei
+ klicken Sie mit der rechten Maustaste auf die Datei im Datei-Explorer und wählen Sie "Freigabe > Freigabeoptionen" aus dem Kontextmenü.
+ right-click the file in File Explorer and select "Sharing > Sharing Options" from the context menu.
+ Klicken Sie mit der rechten Maustaste auf die Datei im Datei-Explorer und wählen Sie "Freigabe > Freigabeoptionen" aus dem Kontextmenü.
+Wie kann ich den Support für Virtueldesktops kontaktieren?;Um den Support zu erreichen
+How can I contact support for Virtueldesktops?;To contact support
+Wie kann ich den Support für Virtueldesktops kontaktieren?;So kontaktieren Sie den Support
+ wählen Sie im Hauptmenü "Hilfe > Support" und senden Sie eine Anfrage mit einer detaillierten Beschreibung Ihres Problems.
+ select "Help > Support" in the main menu and send a request with a detailed description of your problem.
+ Wählen Sie im Hauptmenü "Hilfe > Support" und senden Sie eine Anfrage mit einer detaillierten Beschreibung Ihres Problems.
+Wie sind Virtueldesktops bei QAWare auf Sicherheit und Datenschutz ausgerichtet?;QAWare setzt hohe Sicherheitsstandards und Datenschutzrichtlinien bei der Implementierung von Virtueldesktops um
+How are virtual desktops aligned with security and privacy at QAWare;QAWare implements high security standards and privacy policies when implementing virtual desktops
+Wie werden virtuelle Desktops mit Sicherheit und Datenschutz bei QAWare in Einklang gebracht? QAWare setzt hohe Sicherheitsstandards und Datenschutzrichtlinien bei der Implementierung virtueller Desktops um.
+ einschließlich Verschlüsselung
+ including encryption
+ einschließlich Verschlüsselung
+Welche Programmiersprachen werden in QAWare's Virtueldesktop-Umgebung unterstützt?;In der Virtueldesktop-Umgebung von QAWare werden mehrere Programmiersprachen unterstützt
+Which programming languages are supported in QAWare's virtual desktop environment?;Several programming languages are supported in QAWare's virtual desktop environment
+Welche Programmiersprachen werden in der virtuellen Desktop-Umgebung von QAWare unterstützt?;Mehrere Programmiersprachen werden in der virtuellen Desktop-Umgebung von QAWare unterstützt
+ darunter Java
+ including Java
+ einschließlich Java
+Wie erhalte ich Zugriff auf QAWare-spezifische Tools und Ressourcen in Virtueldesktops?;Um auf QAWare-spezifische Tools zuzugreifen
+How do I get access to QAWare-specific tools and resources in virtual desktops?;To access QAWare-specific tools
+Wie erhalte ich Zugriff auf QAWare-spezifische Werkzeuge und Ressourcen in virtuellen Desktops?;Um auf QAWare-spezifische Werkzeuge zuzugreifen
+ navigieren Sie zu "Systemsteuerung > QAWare-Tools" und wählen Sie die gewünschte Anwendung oder Ressource.
+ navigate to "Control Panel > QAWare Tools" and select the required application or resource.
+ Navigieren Sie zu "Systemsteuerung > QAWare Tools" und wählen Sie die gewünschte Anwendung oder Ressource aus.
+Wie erfolgt die Integration von QAWare's Virtueldesktops mit der firmeninternen Kommunikation?;QAWare's Virtueldesktops sind in das firmeninterne Kommunikationssystem integriert
+How is QAWare's virtual desktops integrated with the company's internal communications?;QAWare's virtual desktops are integrated with the company's internal communications system
+Wie sind die virtuellen Desktops von QAWare in die interne Kommunikation des Unternehmens integriert?;Die virtuellen Desktops von QAWare sind in das interne Kommunikationssystem des Unternehmens integriert
+ sodass Sie direkt aus der Virtueldesktop-Umgebung Nachrichten senden und empfangen können.
+ so that you can send and receive messages directly from the virtual desktop environment.
+ so dass Sie Nachrichten direkt von der virtuellen Desktop-Umgebung aus senden und empfangen können.
+Kann ich mein QAWare-Entwicklerprofil mit Virtueldesktops synchronisieren?;Ja
+Can I synchronize my QAWare developer profile with Virtueldesktops?;Yes
+Kann ich mein QAWare-Entwicklerprofil mit Virtueldesktops synchronisieren?;Ja
+ Sie können Ihr QAWare-Entwicklerprofil mit Virtueldesktops synchronisieren
+ You can synchronize your QAWare developer profile with Virtueldesktops
+ Sie können Ihr QAWare-Entwicklerprofil mit Virtueldesktops synchronisieren
+Wie kann ich meine Projekte in QAWare's Virtueldesktops mit Versionskontrolle verwalten?;Um Projekte mit Versionskontrolle zu verwalten
+How can I manage my projects in QAWare's virtual desktops with version control?;To manage projects with version control
+Wie kann ich meine Projekte in den virtuellen Desktops von QAWare mit Versionskontrolle verwalten?;Um Projekte mit Versionskontrolle zu verwalten
+ nutzen Sie das integrierte Git-Tool in Virtueldesktops
+ use the integrated Git tool in virtual desktops
+ Verwendung des integrierten Git-Tools in virtuellen Desktops
+Wie erhalte ich Schulungen oder Tutorials zum effektiven Einsatz von Virtueldesktops bei QAWare?;Um Schulungen oder Tutorials zu erhalten
+How do I receive training or tutorials on how to effectively use virtual desktops with QAWare?;To receive training or tutorials
+Wie erhalte ich Schulungen oder Tutorials zur effektiven Nutzung virtueller Desktops mit QAWare?;Um Schulungen oder Tutorials zu erhalten
+ besuchen Sie das interne QAWare-Lernportal unter "Hilfe > Lernportal" und suchen Sie nach relevanten Kursen oder Anleitungen.
+ visit the internal QAWare Learning Portal under "Help > Learning Portal" and search for relevant courses or tutorials.
+ Besuchen Sie das interne QAWare Lernportal unter "Hilfe > Lernportal" und suchen Sie nach relevanten Kursen oder Tutorials.
+Gibt es Leistungsberichte oder Monitoring-Tools für QAWare's Virtueldesktops?;Ja
+Are there performance reports or monitoring tools for QAWare's virtual desktops?;Yes
+Gibt es Leistungsberichte oder Überwachungswerkzeuge für die virtuellen Desktops von QAWare?;Ja
+ es gibt Monitoring-Tools in der Virtueldesktop-Umgebung
+ there are monitoring tools in the virtual desktop environment
+ es gibt Überwachungswerkzeuge in der virtuellen Desktop-Umgebung
+Wie erstelle ich benutzerdefinierte Arbeitsbereiche in QAWare's Virtueldesktops?;Um benutzerdefinierte Arbeitsbereiche zu erstellen
+How to create custom workspaces in QAWare's virtual desktops;To create custom workspaces
+Wie man benutzerdefinierte Arbeitsbereiche in den virtuellen Desktops von QAWare erstellt;So erstellen Sie benutzerdefinierte Arbeitsbereiche
+ navigieren Sie zu "Desktop-Eigenschaften > Arbeitsbereiche" und wählen Sie "Neuen Arbeitsbereich erstellen"
+ navigate to "Desktop Properties > Workspaces" and select "Create new workspace
+ Navigieren Sie zu "Desktop-Eigenschaften > Arbeitsbereiche" und wählen Sie "Neuen Arbeitsbereich erstellen
+Wie kann ich auf QAWare's interne Dokumentation zugreifen
+How to access QAWare's internal documentation
+Zugang zur internen Dokumentation von QAWare
+ während ich Virtueldesktops nutze?;Um auf die interne Dokumentation zuzugreifen
+ while using virtual desktops?;To access the internal documentation
+ bei der Verwendung virtueller Desktops?;Für den Zugriff auf die interne Dokumentation
+Wie lautet die URL unseres QAWare GitHub Repositories?;Die URL unseres QAWare GitHub Repositories ist https://github.com/QAWare.
+What is the URL of our QAWare GitHub repository?;The URL of our QAWare GitHub repository is https://github.com/QAWare.
+Wie lautet die URL unseres QAWare GitHub-Repositorys?;Die URL unseres QAWare GitHub-Repositorys lautet https://github.com/QAWare.
+Welche Branching-Strategie wird bei QAWare für GitHub-Projekte angewendet?;Bei QAWare verwenden wir die GitFlow-Branching-Strategie für unsere GitHub-Projekte.
+What branching strategy does QAWare use for GitHub projects?;At QAWare, we use the GitFlow branching strategy for our GitHub projects.
+Welche Verzweigungsstrategie verwendet QAWare für GitHub-Projekte?;Bei QAWare verwenden wir die Verzweigungsstrategie GitFlow für unsere GitHub-Projekte.
+Wie initiiere ich einen Pull Request im QAWare Repository?;Um einen Pull Request im QAWare Repository zu erstellen
+How do I initiate a pull request in the QAWare Repository?;To create a pull request in the QAWare Repository
+Wie initiiere ich einen Pull Request im QAWare Repository?;Um einen Pull Request im QAWare Repository zu erstellen
+ wechsle zu deinem Feature-Branch und klicke auf den "New Pull Request"-Button.
+ switch to your feature branch and click on the "New Pull Request" button.
+ wechseln Sie zu Ihrem Funktionszweig und klicken Sie auf die Schaltfläche "Neuer Pull Request".
+Was ist der empfohlene Weg
+What is the recommended way
+Welches ist der empfohlene Weg?
+ um Änderungen aus dem Hauptbranch in meinen Feature-Branch zu integrieren?;Um Aktualisierungen aus dem Hauptbranch zu übernehmen
+ To integrate changes from the main branch into my feature branch?;To apply updates from the main branch
+ Um Änderungen aus dem Hauptzweig in meinen Feature-Zweig zu integrieren?;Um Aktualisierungen aus dem Hauptzweig anzuwenden
+Gibt es bei QAWare spezifische Commit-Nachrichten-Richtlinien?;Ja
+Does QAWare have specific commit message policies?;Yes
+Gibt es in QAWare spezielle Richtlinien für die Übermittlung von Nachrichten?;Ja
+ bei QAWare verwenden wir die Conventional Commits-Richtlinien für unsere Commit-Nachrichten.
+ at QAWare we use the Conventional Commits policy for our commit messages.
+ bei QAWare verwenden wir die Conventional Commits Policy für unsere Commit-Nachrichten.
+Wie sollte ich die Commit-Nachrichten bei QAWare verfassen?;Commit-Nachrichten sollten in der Form "Typ(Kategorie): Kurze Beschreibung" verfasst werden
+How should I write the commit messages in QAWare?;Commit messages should be written in the form "Type(Category): Short description" should be written
+Wie sollte ich die Commit-Meldungen in QAWare schreiben?;Commit-Meldungen sollten in der Form "Type(Category): Kurzbeschreibung" geschrieben werden
+ z.B. "feat(authentication): Implementiere Login-Funktionalität".
+ e.g. "feat(authentication): Implement login functionality".
+ z.B. "feat(authentication): Login-Funktionalität implementieren".
+Wie kann ich einen Fehler in einem QAWare GitHub-Projekt melden?;Um einen Fehler in einem QAWare GitHub-Projekt zu melden
+How can I report a bug in a QAWare GitHub project?;To report a bug in a QAWare GitHub project
+Wie kann ich einen Fehler in einem QAWare GitHub Projekt melden?;Um einen Fehler in einem QAWare GitHub Projekt zu melden
+ erstelle ein neues Issue und verwende die bereitgestellte Fehler-Vorlage.
+ create a new issue and use the provided error template.
+ Erstellen Sie ein neues Problem und verwenden Sie die mitgelieferte Fehlervorlage.
+Welche Art von Tests wird bei QAWare auf GitHub-Projekte angewendet?;QAWare verwendet Unit-
+What kind of tests does QAWare apply to GitHub projects?;QAWare uses unit-
+Welche Art von Tests wendet QAWare auf GitHub-Projekte an?;QAWare verwendet Unit-
+ Integrations- und End-to-End-Tests für seine GitHub-Projekte.
+ Integration and end-to-end testing for its GitHub projects.
+ Integration und End-to-End-Tests für seine GitHub-Projekte.
+Wie führe ich Tests für ein QAWare-Projekt auf GitHub aus?;Um Tests für ein QAWare-Projekt auf GitHub auszuführen
+How do I run tests for a QAWare project on GitHub?;To run tests for a QAWare project on GitHub
+Wie führe ich Tests für ein QAWare-Projekt auf GitHub durch?;Um Tests für ein QAWare-Projekt auf GitHub durchzuführen
+ folge den Anweisungen im README-File des jeweiligen Projekts.
+ follow the instructions in the README file of the respective project.
+ folgen Sie den Anweisungen in der README-Datei des jeweiligen Projekts.
+Gibt es bei QAWare Code-Review-Richtlinien für GitHub-Projekte?;Ja
+Does QAWare have code review guidelines for GitHub projects?;Yes
+Verfügt QAWare über Richtlinien zur Codeüberprüfung für GitHub-Projekte?;Ja
+ bei QAWare gibt es Code-Review-Richtlinien
+ at QAWare there are code review guidelines
+ bei QAWare gibt es Richtlinien für die Codeüberprüfung
+Wie lange sollte ich auf Feedback zu meinem Pull Request bei QAWare warten?;Du solltest innerhalb von 48 Stunden Feedback zu deinem Pull Request erhalten.
+How long should I wait for feedback on my pull request with QAWare?;You should receive feedback on your pull request within 48 hours.
+Wie lange sollte ich auf eine Rückmeldung zu meinem Pull Request mit QAWare warten?;Sie sollten innerhalb von 48 Stunden eine Rückmeldung zu Ihrem Pull Request erhalten.
+Gibt es eine automatische CI/CD-Pipeline für QAWare-Projekte auf GitHub?;Ja
+Is there an automatic CI/CD pipeline for QAWare projects on GitHub?;Yes
+Gibt es eine automatische CI/CD-Pipeline für QAWare-Projekte auf GitHub?;Ja
+ QAWare-Projekte auf GitHub nutzen eine automatische CI/CD-Pipeline
+ QAWare projects on GitHub use an automatic CI/CD pipeline
+ QAWare-Projekte auf GitHub verwenden eine automatische CI/CD-Pipeline
+Wie fordere ich ein Code-Review von einem Kollegen bei QAWare an?;Um ein Code-Review von einem Kollegen anzufordern
+How do I request a code review from a colleague in QAWare?;To request a code review from a colleague
+Wie fordere ich eine Codeüberprüfung von einem Kollegen in QAWare an?;So fordern Sie eine Codeüberprüfung von einem Kollegen an
+ füge den gewünschten Reviewer in der Pull Request-Seite hinzu und markiere ihn in den Kommentaren.
+ add the desired reviewer in the pull request page and mark it in the comments.
+ Fügen Sie den gewünschten Prüfer auf der Pull-Request-Seite hinzu und markieren Sie ihn in den Kommentaren.
+Welche Programmiersprachen werden hauptsächlich bei QAWare-Projekten auf GitHub verwendet?;QAWare-Projekte auf GitHub verwenden hauptsächlich Java
+Which programming languages are mainly used in QAWare projects on GitHub?;QAWare projects on GitHub mainly use Java
+Welche Programmiersprachen werden hauptsächlich in QAWare-Projekten auf GitHub verwendet?;QAWare-Projekte auf GitHub verwenden hauptsächlich Java
+ JavaScript
+ JavaScript
+ JavaScript
+Gibt es bei QAWare eine Liste der unterstützten Technologie-Stacks für GitHub-Projekte?;Ja
+Does QAWare have a list of supported technology stacks for GitHub projects?;Yes
+Verfügt QAWare über eine Liste der unterstützten Technologie-Stacks für GitHub-Projekte?;Ja
+ QAWare hat eine Liste der bevorzugten Technologie-Stacks
+ QAWare has a list of preferred technology stacks
+ QAWare hat eine Liste der bevorzugten Technologie-Stacks
+Wie werden Umgebungsvariablen in QAWare-Projekten auf GitHub verwaltet?;Umgebungsvariablen werden über .env-Dateien und geheime Repository-Einstellungen verwaltet.
+How are environment variables managed in QAWare projects on GitHub?;Environment variables are managed via .env files and secret repository settings.
+Wie werden Umgebungsvariablen in QAWare-Projekten auf GitHub verwaltet?;Umgebungsvariablen werden über .env-Dateien und geheime Repository-Einstellungen verwaltet.
+Wie verwende ich bei QAWare Linter in GitHub-Projekten?;Bei QAWare werden Linter über Build-Skripte oder Git Hooks automatisch ausgeführt. Die Konfigurationen dafür sind im jeweiligen Projekt-Repository enthalten.
+How do I use linter in GitHub projects with QAWare?;With QAWare, linter is executed automatically via build scripts or Git hooks. The configurations for this are included in the respective project repository.
+Wie verwende ich Linter in GitHub-Projekten mit QAWare?;Mit QAWare wird Linter automatisch über Build-Skripte oder Git-Hooks ausgeführt. Die Konfigurationen dafür sind im jeweiligen Projekt-Repository enthalten.
+Gibt es bei QAWare Vorlagen für die Erstellung neuer GitHub-Projekte?;Ja
+Does QAWare have templates for creating new GitHub projects?;Yes
+Verfügt QAWare über Vorlagen für die Erstellung neuer GitHub-Projekte?;Ja
+ QAWare hat Projektvorlagen
+ QAWare has project templates
+ QAWare hat Projektvorlagen
+Wie kann ich ein vorhandenes GitHub-Projekt in das QAWare-Repository migrieren?;Um ein vorhandenes GitHub-Projekt zu migrieren
+How can I migrate an existing GitHub project to the QAWare repository?;To migrate an existing GitHub project
+Wie kann ich ein bestehendes GitHub-Projekt in das QAWare-Repository migrieren?;So migrieren Sie ein bestehendes GitHub-Projekt
+ kontaktiere den QAWare-Repository-Administrator und folge den bereitgestellten Anweisungen.
+ contact the QAWare repository administrator and follow the provided instructions.
+ wenden Sie sich an den QAWare-Repository-Administrator und folgen Sie den Anweisungen.
+Welche Berechtigungsstufen gibt es bei QAWare für GitHub-Repositories?;Die Berechtigungsstufen bei QAWare für GitHub-Repositories sind Read
+What are the permission levels for QAWare for GitHub repositories?;The permission levels for QAWare for GitHub repositories are Read
+Welche Berechtigungsstufen gibt es für QAWare für GitHub-Repositories?;Die Berechtigungsstufen für QAWare für GitHub-Repositories sind Lesen
+ Write und Admin.
+ Write und Admin.
+ Schreiben und Admin.
+Wie kann ich Zugriff auf ein privates QAWare GitHub-Repository anfordern?;Um Zugang zu einem privaten QAWare GitHub-Repository zu erhalten
+How can I request access to a private QAWare GitHub repository?;To request access to a private QAWare GitHub repository
+Wie kann ich Zugang zu einem privaten QAWare GitHub-Repository beantragen?;Um Zugang zu einem privaten QAWare GitHub-Repository zu beantragen
+ wende dich an den Repository-Administrator oder an deinen Vorgesetzten.
+ contact the repository administrator or your supervisor.
+ wenden Sie sich an den Repository-Administrator oder Ihren Vorgesetzten.
+Wie wird die Dokumentation bei QAWare-Projekten auf GitHub verwaltet?;Dokumentation bei QAWare-Projekten wird meist im Repository selbst oder im internen Confluence-Wiki gepflegt.
+How is the documentation for QAWare projects managed on GitHub?;Documentation for QAWare projects is mostly maintained in the repository itself or in the internal Confluence wiki.
+Wie wird die Dokumentation für QAWare-Projekte auf GitHub verwaltet?;Die Dokumentation für QAWare-Projekte wird meist im Repository selbst oder im internen Confluence-Wiki gepflegt.
+Gibt es bei QAWare eine Liste der internen Code-Bibliotheken
+Does QAWare have a list of the internal code libraries
+Verfügt QAWare über eine Liste der internen Code-Bibliotheken?
+ die in GitHub-Projekten verwendet werden können?;Ja
+ that can be used in GitHub projects?;Yes
+ die in GitHub-Projekten verwendet werden können?;Ja
+Wie erfolgt die Versionsverwaltung bei QAWare-Projekten auf GitHub?;Die Versionsverwaltung bei QAWare-Projekten erfolgt durch Semantic Versioning und Git-Tags.
+How is version management done for QAWare projects on GitHub?;Version management for QAWare projects is done through Semantic Versioning and Git tags.
+Wie erfolgt die Versionsverwaltung für QAWare-Projekte auf GitHub?;Die Versionsverwaltung für QAWare-Projekte erfolgt über Semantische Versionierung und Git-Tags.
+Wie kann ich die Abhängigkeiten eines QAWare-Projekts auf GitHub aktualisieren?;Um die Abhängigkeiten eines QAWare-Projekts zu aktualisieren
+How can I update the dependencies of a QAWare project on GitHub?;To update the dependencies of a QAWare project
+Wie kann ich die Abhängigkeiten eines QAWare-Projekts auf GitHub aktualisieren?;So aktualisieren Sie die Abhängigkeiten eines QAWare-Projekts
+ verwende den Paketmanager
+ use the package manager
+ den Paketmanager verwenden
+Was ist der übliche Prozess zur Behebung von Sicherheitslücken in QAWare-Projekten auf GitHub?;Um Sicherheitslücken in QAWare-Projekten zu beheben
+What is the usual process for fixing security vulnerabilities in QAWare projects on GitHub?;To fix security vulnerabilities in QAWare projects.
+Wie sieht der übliche Prozess zur Behebung von Sicherheitslücken in QAWare-Projekten auf GitHub aus?;Zur Behebung von Sicherheitslücken in QAWare-Projekten.
+ erstelle ein neues Issue mit der entsprechenden Sicherheitslücken-Vorlage und arbeite eng mit dem Sicherheitsteam zusammen
+ Create a new issue with the appropriate vulnerability template and work closely with the security team
+ Erstellen eines neuen Problems mit der entsprechenden Schwachstellenvorlage und enge Zusammenarbeit mit dem Sicherheitsteam
+Wie kann ich mich über bevorstehende Wartungsarbeiten oder Ausfälle der von QAWare verwendeten GitHub-Dienste informieren?;Informationen über bevorstehende Wartungsarbeiten oder Ausfälle werden über interne Kommunikationskanäle
+How can I get informed about upcoming maintenance or outages of the GitHub services used by QAWare?;Information about upcoming maintenance or outages is provided via internal communication channels.
+Wie kann ich über anstehende Wartungsarbeiten oder Ausfälle der von QAWare genutzten GitHub-Dienste informiert werden?;Informationen über anstehende Wartungsarbeiten oder Ausfälle werden über interne Kommunikationskanäle bereitgestellt.
+ wie E-Mail oder Slack
+ like email or Slack
+ wie E-Mail oder Slack
+Wie kann ich auf das QAWare Google Drive zugreifen?;Öffne deinen Browser und gehe zu drive.google.com
+How can I access the QAWare Google Drive?;Open your browser and go to drive.google.com
+Wie kann ich auf das QAWare Google Drive zugreifen?;Öffnen Sie Ihren Browser und gehen Sie zu drive.google.com
+ logge dich dann mit deinem QAWare-Konto ein.
+ then log in with your QAWare account.
+ und melden Sie sich dann mit Ihrem QAWare-Konto an.
+Wie erstelle ich ein neues Dokument auf dem QAWare Google Drive?;Wähle im Google Drive die Option "Neu" und klicke auf "Google Docs" oder das gewünschte Dateiformat.
+How do I create a new document on QAWare Google Drive?;In Google Drive, select the "New" option and click on "Google Docs" or the desired file format.
+Wie erstelle ich ein neues Dokument in QAWare Google Drive?;Wählen Sie in Google Drive die Option "Neu" und klicken Sie auf "Google Docs" oder das gewünschte Dateiformat.
+Kann ich Dateien direkt aus meinem QAWare Google Drive teilen?;Ja
+Can I share files directly from my QAWare Google Drive?;Yes
+Kann ich Dateien direkt von meinem QAWare Google Drive aus freigeben;Ja
+ klicke auf die gewünschte Datei und wähle das Teilen-Symbol oder die Teilen-Option im Rechtsklick-Menü.
+ click the file you want to share and select the Share icon or the Share option from the right-click menu.
+ Klicken Sie auf die Datei, die Sie freigeben möchten, und wählen Sie das Symbol Freigeben oder die Option Freigeben aus dem Rechtsklickmenü.
+Wie können geteilte QAWare Google Drive Dokumente gemeinsam bearbeitet werden?;Wenn das Dokument geteilt wurde
+How to collaboratively edit shared QAWare Google Drive documents;If the document has been shared
+Gemeinsame Bearbeitung von freigegebenen QAWare Google Drive Dokumenten;Wenn das Dokument freigegeben wurde
+ können alle berechtigten Personen das Dokument gleichzeitig bearbeiten
+ all authorized persons can edit the document at the same time
+ alle berechtigten Personen können das Dokument gleichzeitig bearbeiten
+Wie stelle ich Dateien im QAWare Google Drive für externe Partner zur Verfügung?;Erstelle einen "Freigabelink" für die Datei und sende diesen an die betreffende Person oder Gruppe.
+How do I share files in QAWare Google Drive with external partners?;Create a "share link" for the file and send it to the relevant person or group.
+Wie kann ich Dateien in QAWare Google Drive für externe Partner freigeben?;Erstellen Sie einen "Freigabelink" für die Datei und senden Sie ihn an die entsprechende Person oder Gruppe.
+Wie kann ich den Zugriff auf geteilte Dateien im QAWare Google Drive widerrufen?;Öffne die Datei
+How can I revoke access to shared files in QAWare Google Drive;Open the file
+Wie kann ich den Zugriff auf freigegebene Dateien in QAWare Google Drive widerrufen;Öffnen Sie die Datei
+ gehe zu "Teilen" und entferne die Berechtigung der entsprechenden Person oder Gruppe.
+ go to "Share" and remove the permission of the corresponding person or group.
+ gehen Sie zu "Teilen" und entfernen Sie die Berechtigung der entsprechenden Person oder Gruppe.
+Gibt es eine Möglichkeit
+Is there a possibility
+Gibt es eine Möglichkeit
+ Dateien im QAWare Google Drive zu versionieren?;Ja
+ Versioning files in QAWare Google Drive?;Yes
+ Versionierung von Dateien in QAWare Google Drive?;Ja
+Wie finde ich eine bestimmte Datei auf dem QAWare Google Drive?;Nutze die Suchleiste oben im Google Drive
+How do I find a specific file on QAWare Google Drive?;Use the search bar at the top of Google Drive.
+Wie finde ich eine bestimmte Datei in QAWare Google Drive?;Verwenden Sie die Suchleiste oben in Google Drive.
+ um nach dem Dateinamen
+ to search for the filename
+ um nach dem Dateinamen zu suchen
+Wie erstelle ich im QAWare Google Drive einen Ordner?;Klicke auf "Neu" und wähle "Ordner" aus dem Menü
+How do I create a folder in QAWare Google Drive?;Click on "New" and select "Folder" from the menu.
+Wie erstelle ich einen Ordner in QAWare Google Drive?;Klicken Sie auf "Neu" und wählen Sie "Ordner" aus dem Menü.
+ um einen neuen Ordner zu erstellen.
+ to create a new folder.
+ um einen neuen Ordner zu erstellen.
+Kann ich Dateien vom QAWare Google Drive auf meinem Computer synchronisieren?;Ja
+Can I synchronize files from QAWare Google Drive on my computer?;Yes
+Kann ich Dateien von QAWare Google Drive auf meinem Computer synchronisieren?;Ja
+ lade die Google Drive App herunter und installiere sie
+ download and install the Google Drive app
+ die Google Drive-App herunterladen und installieren
+Wie kann ich bei Bedarf die Freigabe von QAWare Google Drive Dateien einschränken?;Öffne die Teilen-Einstellungen der Datei und passe die Zugriffseinstellungen nach Bedarf an.
+How can I restrict sharing of QAWare Google Drive files if needed;Open the file's sharing settings and adjust the access settings as needed.
+Wie kann ich die Freigabe von QAWare Google Drive-Dateien bei Bedarf einschränken;Öffnen Sie die Freigabeeinstellungen der Datei und passen Sie die Zugriffseinstellungen nach Bedarf an.
+Wie kann ich Dateien im QAWare Google Drive archivieren?;Erstelle einen Archiv-Ordner und verschiebe die Dateien dorthin oder markiere sie mit dem Tag "Archiviert".
+How can I archive files in QAWare Google Drive?;Create an archive folder and move the files to it or mark them with the tag "Archived".
+Wie kann ich Dateien in QAWare Google Drive archivieren?;Erstellen Sie einen Archivordner und verschieben Sie die Dateien dorthin oder markieren Sie sie mit dem Tag "Archiviert".
+Wie kann ich den Speicherplatz im QAWare Google Drive erweitern?;Bitte wende dich an die IT-Abteilung von QAWare
+How can I expand the storage space in QAWare Google Drive?;Please contact the QAWare IT department.
+Wie kann ich den Speicherplatz in QAWare Google Drive erweitern?;Bitte kontaktieren Sie die QAWare IT-Abteilung.
+ um den Speicherplatz zu erweitern.
+ to expand the memory space.
+ um den Speicherplatz zu erweitern.
+Was passiert
+What happens
+Was geschieht
+ wenn ich eine Datei im QAWare Google Drive lösche?;Die Datei wird in den Papierkorb verschoben und nach 30 Tagen automatisch gelöscht
+ When I delete a file in QAWare Google Drive?;The file is moved to the Trash and automatically deleted after 30 days.
+ Wenn ich eine Datei in QAWare Google Drive? lösche, wird die Datei in den Papierkorb verschoben und nach 30 Tagen automatisch gelöscht.
+Wie kann ich im QAWare Google Drive Dateien offline verfügbar machen?;Aktiviere die Option "Offline verfügbar" in den Dateieinstellungen oder in der Google Drive App auf deinem Gerät.
+How can I make files available offline in QAWare Google Drive?;Enable the "Available offline" option in the file settings or in the Google Drive app on your device.
+Wie kann ich Dateien in QAWare Google Drive offline verfügbar machen?;Aktivieren Sie die Option "Offline verfügbar" in den Dateieinstellungen oder in der Google Drive App auf Ihrem Gerät.
+Welche JetBrains-Produkte werden bei QAWare eingesetzt?;Die Hauptprodukte von JetBrains
+Which JetBrains products are used with QAWare?;The main JetBrains products are
+Welche JetBrains-Produkte werden mit QAWare verwendet? Die wichtigsten JetBrains-Produkte sind
+ die bei QAWare verwendet werden
+ which are used with QAWare
+ die mit QAWare verwendet werden
+Wie integriert QAWare IntelliJ IDEA in seinen Arbeitsablauf?;IntelliJ IDEA wird als bevorzugte IDE für Java- und Kotlin-Entwicklungen bei QAWare genutzt
+How does QAWare integrate IntelliJ IDEA into its workflow;IntelliJ IDEA is used as the preferred IDE for Java and Kotlin development at QAWare
+Wie integriert QAWare IntelliJ IDEA in seinen Arbeitsablauf? IntelliJ IDEA wird bei QAWare als bevorzugte IDE für die Java- und Kotlin-Entwicklung eingesetzt.
+ wobei maßgeschneiderte Plug-ins und Einstellungen für eine effiziente Programmierung verwendet werden.
+ using customized plug-ins and settings for efficient programming.
+ mit individuellen Plug-ins und Einstellungen für eine effiziente Programmierung.
+Wie wird ReSharper in QAWare-Projekten eingesetzt?;ReSharper wird bei QAWare zur Verbesserung der Produktivität und Codequalität in .NET-Projekten verwendet
+How is ReSharper used in QAWare projects;ReSharper is used in QAWare to improve productivity and code quality in .NET projects
+Wie wird ReSharper in QAWare-Projekten eingesetzt;ReSharper wird in QAWare eingesetzt, um die Produktivität und Codequalität in .NET-Projekten zu verbessern
+ indem automatische Refaktorisierungen
+ by automatic refactoring
+ durch automatisches Refactoring
+Welche Vorteile bietet QAWare durch die Verwendung von PhpStorm?;Durch den Einsatz von PhpStorm bei QAWare profitieren Entwickler von einer leistungsstarken IDE für PHP-Entwicklung
+What are the benefits of using PhpStorm with QAWare?;By using PhpStorm with QAWare, developers benefit from a powerful IDE for PHP development
+Was sind die Vorteile der Verwendung von PhpStorm mit QAWare? Durch die Verwendung von PhpStorm mit QAWare profitieren Entwickler von einer leistungsstarken IDE für die PHP-Entwicklung
+ einschließlich effizienter Code-Navigation
+ including efficient code navigation
+ einschließlich effizienter Code-Navigation
+Inwiefern nutzt QAWare PyCharm für seine Python-Projekte?;PyCharm wird bei QAWare zur Python-Entwicklung eingesetzt
+To what extent does QAWare use PyCharm for its Python projects?;PyCharm is used at QAWare for Python development
+Inwieweit verwendet QAWare PyCharm für seine Python-Projekte?;PyCharm wird bei QAWare für die Python-Entwicklung verwendet
+ wodurch Entwickler von intelligenter Codevervollständigung
+ which makes developers of intelligent code completion
+ die den Entwicklern von intelligenter Code-Vervollständigung
+Wie wird WebStorm zur Frontend-Entwicklung bei QAWare verwendet?;QAWare nutzt WebStorm als Haupt-IDE für JavaScript-
+How is WebStorm used for front-end development at QAWare?;QAWare uses WebStorm as the main IDE for JavaScript-
+Wie wird WebStorm für die Front-End-Entwicklung bei QAWare eingesetzt?;QAWare verwendet WebStorm als Haupt-IDE für JavaScript-
+ TypeScript-
+ TypeScript-
+ TypeScript-
+Wie hat QAWare TeamCity in seine CI/CD-Pipeline integriert?;TeamCity wurde bei QAWare als zentrale Plattform für Continuous Integration und Continuous Deployment eingebunden
+How did QAWare integrate TeamCity into its CI/CD pipeline;TeamCity was integrated into QAWare as a central platform for Continuous Integration and Continuous Deployment
+Wie hat QAWare TeamCity in seine CI/CD-Pipeline integriert? TeamCity wurde als zentrale Plattform für Continuous Integration und Continuous Deployment in QAWare integriert.
+ um ein automatisiertes und zuverlässiges System für das Erstellen
+ to provide an automated and reliable system for the creation of
+ ein automatisiertes und zuverlässiges System für die Erstellung von
+Welche Plugins verwendet QAWare in IntelliJ IDEA für die effiziente Entwicklung?;Einige der von QAWare bevorzugten IntelliJ IDEA-Plugins sind SonarLint
+What plugins does QAWare use in IntelliJ IDEA for efficient development?;Some of the IntelliJ IDEA plugins preferred by QAWare are SonarLint
+Welche Plugins verwendet QAWare in IntelliJ IDEA für eine effiziente Entwicklung? Einige der von QAWare bevorzugten IntelliJ IDEA Plugins sind SonarLint
+ Lombok
+ Lombok
+ Lombok
+Wie verbessert QAWare die Codequalität mit ReSharper?;QAWare nutzt ReSharper
+How does QAWare improve code quality with ReSharper?;QAWare uses ReSharper
+Wie verbessert QAWare die Codequalität mit ReSharper?;QAWare verwendet ReSharper
+ um statische Codeanalysen durchzuführen
+ to perform static code analysis
+ zur Durchführung einer statischen Codeanalyse
+Wie verwendet QAWare PhpStorm
+How QAWare uses PhpStorm
+Wie QAWare PhpStorm verwendet
+ um PHP-Frameworks zu integrieren?;QAWare setzt auf PhpStorm für die Integration von PHP-Frameworks wie Symfony
+ to integrate PHP frameworks?;QAWare relies on PhpStorm for the integration of PHP frameworks like Symfony
+ QAWare verlässt sich auf PhpStorm für die Integration von PHP-Frameworks wie Symfony
+Wie viele Monitore stellt QAWare seinen Mitarbeitern zur Verfügung?;Jeder Mitarbeiter bei QAWare erhält zwei Bildschirme
+How many monitors does QAWare provide to its employees?;Each employee at QAWare receives two monitors
+Wie viele Monitore stellt QAWare seinen Mitarbeitern zur Verfügung? Jeder Mitarbeiter von QAWare erhält zwei Monitore
+ um effizient arbeiten zu können.
+ in order to be able to work efficiently.
+ um effizient arbeiten zu können.
+Welche Art von Tastatur wird von QAWare bereitgestellt?;QAWare bietet ergonomische Tastaturen an
+What kind of keyboard is provided by QAWare?;QAWare offers ergonomic keyboards
+Welche Art von Tastatur bietet QAWare?;QAWare bietet ergonomische Tastaturen
+ um den Komfort und die Gesundheit der Mitarbeiter zu fördern.
+ to promote the comfort and health of employees.
+ das Wohlbefinden und die Gesundheit der Arbeitnehmer zu fördern.
+Können die Mitarbeiter ihre eigene Maus verwenden?;Ja
+Can employees use their own mouse?;Yes
+Können die Mitarbeiter ihre eigene Maus benutzen?;Ja
+ die Angestellten dürfen ihre bevorzugte Maus mitbringen und verwenden
+ employees are allowed to bring and use their preferred mouse
+ Die Mitarbeiter dürfen ihre bevorzugte Maus mitbringen und benutzen.
+Welche Art von Laptop erhalten die Mitarbeiter?;QAWare stellt seinen Mitarbeitern leistungsstarke
+What kind of laptop do employees receive?;QAWare provides its employees with powerful
+Welche Art von Laptop erhalten die Mitarbeiter?;QAWare stellt seinen Mitarbeitern leistungsstarke
+ aktuelle Laptops zur Verfügung
+ current laptops available
+ aktuelle Laptops verfügbar
+Gibt es eine Möglichkeit
+Is there a possibility
+Gibt es eine Möglichkeit
+ einen ergonomischen Stuhl anzufordern?;Ja
+ to request an ergonomic chair?;Yes
+ einen ergonomischen Stuhl anzufordern?;Ja
+Sind Headsets für Telefonkonferenzen vorhanden?;QAWare stellt seinen Mitarbeitern hochwertige Headsets zur Verfügung
+Are headsets available for conference calls?;QAWare provides its employees with high-quality headsets
+Gibt es Headsets für Telefonkonferenzen?;QAWare stellt seinen Mitarbeitern hochwertige Headsets zur Verfügung.
+ um eine optimale Kommunikation während der Telefonkonferenzen zu gewährleisten.
+ to ensure optimal communication during conference calls.
+ um eine optimale Kommunikation bei Telefonkonferenzen zu gewährleisten.
+Wie kann man zusätzliche technische Ausrüstung anfordern?;Mitarbeiter können zusätzliche Ausrüstung über das interne Ticketsystem beantragen
+How to request additional technical equipment;Employees can request additional equipment via the internal ticket system
+Beantragung zusätzlicher technischer Ausrüstung;Mitarbeiter können zusätzliche Ausrüstung über das interne Ticketsystem beantragen
+ und das IT-Team wird den Bedarf prüfen.
+ and the IT team will review the need.
+ und das IT-Team wird den Bedarf prüfen.
+Welche Software-Lizenzen werden von QAWare bereitgestellt?;QAWare stellt Lizenzen für die erforderliche Software bereit
+What software licenses are provided by QAWare?;QAWare provides licenses for the required software
+Welche Softwarelizenzen stellt QAWare zur Verfügung?;QAWare stellt Lizenzen für die benötigte Software zur Verfügung
+ wie beispielsweise Entwicklungsumgebungen
+ such as development environments
+ wie zum Beispiel Entwicklungsumgebungen
+Gibt es Schulungen zur Nutzung der bereitgestellten Technologie?;Ja
+Is there training on the use of the technology provided?;Yes
+Gibt es eine Schulung zur Nutzung der bereitgestellten Technologie?;Ja
+ QAWare bietet regelmäßige Schulungen und Workshops an
+ QAWare offers regular trainings and workshops
+ QAWare bietet regelmäßig Schulungen und Workshops an
+Stellt QAWare mobile Geräte für seine Mitarbeiter zur Verfügung?;Ja
+Does QAWare provide mobile devices for its employees?;Yes
+Stellt QAWare seinen Mitarbeitern mobile Geräte zur Verfügung?;Ja
+ QAWare bietet seinen Mitarbeitern Firmenhandys und Tablets
+ QAWare offers its employees company cell phones and tablets
+ QAWare bietet seinen Mitarbeitern Firmenhandys und Tablets
+Wie sind die Öffnungszeiten des QAWare Büros?;Das QAWare Büro ist wochentags von 8:00 bis 18:00 Uhr geöffnet.
+What are the opening hours of the QAWare office?;The QAWare office is open weekdays from 8:00 to 18:00.
+Wie sind die Öffnungszeiten des QAWare-Büros? Das QAWare-Büro ist werktags von 8:00 bis 18:00 Uhr geöffnet.
+Wo finde ich die Küche im QAWare Büro?;Die Küche befindet sich im Erdgeschoss
+Where can I find the kitchen in the QAWare office?;The kitchen is located on the first floor
+Wo finde ich die Küche im QAWare-Büro?;Die Küche befindet sich im ersten Stock
+ neben dem Aufenthaltsraum.
+ next to the lounge.
+ neben der Lounge.
+Stehen den Mitarbeitern Parkplätze zur Verfügung?;Für die Belegschaft gibt es firmeneigene Parkplätze hinter dem Gebäude.
+Is parking available for employees?;There is company-owned parking behind the building for employees.
+Gibt es Parkplätze für Mitarbeiter?;Hinter dem Gebäude gibt es firmeneigene Parkplätze für Mitarbeiter.
+Gibt es eine Kleiderordnung bei QAWare?;QAWare bevorzugt eine legerere Kleiderordnung
+Is there a dress code at QAWare?;QAWare prefers a casual dress code.
+Gibt es bei QAWare eine Kleiderordnung?;QAWare bevorzugt eine legere Kleidung.
+ solange sie angemessen und professionell ist.
+ as long as it is appropriate and professional.
+ solange es angemessen und professionell ist.
+Wo kann ich mein Fahrrad bei QAWare abstellen?;Es gibt einen überdachten Fahrradständer im hinteren Bereich des Gebäudes.
+Where can I park my bike at QAWare?;There is a covered bike rack in the back of the building.
+Wo kann ich mein Fahrrad bei QAWare abstellen? Es gibt einen überdachten Fahrradständer auf der Rückseite des Gebäudes.
+Wie funktioniert das Zugangskontrollsystem bei QAWare?;Mitarbeiter erhalten eine personalisierte Zugangskarte
+How does the access control system work at QAWare?;Employees receive a personalized access card
+Wie funktioniert das Zugangskontrollsystem bei QAWare?;Die Mitarbeiter erhalten eine personalisierte Zugangskarte
+ mit der sie die Türen öffnen können.
+ with which they can open the doors.
+ mit denen sie die Türen öffnen können.
+Gibt es bei QAWare einen Ruheraum?;Ja
+Is there a quiet room at QAWare?;Yes
+Gibt es bei QAWare einen Ruheraum?;Ja
+ im zweiten Stock steht ein Ruheraum zur Verfügung
+ there is a relaxation room on the second floor
+ im zweiten Stock gibt es einen Ruheraum
+Wo befinden sich die Toiletten im QAWare Büro?;Toiletten finden Sie auf jeder Etage neben dem Treppenhaus.
+Where are the restrooms located in the QAWare office;Restrooms are located on each floor next to the stairwell.
+Wo befinden sich die Toiletten im QAWare-Büro? Die Toiletten befinden sich auf jeder Etage neben dem Treppenhaus.
+Sind Haustiere im QAWare Büro erlaubt?;Ja
+Are pets allowed in the QAWare office?;Yes
+Sind Haustiere im QAWare-Büro erlaubt?;Ja
+ bei QAWare sind gut erzogene Haustiere gestattet
+ well behaved pets are allowed at QAWare
+ gut erzogene Haustiere sind bei QAWare erlaubt
+Wer ist der Ansprechpartner für technische Probleme im Büro?;Wenden Sie sich bei technischen Schwierigkeiten an den IT-Support unter der internen Durchwahl 112.
+Who is the contact person for technical problems in the office?;Contact IT support at the internal extension 112 for technical difficulties.
+Wer ist die Kontaktperson für technische Probleme im Büro?;Wenden Sie sich bei technischen Problemen an den IT-Support unter der internen Durchwahl 112.
+Wo finde ich Drucker und Kopierer im Büro?;Drucker und Kopierer sind in der Nähe des Empfangsbereichs aufgestellt.
+Where can I find printers and copiers in the office?;Printers and copiers are located near the reception area.
+Wo finde ich Drucker und Kopierer im Büro?;Drucker und Kopierer befinden sich in der Nähe des Empfangsbereichs.
+Wie ist das Rauchen im QAWare Büro geregelt?;Das Rauchen ist im Gebäude nicht gestattet
+How is smoking regulated in the QAWare office;Smoking is not allowed in the building
+Wie wird das Rauchen im QAWare-Büro geregelt;Rauchen ist im Gebäude nicht erlaubt
+ aber es gibt einen ausgewiesenen Raucherbereich im Freien.
+ but there is a designated smoking area outside.
+ aber es gibt einen ausgewiesenen Raucherbereich im Freien.
+Gibt es bei QAWare eine betriebliche Altersvorsorge?;Ja
+Does QAWare offer a company pension plan?;Yes
+Bietet QAWare eine betriebliche Altersvorsorge an?;Ja
+ QAWare bietet eine attraktive betriebliche Altersvorsorge für seine Mitarbeiter an.
+ QAWare offers an attractive company pension plan for its employees.
+ QAWare bietet eine attraktive betriebliche Altersvorsorge für seine Mitarbeiter.
+Wer ist für die Urlaubsplanung und Genehmigung zuständig?;Für Urlaubsanträge wenden Sie sich bitte an Ihren Teamleiter oder die Personalabteilung.
+Who is responsible for vacation planning and approval?;For vacation requests, please contact your team leader or Human Resources.
+Wer ist für die Urlaubsplanung und -genehmigung zuständig?;Für Urlaubsanträge wenden Sie sich bitte an Ihren Teamleiter oder die Personalabteilung.
+Welche Sprachen werden bei QAWare hauptsächlich gesprochen?;Deutsch und Englisch sind die am häufigsten verwendeten Sprachen im Unternehmen.
+What are the main languages spoken at QAWare?;German and English are the most commonly used languages in the company.
+Welche Sprachen werden bei QAWare hauptsächlich gesprochen?;Deutsch und Englisch sind die am häufigsten verwendeten Sprachen im Unternehmen.
+Sind bei QAWare Teamevents üblich?;Ja
+Are team events common at QAWare?;Yes
+Gibt es bei QAWare übliche Team-Events?;Ja
+ QAWare veranstaltet regelmäßig Teamevents und Firmenfeiern
+ QAWare regularly organizes team events and company celebrations
+ QAWare organisiert regelmäßig Team-Events und Firmenfeiern
+Gibt es bei QAWare eine Kantine?;Ja
+Does QAWare have a canteen?;Yes
+Verfügt QAWare über eine Kantine?;Ja
+ im Erdgeschoss befindet sich eine Kantine
+ on the first floor there is a canteen
+ im ersten Stock befindet sich eine Kantine
+Wo kann ich im QAWare Büro Besprechungsräume reservieren?;Besprechungsräume können über das firmeninterne Reservierungssystem gebucht werden.
+Where can I reserve meeting rooms in the QAWare office?;Meeting rooms can be booked via the company's internal reservation system.
+Wo kann ich Besprechungsräume im QAWare-Büro reservieren?; Besprechungsräume können über das interne Reservierungssystem des Unternehmens gebucht werden.
+Gibt es eine Möglichkeit
+Is there a possibility
+Gibt es eine Möglichkeit
+ im Büro zu duschen?;Ja
+ to shower in the office?;Yes
+ im Büro zu duschen?;Ja
+Wie ist die Remote-Arbeitspolitik bei QAWare?;QAWare ermöglicht seinen Mitarbeitern flexible Arbeitsmodelle
+What is the remote working policy at QAWare?;QAWare allows its employees to have flexible working models
+Wie sieht die Politik der Fernarbeit bei QAWare aus?;QAWare ermöglicht seinen Mitarbeitern flexible Arbeitsmodelle
+ einschließlich Remote-Arbeit nach Absprache mit dem Team.
+ Including remote work as agreed with the team.
+ Einschließlich Fernarbeit nach Absprache mit dem Team.
+Wer ist der Ansprechpartner bei Personalangelegenheiten?;Für Personalangelegenheiten steht Ihnen die Personalabteilung unter der internen Durchwahl 210 zur Verfügung.
+Who is the contact person for personnel matters?;For personnel matters, please contact the Human Resources Department at the internal extension 210.
+Wer ist der Ansprechpartner für Personalangelegenheiten?;In Personalangelegenheiten wenden Sie sich bitte an die Personalabteilung unter der internen Durchwahl 210.
+Ist QAWare umweltbewusst?;QAWare legt großen Wert auf Nachhaltigkeit und setzt sich für umweltfreundliche Praktiken im Büro ein.
+Is QAWare environmentally conscious?;QAWare places a high value on sustainability and is committed to environmentally friendly practices in the office.
+Ist QAWare umweltbewusst?;QAWare legt großen Wert auf Nachhaltigkeit und hat sich zu umweltfreundlichen Praktiken im Büro verpflichtet.
+Gibt es bei QAWare eine Betriebsvereinbarung?;Ja
+Does QAWare have a company agreement?;Yes
+Hat QAWare eine Betriebsvereinbarung?;Ja
+ QAWare hat eine Betriebsvereinbarung
+ QAWare has an operating agreement
+ QAWare hat eine Betriebsvereinbarung
+Welche Art von Projekten bearbeitet QAWare hauptsächlich?;QAWare arbeitet an einer Vielzahl von Projekten
+What kind of projects does QAWare mainly work on?;QAWare works on a variety of projects
+An welcher Art von Projekten arbeitet QAWare hauptsächlich?;QAWare arbeitet an einer Vielzahl von Projekten
+ von Web- und Mobile-Entwicklung bis hin zu Künstlicher Intelligenz und Cloud Computing.
+ from web and mobile development to artificial intelligence and cloud computing.
+ von Web- und Mobilentwicklung bis hin zu künstlicher Intelligenz und Cloud Computing.
+Gibt es bei QAWare ein Buddy-Programm für neue Mitarbeiter?;Ja
+Does QAWare have a buddy program for new employees?;Yes
+Gibt es bei QAWare ein Buddy-Programm für neue Mitarbeiter;Ja
+ QAWare bietet ein Buddy-Programm an
+ QAWare offers a buddy program
+ QAWare bietet ein Buddy-Programm
+Wie läuft die Leistungsbeurteilung bei QAWare ab?;Leistungsbeurteilungen finden jährlich statt und umfassen ein Gespräch mit dem Teamleiter sowie eine Selbstreflexion.
+What is the performance appraisal process at QAWare;Performance appraisals take place annually and include an interview with the team leader and self-reflection.
+Wie läuft der Prozess der Leistungsbeurteilung bei QAWare ab? Die Leistungsbeurteilung findet jährlich statt und umfasst ein Gespräch mit dem Teamleiter und eine Selbstreflexion.
+Sind bei QAWare Überstunden üblich?;QAWare legt Wert auf Work-Life-Balance und ermutigt Mitarbeiter
+Is overtime common at QAWare?;QAWare values work-life balance and encourages employees to
+Sind Überstunden bei QAWare üblich?;QAWare legt Wert auf eine ausgewogene Work-Life-Balance und ermutigt seine Mitarbeiter dazu
+ Überstunden auf ein Minimum zu beschränken.
+ Keep overtime to a minimum.
+ Begrenzen Sie Überstunden auf ein Minimum.
+Wie sind die Pausenzeiten bei QAWare geregelt?;Mitarbeiter bei QAWare können ihre Pausenzeiten selbstständig und flexibel gestalten
+How are break times regulated at QAWare?;Employees at QAWare can arrange their break times independently and flexibly
+Wie sind die Pausenzeiten bei QAWare geregelt?;Die Mitarbeiter von QAWare können ihre Pausenzeiten selbständig und flexibel gestalten
+ solange die Arbeitszeit eingehalten wird.
+ as long as the working time is respected.
+ solange die Arbeitszeiten eingehalten werden.
+Gibt es bei QAWare eine Möglichkeit
+Is there a possibility with QAWare
+Gibt es eine Möglichkeit mit QAWare
+ Kinderbetreuung zu organisieren?;QAWare bietet seinen Mitarbeitern Unterstützung bei der Suche nach geeigneten Kinderbetreuungsmöglichkeiten in der Nähe.
+ Organize childcare?;QAWare offers its employees assistance in finding suitable childcare options nearby.
+ Kinderbetreuung organisieren?;QAWare bietet seinen Mitarbeitern Unterstützung bei der Suche nach geeigneten Kinderbetreuungsmöglichkeiten in der Nähe.
+Wie sieht das Gesundheitsmanagement bei QAWare aus?;QAWare bietet regelmäßige Gesundheitschecks
+What does health management look like at QAWare?;QAWare offers regular health checks
+Wie sieht das Gesundheitsmanagement bei QAWare aus?;QAWare bietet regelmäßige Gesundheitschecks
+ ergonomische Arbeitsplätze und Sportangebote für seine Mitarbeiter an.
+ ergonomic workstations and sports facilities for its employees.
+ ergonomische Arbeitsplätze und Sporteinrichtungen für seine Mitarbeiter.
+Wie ist die Unternehmensstruktur von QAWare organisiert?;Die Organisation von QAWare ist in verschiedene Teams aufgeteilt
+How is the corporate structure of QAWare organized?;The organization of QAWare is divided into different teams
+Wie ist die Unternehmensstruktur von QAWare aufgebaut?;Die Organisation von QAWare ist in verschiedene Teams unterteilt
+ die jeweils unterschiedlichen Geschäftsbereichen angehören.
+ each belonging to different business areas.
+ die jeweils zu verschiedenen Geschäftsbereichen gehören.
+Kannst du mir mehr über die Hierarchie bei QAWare erzählen?;QAWare verfügt über eine flache Hierarchie
+Can you tell me more about the hierarchy at QAWare?;QAWare has a flat hierarchy
+Können Sie mir mehr über die Hierarchie bei QAWare erzählen?;QAWare hat eine flache Hierarchie
+ die die Zusammenarbeit und Kommunikation zwischen den Teammitgliedern fördert.
+ that promotes cooperation and communication between team members.
+ die die Zusammenarbeit und Kommunikation zwischen den Teammitgliedern fördert.
+Wie viele Mitarbeiter hat QAWare?;QAWare beschäftigt derzeit rund 200 engagierte Fachleute in verschiedenen Bereichen der Softwareentwicklung und IT-Beratung.
+How many employees does QAWare have?;QAWare currently employs around 200 dedicated professionals in various areas of software development and IT consulting.
+Wie viele Mitarbeiter hat QAWare?;QAWare beschäftigt derzeit rund 200 engagierte Fachleute in verschiedenen Bereichen der Softwareentwicklung und IT-Beratung.
+Wo befindet sich der Hauptsitz von QAWare?;Der Hauptsitz von QAWare liegt in der Stadt München
+Where is the headquarters of QAWare located?;The headquarters of QAWare is located in the city of Munich
+Wo befindet sich der Hauptsitz von QAWare?;Der Hauptsitz von QAWare befindet sich in der Stadt München
+ Deutschland.
+ Germany.
+ Deutschland.
+Wer ist der Geschäftsführer von QAWare?;Der Geschäftsführer von QAWare ist Dr. Anna Müller.
+Who is the CEO of QAWare?;The CEO of QAWare is Dr. Anna Müller.
+Wer ist der CEO von QAWare?;Der CEO von QAWare ist Dr. Anna Müller.
+In welchen Branchen ist QAWare tätig?;QAWare ist in verschiedenen Branchen tätig
+In which industries is QAWare active?;QAWare is active in various industries
+In welchen Branchen ist QAWare tätig?;QAWare ist in verschiedenen Branchen tätig
+ darunter Finanzdienstleistungen
+ thereof financial services
+ davon Finanzdienstleistungen
+Wie lautet die Vision von QAWare?;Die Vision von QAWare ist es
+What is the vision of QAWare?;The vision of QAWare is to
+Was ist die Vision von QAWare?;Die Vision von QAWare ist es
+ erfolgskritische digitale Produkte mit Leidenschaft zu entwickeln und betreiben
+ Develop and operate success-critical digital products with passion
+ Mit Leidenschaft erfolgskritische digitale Produkte entwickeln und betreiben
+Wie lange dauert die Probezeit bei QAWare?;Die Probezeit bei QAWare beträgt üblicherweise drei Monate.
+How long is the trial period at QAWare?;The trial period at QAWare is usually three months.
+Wie lange ist die Probezeit bei QAWare?;Die Probezeit bei QAWare beträgt in der Regel drei Monate.
+Welche Art von Arbeitskultur pflegt QAWare?;QAWare fördert eine offene
+What kind of work culture does QAWare foster?;QAWare promotes an open
+Welche Art von Arbeitskultur fördert QAWare?;QAWare fördert eine offene
+ kollaborative und innovative Arbeitskultur
+ collaborative and innovative work culture
+ kollaborative und innovative Arbeitskultur

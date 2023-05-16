@@ -18,3 +18,4 @@ dependencies:
       - sentence-transformers
       - slack-bolt
       - slack-sdk
+      - deepl
