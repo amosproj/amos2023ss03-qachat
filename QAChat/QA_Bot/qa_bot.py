@@ -21,7 +21,9 @@ class QABot:
 
         self.embeddings = embeddings
         if embeddings is None:
-            self.embeddings = HuggingFaceInstructEmbeddings()
+            self.embeddings = HuggingFaceInstructEmbeddings(
+                model_name="hkunlp/instructor-xl",
+            )
 
         self.database = database
         if database is None:
