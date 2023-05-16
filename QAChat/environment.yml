@@ -16,3 +16,6 @@ dependencies:
       - supabase
       - InstructorEmbedding
       - sentence-transformers
+      - slack-bolt
+      - slack-sdk
+      - deepl
