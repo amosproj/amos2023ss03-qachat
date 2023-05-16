@@ -43,3 +43,20 @@
     * Public cloud providers usually have robust networks and content delivery systems to ensure fast and reliable access.
 * Comments
     * Public cloud hosting provides scalability, cost-effectiveness, and easy management but requires reliance on a third-party provider.
+
+## Conclusion
+* Since we don't have the same capacity as a full time developer I suggest we go with Method 2 (cloud hosting). 
+* There are several options for this method from several hosting provider such as AWS, Google Cloud and Azure are widely used. 
+* There are also others such as IBM Cloud, NVIDIA GPU, Hugging Face Space or even Supabase.
+  
+
+## A bit more research on cloud hosting
+* GPU (Graphics Processing Unit) is important for hosting large language models (LLMs) due to the computational demands of deep learning tasks involved in natural language processing.
+* From the three (AWS, Google Cloud and Azure) performance, storage options are similar.  
+* [Pricing comparison](https://intellipaat.com/blog/aws-vs-azure-vs-google-cloud/?US):
+  * For small instance Google Cloud is the best option
+  * For large instance AWS is best option
+* Speed
+  * Google Cloud provides a high-speed global network with dedicated interconnects to connect to Google's network backbone. This results in faster data transfer and lower latency when compared to other cloud providers.
+* Comments:
+  * While AWS and Azure have larger market shares, Google Cloud has unique strengths in data analytics, machine learning, Kubernetes, and a global network infrastructure. Additionally, if your organization already uses Google Workspace or prioritizes sustainability, GCP may offer seamless integration and alignment with your values. 
