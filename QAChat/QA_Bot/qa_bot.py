@@ -17,6 +17,7 @@ class QABot:
     def __init__(self, embeddings=None, database=None):
         self.answer = None
         self.context = None
+        load_dotenv("tokens.env")
 
         self.embeddings = embeddings
         if embeddings is None:
