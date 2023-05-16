@@ -6,6 +6,7 @@ import os
 from datetime import datetime
 from enum import Enum
 
+from dotenv import load_dotenv
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase.client import create_client
@@ -34,9 +35,8 @@ class DocumentEmbedder:
             model_name="hkunlp/instructor-xl",
         )
 
-        supabase_url = os.environ.get("SUPABASE_URL")
-        supabase_key = os.environ.get("SUPABASE_SERVICE_KEY")
-        self.supabase = create_client(supabase_url, supabase_key)
+        load_dotenv("tokens.env")
+        self.supabase = create_client(os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY"))
         self.vector_store = SupabaseVectorStore(self.supabase, embedding=self.embedder, table_name="data_embedding",
                                                 query_name="match_data")
 
