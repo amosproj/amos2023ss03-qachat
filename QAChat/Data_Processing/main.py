@@ -1,16 +1,8 @@
-# This is a sample Python script.
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Jesse Tim Palarus
+# SPDX-FileCopyrightText: 2023 Amela Pucic
 
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from document_embedder import DocumentEmbedder, DataSource
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Strg+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    DocumentEmbedder().store_information_in_database(DataSource.DUMMY)
