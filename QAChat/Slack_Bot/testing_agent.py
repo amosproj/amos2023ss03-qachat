@@ -1,5 +1,9 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Emanuel Erben
+# SPDX-FileCopyrightText: 2023 Felix Nützel
+
 import tkinter as tk
-from BaseAgent import BaseAgent
+from base_agent import BaseAgent
 
 '''
     This is just an easy Testing Bot for testing reasons and should not be part of the final release. 
@@ -25,11 +29,11 @@ class TestingAgent(BaseAgent):
         self.result_label = tk.Label(master, text="")
         self.result_label.pack()
 
-    def receive_question(self, question=None):
+    def receive_question(self, question=None, user_id=None):
         input_text = self.entry.get()
-        self.api_interface.listen_for_requests(input_text, self)
+        self.api_interface.listen_for_requests(input_text, self, user_id)
 
-    def receive_answer(self, answer):
+    def receive_answer(self, answer, user_id=None):
         self.result_label.config(text=answer)
 
 
