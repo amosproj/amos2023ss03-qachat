@@ -26,7 +26,8 @@ SUPABASE_SERVICE_KEY=<your-supabase-service-key>
 DEEPL_TOKEN=<your-deepl-token>
 ````
 
-Please replace <your-supabase-url>, <your-supabase-service-key>, and `<your-deepl-token>` with your actual Supabase URL,
+Please replace `<your-supabase-url>`, `<your-supabase-service-key>`, and `<your-deepl-token>` with your actual Supabase
+URL,
 Supabase service key, and DeepL token respectively.
 
 ### First Run
