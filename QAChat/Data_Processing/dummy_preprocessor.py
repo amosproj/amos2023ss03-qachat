@@ -20,6 +20,10 @@ class DummyPreprocessor(DataPreprocessor):
                             text="This is a third dummy text."),
             DataInformation(id="4", last_changed=datetime(2023, 1, 3), typ=DataSource.DUMMY,
                             text="This is another dummy text, that is changed."),
+            DataInformation(id="5", last_changed=datetime(2023, 1, 3), typ=DataSource.DUMMY,
+                            text="To connect to the QAWare SSH server please use the following command: ssh -p 2222 qaware@localhost"),
+            DataInformation(id="6", last_changed=datetime(2023, 1, 3), typ=DataSource.DUMMY,
+                            text="You can find our office in: Aschauer Straße 32. The office is located in the 3rd floor. Also there is a cantine in the 2nd floor for employees."),
         ]
 
         return [data for data in raw_data if after < data.last_changed <= before]
