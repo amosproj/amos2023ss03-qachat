@@ -8,27 +8,23 @@ This is a simple guide to setting up and running the QABot.
 The QABot is a Python application that uses the instructor-xl for embedding from HuggingFace and the wizard-mega LLM
 model to answer user questions based on the context retrieved from a Supabase database.
 
+### Requirements
+* Supabase account
+* Access to supabase project
+* Required python packages (in QAChat\environment.yml)
+
 ### Configuration
 
-To configure the QABot you need to create a tokens.env located in the QAChat directory.
+1. Create file with the name 'tokens.env' in QAChat directory.
+2. Paste the following in the newly created file:
+    ````
+    SUPABASE_URL=<your-supabase-url>
+    SUPABASE_SERVICE_KEY=<your-supabase-service-key>
+    DEEPL_TOKEN=<your-deepl-token>
+    ````
+3. Replace `<your-supabase-url>` and `<your-supabase-service-key>` with the actual Supabase URL and Supabase service key. You can find it [here](https://app.supabase.com/projects) under Project 'QAChat' > Settings > API.
+4. Replace `<your-deepl-token>` with actual DeepL token that was sent to you via Email from our client.
 
-The environment variables you need to set are:
-
-- SUPABASE_URL: The URL of your Supabase database
-- SUPABASE_SERVICE_KEY: The service key for your Supabase database
-- DEEPL_TOKEN: The token for DeepL translation service
-
-You can set these variables in the tokens.env file like this:
-
-````
-SUPABASE_URL=<your-supabase-url>
-SUPABASE_SERVICE_KEY=<your-supabase-service-key>
-DEEPL_TOKEN=<your-deepl-token>
-````
-
-Please replace `<your-supabase-url>`, `<your-supabase-service-key>`, and `<your-deepl-token>` with your actual Supabase
-URL,
-Supabase service key, and DeepL token respectively.
 
 ### First Run
 
