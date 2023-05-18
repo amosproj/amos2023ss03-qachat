@@ -71,19 +71,18 @@ class QABot:
             'The sky is blue during a clear day.'
         """
 
-        context_str = "\n\n".join(f"{i + 1}. {x}" for i, x in enumerate(context))
+        context_str = "\n\n".join(f"### INFORMATION: {x}" for i, x in enumerate(context))
 
-        template = "### USER: You are a chatbot helping other people to answer questions." \
-                   "You should answer short and accurately and only answer the question from the user and nothing else." \
-                   "\n\n" \
-                   "You should answer the following question: {question}\n\n" \
-                   "To answer the question you know the following context:\n" \
+        template = "### Instruction: You are a chatbot helping other people to answer questions." \
+                   "You should answer short and accurately and only answer the question from the user and nothing else.\n" \
+                   "To answer the question you are provided with the following information:\n" \
                    "{context_str}\n\n" \
-                   "It is really important to answer the question correctly, and only with the context you have.\n" \
+                   "### Instruction: It is really important to answer the question correctly, and only with the context you have.\n" \
                    "Please also filter the context so you only answer with the necessary information.\n" \
                    "Please note that you are also not allowed to made up new information.\n" \
                    "If the required information to answer the question is not given in the context or you are not sure, you should say that you are not sure." \
                    "\n\n" \
+                   "### USER: {question}\n\n" \
                    "### ASSISTANT:"
         prompt = PromptTemplate(template=template, input_variables=["question", "context_str"])
 
