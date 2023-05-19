@@ -5,7 +5,8 @@ on:
   - 'testing'
 
 jobs:
-  run-on: ubunut-latest
+  hello_world:
+    run-on: ubunut-latest
 
 steps:
   -name: Run UnitTest
