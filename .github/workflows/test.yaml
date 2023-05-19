@@ -10,4 +10,5 @@ jobs:
           python-version: '3.10'
 
       - name: run unit test
+        run: ls 
         run: python -c "print('Hello, World')"
