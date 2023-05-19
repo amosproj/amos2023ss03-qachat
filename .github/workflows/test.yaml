@@ -1,8 +1,16 @@
-name: hello-world
+name: run-unit-test
 on: push
 jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
+     - name: checkout repo content
+        uses: actions/checkout@v2
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
       - name: my-step
-        run: echo "Hello World!"
+        run: python Testing/unit_test.py
