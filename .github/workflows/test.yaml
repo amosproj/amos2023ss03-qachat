@@ -1,13 +1,8 @@
-name: unit test
-
-on:
-  push:
-  - 'testing'
-
+name: hello-world
+on: push
 jobs:
-  hello_world:
-    run-on: ubunut-latest
-
-steps:
-  -name: Run UnitTest
-    run: echo "Hello World" 
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: echo "Hello World!"
