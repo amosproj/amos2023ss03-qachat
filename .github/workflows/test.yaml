@@ -1,0 +1,12 @@
+name: unit test
+
+on:
+  push:
+  - 'testing'
+
+jobs:
+  run-on: ubunut-latest
+
+steps:
+  -name: Run UnitTest
+  run: echo "Hello World" 
