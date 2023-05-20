@@ -24,6 +24,7 @@ jobs:
         run: pip install flake8 pytest langchain huggingface_hub supabase python-dotenv slack_sdk slack_bolt
 
       - name: Run unit tests
+        working-directory: .
         run: pytest -s Testing/unit_test.py
 
 
