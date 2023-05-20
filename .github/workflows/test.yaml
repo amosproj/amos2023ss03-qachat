@@ -1,5 +1,5 @@
 name: run-unit-test
-on: push
+on: [push, pull_request]
 jobs:
   my-job:
     runs-on: ubuntu-latest
@@ -14,3 +14,12 @@ jobs:
   
       - name: run unit test
         run: python Testing/unit_test.py
+
+      - name: Install Python dependencies
+        run: pip install black flake8
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          black: true
+          flake8: true
