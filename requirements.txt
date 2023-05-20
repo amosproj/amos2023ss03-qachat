@@ -1,3 +1,4 @@
+python_dotenv
 pytest
 aiohttp
 anyio==3.6.2
