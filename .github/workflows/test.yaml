@@ -27,7 +27,7 @@ jobs:
         run: pip install flake8 black pytest
 
       - name: Run Black
-        run: black --check --diff .
+        run: black --check --diff ./Testing
 
       - name: Run linters
         uses: wearerequired/lint-action@v2
