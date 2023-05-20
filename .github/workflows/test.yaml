@@ -20,14 +20,12 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: run unit test
-        run: python Testing/unit_test.py
+      - name: Run unit tests
+        run: pytest
 
       - name: Install Python dependencies
-        run: pip install flake8 black pytest
+        run: pip install flake8 pytest
 
-      - name: Run Black
-        run: black --check --diff ./Testing
 
       - name: Run linters
         uses: wearerequired/lint-action@v2

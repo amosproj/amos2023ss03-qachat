@@ -2,7 +2,8 @@
 # SPDX-FileCopyrightText: 2023 Emanuel Erben
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 
-from qa_bot import QABot
+
+from .qa_bot import QABot
 
 
 class APIInterface:

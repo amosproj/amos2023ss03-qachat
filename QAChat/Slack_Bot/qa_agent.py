@@ -4,7 +4,7 @@
 
 from queue import Queue
 from threading import Thread
-from base_agent import BaseAgent
+from .base_agent import BaseAgent
 from slack_sdk import WebClient
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_bolt import App
@@ -35,6 +35,7 @@ class QAAgent(BaseAgent):
         # Create a worker thread to send responses
         self.response_worker = Thread(target=self.send_responses)
         self.response_worker.start()
+        self.is_running = False
 
     def send_responses(self):
         while True:
