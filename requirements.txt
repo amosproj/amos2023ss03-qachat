@@ -1,3 +1,4 @@
+pytest
 aiohttp
 anyio==3.6.2
 appdirs==1.4.4
@@ -110,3 +111,4 @@ webencodings==0.5.1
 websockets==10.4
 Werkzeug==2.3.4
 wrapt==1.15.0
+
