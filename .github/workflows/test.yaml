@@ -21,7 +21,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install Python dependencies
-        run: pip install flake8 pytest langchain huggingface_hub supabase python-dotenv slack_sdk slack_bolt
+        run: pip install flake8 pytest langchain huggingface_hub supabase python-dotenv slack_sdk slack_bolt sentence-transformers InstructorEmbedding
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd):$(pwd)/amos2023ss03-qachat" >> $GITHUB_ENV
