@@ -21,7 +21,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install Python dependencies
-        run: pip install flake8 pytest langchain huggingface_hub supabase dotenv
+        run: pip install --upgrade pip flake8 pytest langchain huggingface_hub supabase dotenv
 
       - name: Run unit tests
         run: pytest
@@ -31,4 +31,3 @@ jobs:
         uses: wearerequired/lint-action@v2
         with:
           flake8: true
-
