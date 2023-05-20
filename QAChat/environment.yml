@@ -19,3 +19,6 @@ dependencies:
       - slack-bolt
       - slack-sdk
       - deepl
+      - llama-cpp-python
+      - python-dotenv
+      - pandas
