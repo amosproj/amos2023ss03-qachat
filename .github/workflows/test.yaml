@@ -21,7 +21,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install Python dependencies
-        run: pip install --upgrade pip flake8 pytest langchain huggingface_hub supabase dotenv
+        run: pip install flake8 pytest langchain huggingface_hub supabase python-dotenv
 
       - name: Run unit tests
         run: pytest
