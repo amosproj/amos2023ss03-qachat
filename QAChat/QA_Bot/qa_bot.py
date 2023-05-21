@@ -19,9 +19,10 @@ from QAChat.Data_Processing.deepL_translator import DeepLTranslator
 
 class QABot:
 
-    def __init__(self, embeddings=None, database=None, model=None):
+    def __init__(self, use_gpu=False, embeddings=None, database=None, model=None):
         self.answer = None
         self.context = None
+        self.use_gpu = use_gpu
         load_dotenv("../tokens.env")
 
         self.embeddings = embeddings
@@ -40,14 +41,15 @@ class QABot:
             self.model = self.get_llama_model()
 
     def get_llama_model(self, n_ctx=1024, max_tokens=128, repo_id="TheBloke/wizard-mega-13B-GGML",
-                        filename="wizard-mega-13B.ggmlv3.q5_1.bin"):
-        path = hf_hub_download(repo_id=repo_id, filename=filename)
+                        filename="wizard-mega-13B.ggml.q5_1.bin"):
+        path = hf_hub_download(repo_id=repo_id, filename=filename, revision="previous_llama_ggmlv2")
 
         return LlamaCpp(
             model_path=path,
             verbose=False,
             n_ctx=n_ctx,
             max_tokens=max_tokens,
+            n_gpu_layers=40 if self.use_gpu else None,
         )
 
     def __answer_question_with_context(self, question: str, context: list[str]) -> str:
