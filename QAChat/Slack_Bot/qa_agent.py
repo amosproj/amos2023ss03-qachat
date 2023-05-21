@@ -58,7 +58,6 @@ class QAAgent(BaseAgent):
     def process_question(self, body, say):
         text = body['event']['text']
         user_id = body['event']['user']
-        say(text)
         print(text)
 
         # Store the say function for this user
