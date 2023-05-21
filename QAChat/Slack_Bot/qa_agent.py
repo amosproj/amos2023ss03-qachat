@@ -4,6 +4,9 @@
 
 from queue import Queue
 from threading import Thread
+
+from slack_sdk.errors import SlackApiError
+
 from base_agent import BaseAgent
 from slack_sdk import WebClient
 from slack_bolt.adapter.socket_mode import SocketModeHandler
@@ -68,6 +71,28 @@ class QAAgent(BaseAgent):
     def start(self):
         self.handler.app.message(re.compile('.*'))(self.process_question)
         self.handler.start()
+
+    def delete_messages(self, channel_id):
+
+        # Get conversation history
+        result = self.client.conversations_history(channel=channel_id)
+
+        messages = result.data.get('messages')
+
+        # Loop through all messages
+        for msg in messages:
+            try:
+                # If it is a bot message...
+                if msg.get('bot_profile') is not None:
+                    ts = msg.get('ts')
+                    # ...delete a message
+                    self.client.chat_delete(
+                        channel=channel_id,
+                        ts=ts
+                    )
+                    print(f"Deleted bot message with ts={ts}")
+            except SlackApiError as e:
+                print(f"Error deleting message: {e}")
 
 
 if __name__ == '__main__':
