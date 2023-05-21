@@ -9,6 +9,7 @@ The QABot is a Python application that uses the instructor-xl for embedding from
 model to answer user questions based on the context retrieved from a Supabase database.
 
 ### Requirements
+
 * Supabase account
 * Access to supabase project
 * Required python packages (in QAChat\environment.yml)
@@ -22,9 +23,9 @@ model to answer user questions based on the context retrieved from a Supabase da
     SUPABASE_SERVICE_KEY=<your-supabase-service-key>
     DEEPL_TOKEN=<your-deepl-token>
     ````
-3. Replace `<your-supabase-url>` and `<your-supabase-service-key>` with the actual Supabase URL and Supabase service key. You can find it [here](https://app.supabase.com/projects) under Project 'QAChat' > Settings > API.
+3. Replace `<your-supabase-url>` and `<your-supabase-service-key>` with the actual Supabase URL and Supabase service
+   key. You can find it [here](https://app.supabase.com/projects) under Project 'QAChat' > Settings > API.
 4. Replace `<your-deepl-token>` with actual DeepL token that was sent to you via Email from our client.
-
 
 ### First Run
 
@@ -43,3 +44,18 @@ python test_qa_bot.py
 
 Currently, for testing purposes, the LLM runs on the CPU and might therefore be slower in answering questions. However,
 it can be easily configured to run on GPUs for better performance.
+
+To do so set the please firstly install the Nvidia CUDA Toolkit (requires a Nvidia GPU).
+Then you can install the required packages for GPU support by running the following command:
+
+```` bash
+CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1 pip install llama-cpp-python
+````
+
+To create now a bot using GPU support, you can pass the `use_gpu` parameter to the constructor:
+
+```` python
+bot = QABot(use_gpu=True)
+````
+
+This can be done e.g. in line 4 of the `test_qa_bot.py` file.
