@@ -41,8 +41,8 @@ class QABot:
             self.model = self.get_llama_model()
 
     def get_llama_model(self, n_ctx=1024, max_tokens=128, repo_id="TheBloke/wizard-mega-13B-GGML",
-                        filename="wizard-mega-13B.ggml.q5_1.bin"):
-        path = hf_hub_download(repo_id=repo_id, filename=filename, revision="previous_llama_ggmlv2")
+                        filename="wizard-mega-13B.ggmlv3.q5_1.bin"):
+        path = hf_hub_download(repo_id=repo_id, filename=filename)
 
         return LlamaCpp(
             model_path=path,
