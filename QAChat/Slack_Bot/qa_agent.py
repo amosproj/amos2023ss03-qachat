@@ -20,11 +20,11 @@ SIGNING_SECRET = os.getenv("SIGNING_SECRET")
 
 class QAAgent(BaseAgent):
 
-    def __init__(self):
+    def __init__(self, app=None, client=None,  handler=None):
         super().__init__()
-        self.app = App(token=SLACK_TOKEN)
-        self.client = WebClient(token=SLACK_TOKEN)
-        self.handler = SocketModeHandler(self.app, SLACK_APP_TOKEN)
+        self.app = app or App(token=SLACK_TOKEN)
+        self.client = client or WebClient(token=SLACK_TOKEN)
+        self.handler = handler or SocketModeHandler(self.app, SLACK_APP_TOKEN)
 
         # Create a dictionary to hold say functions for each user
         self.say_functions = {}
@@ -35,7 +35,6 @@ class QAAgent(BaseAgent):
         # Create a worker thread to send responses
         self.response_worker = Thread(target=self.send_responses)
         self.response_worker.start()
-        self.is_running = False
 
     def send_responses(self):
         while True:
@@ -57,7 +56,6 @@ class QAAgent(BaseAgent):
         text = body['event']['text']
         user_id = body['event']['user']
         say(text)
-        print(text)
 
         # Store the say function for this user
         self.say_functions[user_id] = say
