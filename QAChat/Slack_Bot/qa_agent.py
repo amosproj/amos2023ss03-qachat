@@ -66,7 +66,7 @@ class QAAgent(BaseAgent):
 
     def start(self):
         self.handler.app.message(re.compile('.*'))(self.process_question)
-        self.handler.start()
+        self.handler.connect()
 
 
 if __name__ == '__main__':
