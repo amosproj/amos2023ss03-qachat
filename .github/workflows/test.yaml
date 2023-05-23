@@ -1,0 +1,31 @@
+name: run-unit-test-and-lint
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+      - 'Deliverables/**'
+      - 'Documentation/**'
+      - 'DummyData/**'
+      - 'QAChat/**'
+
+jobs:
+  unit-tests-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$(pwd):$(pwd)/amos2023ss03-qachat" >> $GITHUB_ENV
+
+      - name: Run unit tests
+        working-directory: ./Testing
+        run: pytest -s qa_agent_unit_tests.py

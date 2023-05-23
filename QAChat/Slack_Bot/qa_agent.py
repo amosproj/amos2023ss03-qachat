@@ -4,7 +4,7 @@
 
 from queue import Queue
 from threading import Thread
-from base_agent import BaseAgent
+from .base_agent import BaseAgent
 from slack_sdk import WebClient
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_bolt import App
@@ -20,11 +20,11 @@ SIGNING_SECRET = os.getenv("SIGNING_SECRET")
 
 class QAAgent(BaseAgent):
 
-    def __init__(self):
+    def __init__(self, app=None, client=None,  handler=None):
         super().__init__()
-        self.app = App(token=SLACK_TOKEN)
-        self.client = WebClient(token=SLACK_TOKEN)
-        self.handler = SocketModeHandler(self.app, SLACK_APP_TOKEN)
+        self.app = app or App(token=SLACK_TOKEN)
+        self.client = client or WebClient(token=SLACK_TOKEN)
+        self.handler = handler or SocketModeHandler(self.app, SLACK_APP_TOKEN)
 
         # Create a dictionary to hold say functions for each user
         self.say_functions = {}
@@ -40,6 +40,8 @@ class QAAgent(BaseAgent):
         while True:
             # Get a response from the queue and send it
             response = self.response_queue.get()
+            if response is None:
+                break
             user_id, answer = response
             say = self.say_functions.get(user_id)
             if say is not None:
@@ -56,7 +58,6 @@ class QAAgent(BaseAgent):
         text = body['event']['text']
         user_id = body['event']['user']
         say(text)
-        print(text)
 
         # Store the say function for this user
         self.say_functions[user_id] = say
@@ -67,7 +68,7 @@ class QAAgent(BaseAgent):
 
     def start(self):
         self.handler.app.message(re.compile('.*'))(self.process_question)
-        self.handler.start()
+        self.handler.connect()
 
 
 if __name__ == '__main__':
