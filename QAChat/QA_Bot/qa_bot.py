@@ -13,6 +13,7 @@ from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase import create_client
 from dotenv import load_dotenv
+from typing import List
 
 from QAChat.Data_Processing.deepL_translator import DeepLTranslator
 
@@ -53,7 +54,7 @@ class QABot:
             n_gpu_layers=40 if self.use_gpu else None,
         )
 
-    def __answer_question_with_context(self, question: str, context: list[str]) -> str:
+    def __answer_question_with_context(self, question: str, context: List[str]) -> str:
         """
             This method takes a question and a list of context strings as input, and attempts to answer the question using the provided context.
 
@@ -93,7 +94,7 @@ class QABot:
             ], stop=["</s>"])
         return answer.generations[0][0].text.strip()
 
-    def __sim_search(self, question: str) -> list[str]:
+    def __sim_search(self, question: str) -> List[str]:
         """
             This method uses the given question to conduct a similarity search in the database, retrieving the most relevant information for answering the question.
 
