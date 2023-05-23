@@ -10,7 +10,7 @@ class BaseAgent:
         self.api_interface = APIInterface.APIInterface()
 
     def receive_question(self, question, user_id):
-        self.api_interface.listen_for_requests(question, self)
+        self.api_interface.listen_for_requests(question, self, user_id)
 
     def receive_answer(self, answer, user_id):
         # pass answer to slackbotapi
