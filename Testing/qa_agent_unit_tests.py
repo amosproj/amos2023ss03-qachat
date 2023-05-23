@@ -41,6 +41,7 @@ class TestQAAgent(unittest.TestCase):
         self.assertEqual(self.agent.say_functions, {})
         self.assertTrue(self.agent.response_worker.is_alive())
 
+
     # Tests if process question is called correctly
     @patch.object(QAAgent, 'receive_question')
     def test_process_question(self, mock_receive_question):

@@ -40,6 +40,8 @@ class QAAgent(BaseAgent):
         while True:
             # Get a response from the queue and send it
             response = self.response_queue.get()
+            if response is None:
+                break
             user_id, answer = response
             say = self.say_functions.get(user_id)
             if say is not None:
