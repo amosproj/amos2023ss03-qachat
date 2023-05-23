@@ -23,6 +23,8 @@ class TestQAAgent(unittest.TestCase):
     @patch('QAChat.QA_Bot.api_interface.APIInterface', autospec=True)
     def setUp(self, mock_socket_mode_handler, mock_web_client, mock_app, mock_api_interface):
         mock_socket_mode_handler.return_value = MagicMock()
+        mock_socket_mode_handler.start = MagicMock()
+
         mock_socket_mode_handler.app = MagicMock()
         mock_socket_mode_handler.connect = MagicMock()
         mock_socket_mode_handler.disconnect = MagicMock()
@@ -40,7 +42,6 @@ class TestQAAgent(unittest.TestCase):
         self.assertIsInstance(self.agent.response_queue, Queue)
         self.assertEqual(self.agent.say_functions, {})
         self.assertTrue(self.agent.response_worker.is_alive())
-
 
     # Tests if process question is called correctly
     @patch.object(QAAgent, 'receive_question')

@@ -3,12 +3,12 @@ channels:
   - defaults
 dependencies:
   - python=3.8
-  - numpy
-  - openai
-  - selenium
-  - slack_sdk
-  - pip=21.2.4
+  - pip
   - pip:
+      - numpy
+      - openai
+      - selenium
+      - slack_sdk
       - atlassian-python-api
       - langchain
       - panda
@@ -22,3 +22,5 @@ dependencies:
       - llama-cpp-python
       - python-dotenv
       - pandas
+      - huggingface_hub
+      - typing_extensions==4.6.0

@@ -51,7 +51,6 @@ class QABot:
             n_ctx=n_ctx,
             max_tokens=max_tokens,
             temperature=0,
-            n_gpu_layers=40 if self.use_gpu else None,
         )
 
     def __answer_question_with_context(self, question: str, context: List[str]) -> str:

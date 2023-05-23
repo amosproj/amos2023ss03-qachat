@@ -5,7 +5,8 @@
 from queue import Queue
 from threading import Thread
 from slack_sdk.errors import SlackApiError
-from .base_agent import BaseAgent
+from QAChat.Slack_Bot.base_agent import BaseAgent
+
 from slack_sdk import WebClient
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_bolt import App
@@ -70,7 +71,7 @@ class QAAgent(BaseAgent):
 
     def start(self):
         self.handler.app.message(re.compile('.*'))(self.process_question)
-        self.handler.connect()
+        self.handler.start()
 
     def delete_messages(self, channel_id):
 

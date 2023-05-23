@@ -1,4 +1,4 @@
-from .qa_bot import QABot
+from qa_bot import QABot
 
 if __name__ == '__main__':
     bot = QABot()
