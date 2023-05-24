@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Hafidz Arifin
+
 import os
 from langchain import HuggingFaceHub
 from langchain import PromptTemplate, LLMChain
