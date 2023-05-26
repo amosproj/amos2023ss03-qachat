@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: 2023 Jesse Tim Palarus
-# SPDX-FileCopyrightText: 2023 Amela Pucic
 # SPDX-FileCopyrightText: 2023 Hafidz Arifin
+# SPDX-FileCopyrightText: 2023 Abdelkader Alkadour
 
 
 from document_embedder import DataInformation, DataSource
@@ -60,21 +59,24 @@ class ConfluencePreprocessor(DataPreprocessor):
                     break
                 start = start + limit
 
-            start = 0
-            limit = 100
 
             # Get all pages from a space
             for space in all_spaces:
-                pages_data = confluence.get_all_pages_from_space(space['key'], start=start, limit=limit, status=None,
-                                                                 expand=None, content_type='page')
-                #  Get all page id
-                for page in pages_data:
-                    all_pages_id.append(page['id'])
 
-                # Check if there are more pages
-                if len(pages_data) < limit:
-                    break
-                start = start + limit
+                start = 0
+                limit = 100
+
+                while True:
+                    pages_data = confluence.get_all_pages_from_space(space['key'], start=start, limit=limit, status=None,
+                                                                     expand=None, content_type='page')
+                    #  Get all page id
+                    for page in pages_data:
+                        all_pages_id.append(page['id'])
+
+                    # Check if there are more pages
+                    if len(pages_data) < limit:
+                        break
+                    start = start + limit
 
             # Get all relevant information from each page
             for page_id in all_pages_id:
