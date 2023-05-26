@@ -24,3 +24,6 @@ dependencies:
       - pandas
       - huggingface_hub
       - typing_extensions==4.6.0
+      - pdfminer.six
+      - pytesseract
+      - nltk
