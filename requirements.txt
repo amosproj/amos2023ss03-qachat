@@ -22,3 +22,4 @@ pytest
 atlassian-python-api
 bs4
 hashlib
+PyPDF2
