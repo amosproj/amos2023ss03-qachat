@@ -1,17 +1,16 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2023 Jesse Tim Palarus
 # SPDX-FileCopyrightText: 2023 Amela Pucic
-# SPDX-FileCopyrightText: 2023 Hafidz Arifin
 
+import os
+from datetime import datetime
+from enum import Enum
 
+from dotenv import load_dotenv
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase.client import create_client
-from dotenv import load_dotenv
-from datetime import datetime
 from dateutil import parser
-from enum import Enum
-import os
 
 
 class DataSource(Enum):
@@ -42,9 +41,9 @@ class DocumentEmbedder:
                                                 query_name="match_data")
 
     def store_information_in_database(self, typ: DataSource):
-        if typ == DataSource.CONFLUENCE:
-            from confluence_preprocessor import ConfluencePreprocessor
-            data_preprocessor = ConfluencePreprocessor()
+        if typ == DataSource.DUMMY:
+            from dummy_preprocessor import DummyPreprocessor
+            data_preprocessor = DummyPreprocessor()
         else:
             raise ValueError("Invalid data source type")
 
