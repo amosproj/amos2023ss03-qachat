@@ -11,8 +11,7 @@ import os, io, requests, PyPDF2, supabase, hashlib
 
 
 # Load environment variables
-# load_dotenv("../tokens.env")
-load_dotenv("/Users/kad/Desktop/AMOS/amos2023ss03-qachat/tokens.env")
+load_dotenv("../tokens.env")
 
 # Get Confluence API credentials from environment variables
 CONFLUENCE_ADRESS = os.getenv("CONFLUENCE_ADRESS")
