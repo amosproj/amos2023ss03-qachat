@@ -68,3 +68,4 @@ class DocumentEmbedder:
 
         self.supabase.table("last_update_per_data_typ").upsert(
             {"type": typ.value, "last_update": current_time.isoformat()}, ).execute()
+        
