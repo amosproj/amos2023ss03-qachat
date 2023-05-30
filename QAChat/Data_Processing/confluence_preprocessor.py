@@ -7,10 +7,12 @@ from atlassian import Confluence
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 from datetime import datetime
-import os, io, requests, PyPDF2, supabase
+import os, io, requests, PyPDF2, supabase, hashlib
 
 
-load_dotenv("../tokens.env")
+
+#load_dotenv("../tokens.env")
+load_dotenv("/Users/kad/Desktop/AMOS/amos2023ss03-qachat/tokens.env")
 
 CONFLUENCE_ADRESS = os.getenv("CONFLUENCE_ADRESS")
 CONFLUENCE_USERNAME = os.getenv("CONFLUENCE_USERNAME")
@@ -25,6 +27,7 @@ class ConfluencePreprocessor():
     pages = []
     restricted_spaces = []
     restricted_pages = []
+    hashtable = dict()
     
     confluence = Confluence( 
                     url=CONFLUENCE_ADRESS,
@@ -36,7 +39,8 @@ class ConfluencePreprocessor():
 
 
     def init_blacklist(self):
-        blacklist = self.supabase_client.table("confluence_blacklist").select("*").execute().data
+        blacklist = self.supabase_client.table("confluence_blacklist").select("*").execute().data #TODO: try
+        
  
         for i in blacklist:
             if "/pages/" in i['identifer']:
@@ -44,6 +48,36 @@ class ConfluencePreprocessor():
             else:
                 self.restricted_spaces.append(i['identifer'].split('/')[5])
 
+    def init_hashtable(self):
+        hash_page_id = self.supabase_client.table("confluence_data").select('page_id,hash').execute().data #TODO
+        self.hashtable = dict()
+        for i in hash_page_id:
+            self.hashtable[i['page_id']] = i["hash"]
+
+
+    def check_hashtable(self, key, value):
+        if int(key) not in self.hashtable:
+            return True
+        elif self.hashtable[int(key)] == value:
+            return False
+        else:
+            return True
+        
+    def calculate_hash(self, page):
+        text =  "".join([page["page_id"], 
+                         page["space"],
+                         page["space"],
+                         page["title"],
+                         page["content"],
+                         " ".join(page["attachments"]),
+                         " ".join(page["comments"])])
+        
+        hash_object = hashlib.sha256()
+        hash_object.update(text.encode('utf-8'))
+        hash_value = hash_object.hexdigest()
+
+        return hash_value
+    
 
     def get_spaces(self):
         start = 0
@@ -112,6 +146,7 @@ class ConfluencePreprocessor():
         return BeautifulSoup(html, features="html.parser").get_text().replace('\n', ' ')
 
 
+
     def get_pages_from_space(self, key, name):
         start = 0
         limit = 500
@@ -132,16 +167,24 @@ class ConfluencePreprocessor():
             start += limit
 
         for page in pages: 
-            if page['id'] not in self.restricted_pages:
-                self.pages.append({'space': name, 
-                                   'title': page['title'], 
-                                   'content': self.get_page_by_id(page['id']),
-                                   'attachments': self.get_page_attacments(page['id']),
-                                   'comments': self.get_comments(page['id'])})
+            _page = {'page_id': page['id'],
+                     'space': name, 
+                     'title': page['title'], 
+                     'content': self.get_page_by_id(page['id']),
+                     'attachments': self.get_page_attacments(page['id']),
+                     'comments': self.get_comments(page['id'])}
+            
+            hash = self.calculate_hash(_page)
+            _page["hash"] = hash
+
+            if _page['page_id'] not in self.restricted_pages:
+                if self.check_hashtable(_page["page_id"], hash):
+                    self.pages.append(_page)
 
 
     def get_pages(self):
         self.init_blacklist()
+        self.init_hashtable()
         self.get_spaces()
         for space in self.spaces:
             self.get_pages_from_space(space['key'], space['name'])
@@ -150,13 +193,18 @@ class ConfluencePreprocessor():
     def update_data(self):
         self.get_pages()
         for page in self.pages:
-            self.supabase_client.table('confluence_data').insert({
-                "space": page["space"],
-                "title": page["title"],
-                "content": page["content"],
-                "attachments": page["attachments"],
-                "comments": page["comments"]
-        }).execute()
+            if int(page["page_id"]) in self.hashtable: #update page
+                self.supabase_client.table("confluence_data").update(page).eq('page_id', page["page_id"]).execute()#TODO
+            else: #insert new page
+                self.supabase_client.table('confluence_data').insert({
+                    "page_id": page["page_id"],
+                    "space": page["space"],
+                    "title": page["title"],
+                    "content": page["content"],
+                    "attachments": page["attachments"],
+                    "comments": page["comments"],
+                    "hash": page["hash"]
+                    }).execute()
 
 
 
