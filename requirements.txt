@@ -21,3 +21,4 @@ typing_extensions==4.5.0
 pytest
 atlassian-python-api
 bs4
+hashlib
