@@ -34,6 +34,6 @@ if __name__ == '__main__':
     translator = DeepLTranslator()
     #print(translator.receive_question("Was sind xyhj"))
     result = translator.translate_to("Was sind xyhj", "EN-US")
-    question, recognized_language = result
-    print(question)
-    print(recognized_language)
+
+    print(result.text)
+    print(result.detected_source_lang)

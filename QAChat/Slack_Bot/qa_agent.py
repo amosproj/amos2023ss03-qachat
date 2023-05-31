@@ -48,8 +48,8 @@ class QAAgent(BaseAgent):
             user_id, answer = response
             say = self.say_functions.get(user_id)
             if say is not None:
-                self.delete_processing_message(channel_id=self.channel_ids[user_id])
                 say(answer)
+                self.delete_processing_message(channel_id=self.channel_ids[user_id])
 
     def receive_question(self, question, user_id):
         self.api_interface.listen_for_requests(question, self, user_id)
