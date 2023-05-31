@@ -25,3 +25,4 @@ transformers~=4.28.1
 python-dateutil~=2.8.2
 nltk~=3.8.1
 rapidfuzz~=2.13.7
+psutil
