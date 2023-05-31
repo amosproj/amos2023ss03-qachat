@@ -29,14 +29,6 @@ class DeepLTranslator:
             result.detected_source_lang = "PT-PT"
         return result
 
-    def translate_german_english(self, text):
-        result = self.translator.translate_text(text, target_lang="EN-US")
-        return result.text
-
-    def translate_english_german(self, text):
-        result = self.translator.translate_text(text, target_lang="DE")
-        return result.text
-
 
 if __name__ == '__main__':
     translator = DeepLTranslator()
