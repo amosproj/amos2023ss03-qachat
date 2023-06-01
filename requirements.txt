@@ -27,3 +27,4 @@ nltk~=3.8.1
 rapidfuzz~=2.13.7
 psutil
 flake8
+black
