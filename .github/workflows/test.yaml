@@ -6,7 +6,6 @@ on:
       - 'Deliverables/**'
       - 'Documentation/**'
       - 'DummyData/**'
-      - 'QAChat/**'
 
 jobs:
   unit-tests-and-lint:
