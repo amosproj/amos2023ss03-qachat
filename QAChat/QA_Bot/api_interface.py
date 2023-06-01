@@ -7,7 +7,6 @@ from .qa_bot import QABot
 
 
 class APIInterface:
-
     def __init__(self, qa_bot=None):
         self.qa_bot = qa_bot
         if qa_bot is None:

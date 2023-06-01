@@ -11,7 +11,9 @@ from document_embedder import DataInformation
 
 class DataPreprocessor(ABC):
     @abstractmethod
-    def load_preprocessed_data(self, before: datetime, after: datetime) -> List[DataInformation]:
+    def load_preprocessed_data(
+        self, before: datetime, after: datetime
+    ) -> List[DataInformation]:
         """
         Loads preprocessed data of a specific type that was created or modified
         within a certain timeframe.
