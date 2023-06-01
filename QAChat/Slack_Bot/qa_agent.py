@@ -115,9 +115,8 @@ class QAAgent(BaseAgent):
                         channel=channel_id,
                         ts=ts
                     )
-                    print(f"Deleted bot message with ts={ts}")
             except SlackApiError as e:
-                print(f"Error deleting message: {e}")
+                print(f"Error deleting loading message")
 
 
 if __name__ == '__main__':

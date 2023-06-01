@@ -32,9 +32,9 @@ def test_translation():
         start_text = phrase
         comp_arr.append(start_text)
         start = datetime.now()
-        translation = translator.translate_german_english(phrase)
+        translation = translator.translate_to(phrase, "EN-US").text
         comp_arr.append(translation)
-        result = translator.translate_english_german(translation)
+        result = translator.translate_to(translation, "DE").text
         comp_arr.append(result)
         end = datetime.now()
         diff = end - start

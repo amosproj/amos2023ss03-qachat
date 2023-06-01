@@ -17,10 +17,6 @@ class DeepLTranslator:
         # initialize a DeepL translator service
         self.translator = deepl.Translator(DEEPL_TOKEN)
 
-    def receive_question(self, text):
-        result = self.translator.translate_text(text, target_lang="EN-US")
-        return result.text
-
     def translate_to(self, text, target_lang):
         result = self.translator.translate_text(text, target_lang=target_lang)
         if result.detected_source_lang == "EN":
