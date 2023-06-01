@@ -60,6 +60,9 @@ class SlackPreprocessor(DataPreprocessor):
                 result = self.client.conversations_history(channel=channel_id, oldest=oldest)
 
                 for message in result["messages"]:
+
+                    if "subtype" in message and message["subtype"] == "channel_join":
+                        continue
                     self.conversation_history.append(self.translator.translate_german_english(message["text"]))
 
                 # Print results
