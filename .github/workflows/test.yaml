@@ -1,6 +1,14 @@
 name: run-unit-test-and-lint
 on:
   push:
+    branches: [master]
+    paths-ignore:
+      - 'README.md'
+      - 'Deliverables/**'
+      - 'Documentation/**'
+      - 'DummyData/**'
+  pull_request:
+    branches-ignore: [ master ]
     paths-ignore:
       - 'README.md'
       - 'Deliverables/**'
