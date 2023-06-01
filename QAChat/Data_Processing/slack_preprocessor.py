@@ -26,6 +26,10 @@ class SlackPreprocessor(DataPreprocessor):
         self.client = WebClient(token=SLACK_TOKEN)
         self.conversation_store = {}
         self.conversation_history = []
+        self.translator = DeepLTranslator()
+        self.count_found_messages = 0
+        self.supabase = create_client(os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY"))
+
     def fetch_conversations(self):
         try:
             # Call the conversations.list method using the WebClient
