@@ -37,6 +37,13 @@ jobs:
         working-directory: ./Testing
         run: pytest -s qa_agent_unit_tests.py
 
+      - name: Run autoformatting
+        uses: wearerequired/lint-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          black: true
+          auto_fix: true
+
       - name: Run linters
         uses: wearerequired/lint-action@v2
         with:
