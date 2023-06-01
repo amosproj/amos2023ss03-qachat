@@ -47,6 +47,7 @@ class SlackPreprocessor(DataPreprocessor):
 
             # Store the entire conversation object
             # (you may not need all of the info)
+            if conversation["is_member"]:
                 self.conversation_store[conversation_id] = conversation
 
     def load_messages(self, channel_list, oldest=None):
