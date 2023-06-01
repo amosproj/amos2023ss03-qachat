@@ -44,6 +44,9 @@ class DocumentEmbedder:
         if typ == DataSource.DUMMY:
             from dummy_preprocessor import DummyPreprocessor
             data_preprocessor = DummyPreprocessor()
+        elif typ == DataSource.SLACK:
+            from slack_preprocessor import SlackPreprocessor
+            data_preprocessor = SlackPreprocessor()
         else:
             raise ValueError("Invalid data source type")
 
