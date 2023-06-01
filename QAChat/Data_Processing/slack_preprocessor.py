@@ -3,16 +3,17 @@
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 # SPDX-FileCopyrightText: 2023 Hafidz Arifin
 
-from datetime import datetime, timezone
-from typing import List
-from slack_sdk import WebClient
-from dotenv import load_dotenv
 import os
+from datetime import datetime
+from typing import List
+from dotenv import load_dotenv
+from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
+from supabase.client import create_client
+
 from QAChat.Data_Processing.data_preprocessor import DataPreprocessor
 from QAChat.Data_Processing.deepL_translator import DeepLTranslator
 from QAChat.Data_Processing.document_embedder import DataInformation, DataSource
-from supabase.client import create_client
 
 load_dotenv("../tokens.env")
 SLACK_TOKEN = os.getenv("SLACK_TOKEN")
@@ -76,13 +77,13 @@ class SlackPreprocessor(DataPreprocessor):
                     )
                 )
 
-                count_found_messages = len(self.conversation_history)
+                self.count_found_messages = len(self.conversation_history)
 
             except SlackApiError as e:
                 print("Error creating conversation: {}".format(e))
 
     def load_preprocessed_data(
-        self, before: datetime, after: datetime
+            self, before: datetime, after: datetime
     ) -> List[DataInformation]:
         self.fetch_conversations()
         oldest = after.timestamp()

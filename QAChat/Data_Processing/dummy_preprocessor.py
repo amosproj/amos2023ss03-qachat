@@ -6,13 +6,14 @@ from datetime import datetime
 from typing import List
 
 import pandas as pd
-from document_embedder import DataInformation, DataSource
+
 from data_preprocessor import DataPreprocessor
+from document_embedder import DataInformation, DataSource
 
 
 class DummyPreprocessor(DataPreprocessor):
     def load_preprocessed_data(
-        self, before: datetime, after: datetime
+            self, before: datetime, after: datetime
     ) -> List[DataInformation]:
         df = pd.read_csv("../../DummyData/qa.csv", sep=";")
         raw_data = []

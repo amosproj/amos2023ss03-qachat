@@ -2,9 +2,10 @@
 # SPDX-FileCopyrightText: 2023 Emanuel Erben
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 
-from dotenv import load_dotenv
-import deepl
 import os
+
+import deepl
+from dotenv import load_dotenv
 
 load_dotenv("../tokens.env")
 DEEPL_TOKEN = os.getenv("DEEPL_TOKEN")
