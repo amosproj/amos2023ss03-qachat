@@ -37,18 +37,15 @@ jobs:
         working-directory: ./Testing
         run: pytest -s qa_agent_unit_tests.py
 
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          flake8: true
+          flake8_args: '--max-line-length=120'
+
       - name: Run autoformatting
         uses: wearerequired/lint-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           black: true
           auto_fix: true
-
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          flake8: true
-          flake8_args: '--max-line-length=120'
