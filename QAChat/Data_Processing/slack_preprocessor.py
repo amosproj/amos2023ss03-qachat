@@ -75,6 +75,25 @@ class SlackPreprocessor(DataPreprocessor):
                 print("Error creating conversation: {}".format(e))
 
     def load_preprocessed_data(self, before: datetime, after: datetime) -> List[DataInformation]:
+        self.fetch_conversations()
+        oldest = after.timestamp()
+        already_loaded_ids = self.supabase.table("slack_loaded_channels") \
+            .select("channel_id") \
+            .execute().data
+
+        new_channels = [channel for channel in self.conversation_store if {"channel_id": channel} not in already_loaded_ids]
+        self.load_messages(new_channels)
+        already_loaded_ids = [channel["channel_id"] for channel in already_loaded_ids] # convert to list of strings
+        self.load_messages(already_loaded_ids, oldest=oldest)
+
+        # create new entries in the database
+        new_channels_names = [self.conversation_store[channel]["name"] for channel in new_channels]
+
+        for(channel_id, channel_name) in zip(new_channels, new_channels_names):
+            self.supabase.table("slack_loaded_channels") \
+                .insert({"channel_id": channel_id, "channel_name": channel_name}) \
+                .execute()
+
         raw_data = []
         for index, row in enumerate(self.conversation_history):
             raw_data.append(DataInformation(id=f"{index}", last_changed=datetime.now(), typ=DataSource.SLACK,
@@ -85,3 +104,14 @@ class SlackPreprocessor(DataPreprocessor):
 
 if __name__ == '__main__':
     preprocess = SlackPreprocessor()
+    preprocess.fetch_conversations()
+    preprocess.load_messages()
+    print("")
+    print("conversation_store")
+    print(preprocess.conversation_store)
+    print("")
+    print("preprocess.conversation_store.keys()")
+    print(preprocess.conversation_store.keys())
+    print("")
+    print("preprocess.conversation_history")
+    print(preprocess.conversation_history)
