@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 from datetime import datetime
 from typing import List
+import supabase
 import os
 
 load_dotenv("../tokens.env")
@@ -18,6 +19,11 @@ load_dotenv("../tokens.env")
 CONFLUENCE_ADDRESS = os.getenv("CONFLUENCE_ADDRESS")
 CONFLUENCE_USERNAME = os.getenv("CONFLUENCE_USERNAME")
 CONFLUENCE_TOKEN = os.getenv("CONFLUENCE_TOKEN")
+
+
+# Get Supabase API credentials from environment variables
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
 
 
 class ConfluencePreprocessor(DataPreprocessor):
@@ -31,6 +37,28 @@ class ConfluencePreprocessor(DataPreprocessor):
         self.all_spaces = []
         self.all_pages_id = []
         self.all_page_information = []
+        self.restricted_pages = []
+        self.supabase_client = supabase.create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)
+
+
+
+    def init_blacklist(self):
+        # Retrieve blacklist data from Supabase table
+        blacklist = (
+            self.supabase_client.table("confluence_blacklist")
+            .select("*")
+            .execute()
+            .data
+        )
+
+        # Extract restricted spaces and restricted pages from the blacklist data
+        for i in blacklist:
+            if "/pages/" in i["identifer"]:
+                # Split by slash and get the page id, https://.../pages/PAGE_ID
+                self.restricted_pages.append(i["identifer"].split("/")[7])
+            else:
+                # Split by slash and get the space name, https://.../space/SPACE_NAME
+                self.restricted_spaces.append(i["identifer"].split("/")[5])
 
     def get_all_spaces(self):
         start = 0
@@ -71,7 +99,8 @@ class ConfluencePreprocessor(DataPreprocessor):
                                                                       expand=None, content_type='page')
                 #  Get all page id
                 for page in pages_data:
-                    self.all_pages_id.append(page['id'])
+                    if page["page_id"] not in self.restricted_pages:
+                        self.all_pages_id.append(page['id'])
 
                 # Check if there are more pages
                 if len(pages_data) < limit:
