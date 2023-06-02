@@ -44,6 +44,9 @@ class DocumentEmbedder:
         if typ == DataSource.DUMMY:
             from dummy_preprocessor import DummyPreprocessor
             data_preprocessor = DummyPreprocessor()
+        if typ == DataSource.CONFLUENCE:
+            from confluence_preprocessor import ConfluencePreprocessor
+            data_preprocessor = ConfluencePreprocessor()
         else:
             raise ValueError("Invalid data source type")
 
