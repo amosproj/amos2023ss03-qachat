@@ -37,15 +37,18 @@ jobs:
         working-directory: ./Testing
         run: pytest -s qa_agent_unit_tests.py
 
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          flake8: true
-          flake8_args: '--max-line-length=120'
+          token: ${{ secrets.LINT_TOKEN }}
 
-      - name: Run autoformatting
-        uses: wearerequired/lint-action@v1
+      - name: Check files using the black formatter
+        uses: rickstaa/action-black@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          black: true
-          auto_fix: true
+          black_args: "."
+
+      - name: Commit and push if it was formatted
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git diff --exit-code --quiet && echo "No changes to commit" || (git commit -am "Format Python code with psf/black" && git push)
