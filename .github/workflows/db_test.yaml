@@ -1,4 +1,4 @@
-name: run-unit-test-and-lint
+name: run-bd-test
 on:
   push:
     branches:
