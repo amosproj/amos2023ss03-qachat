@@ -1,0 +1,28 @@
+name: run-unit-test-and-lint
+on:
+  push:
+    branches:
+      - 99-create-integration-tests-for-database-reading-and-writing
+
+jobs:
+  db_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+        
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$(pwd):$(pwd)/amos2023ss03-qachat" >> $GITHUB_ENV
+
+      - name: Run db tests
+        working-directory: ./Testing
+        run: python db_intergration_test.py
