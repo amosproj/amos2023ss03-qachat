@@ -1,6 +1,6 @@
 import unittest
 from QAChat.db_interface import DBInterface
-
+import os
 
 
 class DatabaseIntegrationTest(unittest.TestCase):
@@ -8,7 +8,7 @@ class DatabaseIntegrationTest(unittest.TestCase):
     def test_init(self):
         try:
             db = DBInterface()
-            print("hello world")
+            print("SUPABASE_URL: ", os.environ['SUPABASE_URL'])
         except ConnectionError as e:
             print("Connection Error:", e)
       
