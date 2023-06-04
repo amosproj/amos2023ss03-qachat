@@ -22,6 +22,16 @@ TESSDATA_PREFIX = os.getenv('TESSDATA_PREFIX')
 nltk.download('punkt')
 
 
+def get_text_from_pdf(pdf_object):
+    # First try to read the PDF with PDFMiner
+    text = __read_pdf_from_object(pdf_object)
+
+    # If the result is empty or too short, try OCR
+    if len(text.strip()) < 100:
+        text = __ocr_pdf(pdf_object)
+
+    return text
+
 def read_pdf(pdf_object, before: datetime, after: datetime, data_src: DataSource):
     # First try to read the PDF with PDFMiner
     text = __read_pdf_from_object(pdf_object)
@@ -30,7 +40,7 @@ def read_pdf(pdf_object, before: datetime, after: datetime, data_src: DataSource
     if len(text.strip()) < 100:
         text = __ocr_pdf(pdf_object)
 
-    return transform_to_data_information_list(text, before, after, data_src)
+    #return transform_to_data_information_list(text, before, after, data_src)
 
 
 def transform_to_data_information_list(text, before: datetime, after: datetime, data_src: DataSource):
