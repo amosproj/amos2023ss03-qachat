@@ -29,5 +29,5 @@ atlassian-python-api
 bs4
 hashlib
 psutil
-
+requests
 PyPDF2
