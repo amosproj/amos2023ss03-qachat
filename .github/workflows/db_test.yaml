@@ -2,7 +2,7 @@ name: run-db-test
 on:
   push:
     branches:
-      - 99-create-integration-tests-for-database-reading-and-writing
+      - main
 
 jobs:
   db_test:
