@@ -107,20 +107,19 @@ class ConfluencePreprocessor(DataPreprocessor):
     def get_relevant_data_from_pages(self):
         # Get all relevant information from each page
         for page_id in self.all_pages_id:
-            # Get page by id
-            page_with_body = self.confluence.get_page_by_id(page_id, expand='body.storage, version', status=None,
-                                                            version=None)
-            page_info = self.confluence.get_page_by_id(page_id, expand=None, status=None, version=None)
 
             # Set final parameters for DataInformation
-            last_changed = self.get_last_modified_formated_date(page_info)
-            text = self.get_raw_text_from_page(page_with_body)
+            last_changed = self.get_last_modified_formatted_date(page_id)
+            text = self.get_raw_text_from_page(page_id)
 
             # Add to list of DataInformation
             self.all_page_information.append(
                 DataInformation(id=page_id, last_changed=last_changed, typ=DataSource.CONFLUENCE, text=text))
 
-    def get_last_modified_formated_date(self, page_info) -> datetime:
+    def get_last_modified_formatted_date(self, page_id) -> datetime:
+        # get page by id
+        page_info = self.confluence.get_page_by_id(page_id, expand=None, status=None, version=None)
+
         # Get date of last modified page
         data_last_changed = page_info['version']['when']
         year_string = data_last_changed[0:4]
@@ -134,7 +133,12 @@ class ConfluencePreprocessor(DataPreprocessor):
 
         return datetime(year, month, day)
 
-    def get_raw_text_from_page(self, page_with_body) -> str:
+    def get_raw_text_from_page(self, page_id) -> str:
+
+        # get page by id
+        page_with_body = self.confluence.get_page_by_id(page_id, expand='body.storage, version', status=None,
+                                                        version=None)
+
         # Get page content
         page_in_html = page_with_body['body']['storage']['value']
 
@@ -142,6 +146,7 @@ class ConfluencePreprocessor(DataPreprocessor):
         page_in_raw_text = BeautifulSoup(page_in_html, features="html.parser")
 
         return page_in_raw_text.get_text()
+
 
     def load_preprocessed_data(self, before: datetime, after: datetime) -> List[DataInformation]:
 
