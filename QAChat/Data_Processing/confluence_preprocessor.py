@@ -3,6 +3,7 @@
 # SPDX-FileCopyrightText: 2023 Abdelkader Alkadour
 
 
+from QAChat.Data_Processing.pdf_reader import read_pdf, get_text_from_pdf
 from document_embedder import DataInformation, DataSource
 from data_preprocessor import DataPreprocessor
 from atlassian import Confluence
@@ -11,7 +12,9 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from typing import List
 import supabase
+import requests
 import os
+import io
 
 load_dotenv("../tokens.env")
 
@@ -107,10 +110,9 @@ class ConfluencePreprocessor(DataPreprocessor):
     def get_relevant_data_from_pages(self):
         # Get all relevant information from each page
         for page_id in self.all_pages_id:
-
             # Set final parameters for DataInformation
             last_changed = self.get_last_modified_formatted_date(page_id)
-            text = self.get_raw_text_from_page(page_id)
+            text = self.get_raw_text_from_page(page_id) + self.get_content_of_pdf(page_id)
 
             # Add to list of DataInformation
             self.all_page_information.append(
@@ -146,6 +148,39 @@ class ConfluencePreprocessor(DataPreprocessor):
         page_in_raw_text = BeautifulSoup(page_in_html, features="html.parser")
 
         return page_in_raw_text.get_text()
+
+    def get_content_of_pdf(self, page_id) -> str:
+
+        start = 0
+        limit = 100
+
+        attachments = []
+        all_pdf_from_confluence_page = []
+
+        # iterate over all attachments
+        while True:
+            attachments_container = self.confluence.get_attachments_from_content(
+                page_id=page_id, start=start, limit=limit
+            )
+
+            attachments.append(attachments_container["results"])
+
+            # Check if there are more spaces
+            if len(attachments_container) < limit:
+                break
+            start = start + limit
+
+        for attachment in attachments:
+            download_link = self.confluence.url + attachment["_links"]["download"]
+            r = requests.get(
+                download_link, auth=(self.confluence.username, self.confluence.password)
+            )
+
+            if r.status_code == 200:
+                pdf_file = io.BytesIO(r.content)
+                all_pdf_from_confluence_page = " " + get_text_from_pdf(pdf_file)
+
+        return all_pdf_from_confluence_page
 
 
     def load_preprocessed_data(self, before: datetime, after: datetime) -> List[DataInformation]:
