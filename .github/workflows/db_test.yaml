@@ -26,7 +26,7 @@ jobs:
       - name: Run DB Test
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL}}
-          SUPABASE_URL: ${{ secrets.SUPABASE_SERVICE_KEY}}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY}}
 
         working-directory: ./Testing
         run: python db_intergration_test.py
