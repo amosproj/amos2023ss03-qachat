@@ -28,5 +28,6 @@ rapidfuzz~=2.13.7
 atlassian-python-api
 bs4
 hashlib
+psutil
 
 PyPDF2
