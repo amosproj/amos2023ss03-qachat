@@ -29,3 +29,11 @@ jobs:
       - name: Run unit tests
         working-directory: ./Testing
         run: pytest -s qa_agent_unit_tests.py
+
+      - name: Run DB Test
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL}}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY}}
+
+        working-directory: ./Testing
+        run: python db_intergration_test.py
