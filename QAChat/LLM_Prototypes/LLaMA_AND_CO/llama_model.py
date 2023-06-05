@@ -17,14 +17,29 @@ class LLaMAModel(Enum):
     Alpaca7B = ("Pi3141/alpaca-native-7B-ggml", " ggml-model-q8_0.bin")
     Alpaca13B = ("Pi3141/alpaca-native-13B-ggml", "ggml-model-q8_0.bin")
     Alpaca13BGPT4 = ("Pi3141/gpt4-x-alpaca-native-13B-ggml", "ggml-model-q8_0.bin")
-    AlpacaLora30B = ("Pi3141/alpaca-lora-30B-ggml", "gpt4-alpaca-lora-30B.ggml.q5_1.bin")
-    AlpacaLora30BGPT4 = ("TheBloke/gpt4-alpaca-lora-30B-4bit-GGML", "gpt4-alpaca-lora-30B.ggml.q5_1.bin")
+    AlpacaLora30B = (
+        "Pi3141/alpaca-lora-30B-ggml",
+        "gpt4-alpaca-lora-30B.ggml.q5_1.bin",
+    )
+    AlpacaLora30BGPT4 = (
+        "TheBloke/gpt4-alpaca-lora-30B-4bit-GGML",
+        "gpt4-alpaca-lora-30B.ggml.q5_1.bin",
+    )
     AlpacaLora65B = ("TheBloke/alpaca-lora-65B-GGML", "alpaca-lora-65B.ggml.q5_1.bin")
     Vicuna7B = ("Pi3141/vicuna-7b-v1.1-ggml", "ggml-model-q8_0.bin")
     Vicuna13B = ("Pi3141/vicuna-13b-v1.1-ggml", "ggml-model-q8_0.bin")
-    Vicuna13BGPT4 = ("TheBloke/gpt4-x-vicuna-13B-GGML", "gpt4-x-vicuna-13B.ggml.q5_1.bin")
-    StableVicuna13B = ("TheBloke/stable-vicuna-13B-GGML", "stable-vicuna-13B.ggml.q5_1.bin")
-    OASST30B = ("TheBloke/h2ogpt-oasst1-512-30B-GGML", " h2ogptq-oasst1-512-30B.ggml.q5_1.bin")
+    Vicuna13BGPT4 = (
+        "TheBloke/gpt4-x-vicuna-13B-GGML",
+        "gpt4-x-vicuna-13B.ggml.q5_1.bin",
+    )
+    StableVicuna13B = (
+        "TheBloke/stable-vicuna-13B-GGML",
+        "stable-vicuna-13B.ggml.q5_1.bin",
+    )
+    OASST30B = (
+        "TheBloke/h2ogpt-oasst1-512-30B-GGML",
+        " h2ogptq-oasst1-512-30B.ggml.q5_1.bin",
+    )
 
 
 def get_model(model_typ: LLaMAModel, n_ctx=512, max_tokens=256):
@@ -38,6 +53,10 @@ def get_model(model_typ: LLaMAModel, n_ctx=512, max_tokens=256):
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     model = get_model(LLaMAModel.Vicuna13BGPT4)
-    print(model.generate(["### USER: Was ist 2+2?\n### ASSISTANT: "]).generations[0][0].text)
+    print(
+        model.generate(["### USER: Was ist 2+2?\n### ASSISTANT: "])
+        .generations[0][0]
+        .text
+    )

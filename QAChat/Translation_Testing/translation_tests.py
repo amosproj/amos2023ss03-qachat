@@ -11,7 +11,7 @@ import datetime
 
 def load_data_from_csv(file_path):
     data = []
-    with open(file_path, 'r') as csvfile:
+    with open(file_path, "r") as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             for dataset in row:
@@ -50,26 +50,26 @@ def test_translation():
         similarity_score.append(1 - (distance / max_length))
 
     total_end = datetime.now()
-    diff_total = (total_end - total_start)
+    diff_total = total_end - total_start
     print(diff_total)
     avg_diff = diff_total / (len(data) * 2)
     print(avg_diff)
     sim_score = sum(similarity_score) / len(similarity_score)
     print(sim_score)
     # save array to file
-    with open('similiarity_score.txt', 'w') as outfile:
-        outfile.write('\n'.join(str(i) for i in similarity_score))
-    with open('time_diff.txt', 'w') as outfile:
-        outfile.write('\n'.join(str(i) for i in diff_arr))
-    with open('compare.txt', 'w') as outfile:
-        outfile.write('\n'.join(str(i) for i in comp_arr))
-    with open('bleu_score.txt', 'w') as outfile:
-        outfile.write('\n'.join(str(i) for i in bleu_score_arr))
+    with open("similiarity_score.txt", "w") as outfile:
+        outfile.write("\n".join(str(i) for i in similarity_score))
+    with open("time_diff.txt", "w") as outfile:
+        outfile.write("\n".join(str(i) for i in diff_arr))
+    with open("compare.txt", "w") as outfile:
+        outfile.write("\n".join(str(i) for i in comp_arr))
+    with open("bleu_score.txt", "w") as outfile:
+        outfile.write("\n".join(str(i) for i in bleu_score_arr))
 
 
 def compute_metrics_bleu():
     # Open the file and read the lines
-    with open('bleu_score.txt', 'r') as f:
+    with open("bleu_score.txt", "r") as f:
         lines = f.readlines()
 
     # Convert each line to a float and store in a list
@@ -88,9 +88,10 @@ def compute_metrics_bleu():
     print(f"Median: {median}")
     print(f"Variance: {variance}")
 
+
 def compute_metrics_levenshtein():
     # Open the file and read the lines
-    with open('similiarity_score.txt', 'r') as f:
+    with open("similiarity_score.txt", "r") as f:
         lines = f.readlines()
 
     # Convert each line to a float and store in a list
@@ -112,15 +113,19 @@ def compute_metrics_levenshtein():
 
 def compute_metrics_time():
     # Open the file and read the lines
-    with open('time_diff.txt', 'r') as f:
+    with open("time_diff.txt", "r") as f:
         lines = f.readlines()
 
     time_scores = []
 
     for line in lines:
         line = line.strip()
-        hours, minutes, seconds = map(float, line.split(':'))
-        time_scores.append(datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds).total_seconds())
+        hours, minutes, seconds = map(float, line.split(":"))
+        time_scores.append(
+            datetime.timedelta(
+                hours=hours, minutes=minutes, seconds=seconds
+            ).total_seconds()
+        )
 
     max_value = np.max(time_scores)
     min_value = np.min(time_scores)
@@ -133,7 +138,7 @@ def compute_metrics_time():
     print(f"Median: {median}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # test_translation()
     compute_metrics_bleu()
     compute_metrics_levenshtein()

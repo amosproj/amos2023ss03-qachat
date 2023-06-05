@@ -21,7 +21,6 @@ SIGNING_SECRET = os.getenv("SIGNING_SECRET")
 
 
 class QAAgent(BaseAgent):
-
     def __init__(self, app=None, client=None, handler=None):
         super().__init__()
         self.app = app or App(token=SLACK_TOKEN)
@@ -59,9 +58,11 @@ class QAAgent(BaseAgent):
         self.response_queue.put((user_id, answer))
 
     def process_question(self, body, say):
-        text = body['event']['text']
-        user_id = body['event']['user']
+        text = body["event"]["text"]
+        user_id = body["event"]["user"]
         say("...")
+
+
         print(text)
 
         # Store the say function for this user
@@ -73,27 +74,23 @@ class QAAgent(BaseAgent):
         thread.start()
 
     def start(self):
-        self.handler.app.message(re.compile('.*'))(self.process_question)
+        self.handler.app.message(re.compile(".*"))(self.process_question)
         self.handler.start()
 
     def delete_messages(self, channel_id):
-
         # Get conversation history
         result = self.client.conversations_history(channel=channel_id)
 
-        messages = result.data.get('messages')
+        messages = result.data.get("messages")
 
         # Loop through all messages
         for msg in messages:
             try:
                 # If it is a bot message...
-                if msg.get('bot_profile') is not None:
-                    ts = msg.get('ts')
+                if msg.get("bot_profile") is not None:
+                    ts = msg.get("ts")
                     # ...delete a message
-                    self.client.chat_delete(
-                        channel=channel_id,
-                        ts=ts
-                    )
+                    self.client.chat_delete(channel=channel_id, ts=ts)
                     print(f"Deleted bot message with ts={ts}")
             except SlackApiError as e:
                 print(f"Error deleting message: {e}")
@@ -119,6 +116,6 @@ class QAAgent(BaseAgent):
                 print(f"Error deleting loading message")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     agent = QAAgent()
     agent.start()

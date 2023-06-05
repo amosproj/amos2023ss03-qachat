@@ -4,8 +4,8 @@
 
 import QAChat.QA_Bot.api_interface as APIInterface
 
-class BaseAgent:
 
+class BaseAgent:
     def __init__(self):
         self.api_interface = APIInterface.APIInterface()
 
