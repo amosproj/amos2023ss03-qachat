@@ -49,13 +49,13 @@ class TestQAAgent(unittest.TestCase):
     # Tests if process question is called correctly
     @patch.object(QAAgent, "receive_question")
     def test_process_question(self, mock_receive_question):
-        body = {"event": {"text": "Hello", "user": "U1"}}
+        body = {"event": {"text": "Hello", "user": "U1", "channel": "Test"}}
 
         say = MagicMock()
 
         self.agent.process_question(body, say)
-        say.assert_called_with(body["event"]["text"])
-        self.assertEqual(self.agent.say_functions["..."], say)
+        say.assert_called_with("...")
+        self.assertEqual(self.agent.say_functions["U1"], say)
 
     # Tests if the answer is saved in the queue properly
     def test_receive_answer(self):

@@ -67,7 +67,7 @@ class QAAgent(BaseAgent):
 
         # Store the say function for this user
         self.say_functions[user_id] = say
-        self.channel_ids[user_id] = body['event']['channel']
+        self.channel_ids[user_id] = body["event"]["channel"]
 
         # Use a separate thread to call receive_question
         thread = Thread(target=self.receive_question, args=(text, user_id))
