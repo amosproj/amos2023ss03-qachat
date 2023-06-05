@@ -29,6 +29,7 @@ class QAAgent(BaseAgent):
 
         # Create a dictionary to hold say functions for each user
         self.say_functions = {}
+        self.channel_ids = {}
 
         # Create a queue to hold responses
         self.response_queue = Queue()
@@ -47,6 +48,7 @@ class QAAgent(BaseAgent):
             say = self.say_functions.get(user_id)
             if say is not None:
                 say(answer)
+                self.delete_processing_message(channel_id=self.channel_ids[user_id])
 
     def receive_question(self, question, user_id):
         self.api_interface.listen_for_requests(question, self, user_id)
@@ -58,11 +60,14 @@ class QAAgent(BaseAgent):
     def process_question(self, body, say):
         text = body["event"]["text"]
         user_id = body["event"]["user"]
-        say(text)
+        say("...")
+
+
         print(text)
 
         # Store the say function for this user
         self.say_functions[user_id] = say
+        self.channel_ids[user_id] = body["event"]["channel"]
 
         # Use a separate thread to call receive_question
         thread = Thread(target=self.receive_question, args=(text, user_id))
@@ -89,6 +94,26 @@ class QAAgent(BaseAgent):
                     print(f"Deleted bot message with ts={ts}")
             except SlackApiError as e:
                 print(f"Error deleting message: {e}")
+
+    def delete_processing_message(self, channel_id):
+
+        # Get conversation history
+        result = self.client.conversations_history(channel=channel_id)
+
+        messages = result.data.get('messages')
+
+        # Loop through all messages
+        for msg in messages:
+            try:
+                if msg.get('text') is not None and msg.get('text') == "...":
+                    ts = msg.get('ts')
+                    # ...delete a message
+                    self.client.chat_delete(
+                        channel=channel_id,
+                        ts=ts
+                    )
+            except SlackApiError as e:
+                print(f"Error deleting loading message")
 
 
 if __name__ == "__main__":

@@ -1,14 +1,17 @@
 name: run-unit-test-and-lint
+
 on:
   push:
-    branches: [master]
+    branches:
+      - master
     paths-ignore:
       - 'README.md'
       - 'Deliverables/**'
       - 'Documentation/**'
       - 'DummyData/**'
   pull_request:
-    branches-ignore: [ master ]
+    branches-ignore:
+      - master
     paths-ignore:
       - 'README.md'
       - 'Deliverables/**'
@@ -20,31 +23,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
-          token: ${{ secrets.LINT_TOKEN }}
-      - name: Check files using the black formatter
-        uses: rickstaa/action-black@v1
-        with:
-          black_args: "."
+          ref: ${{ github.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit and push if it was formatted
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git diff --exit-code --quiet && echo "No changes to commit" || (git commit -am "Format Python code with psf/black" && git push)
-
-      - name: setup python
-        uses: actions/setup-python@v4
+      - name: Setup Python
+        uses: actions/setup-python@v2
         with:
           python-version: '3.10'
           cache: 'pip'
 
       - name: Install Python dependencies
         run: pip install -r requirements.txt
+
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd):$(pwd)/amos2023ss03-qachat" >> $GITHUB_ENV
 
       - name: Run unit tests
         working-directory: ./Testing
         run: pytest -s qa_agent_unit_tests.py
+
+      - name: Check files using the black formatter
+        uses: actions/checkout@v2
+
+      - name: Commit and push if it was formatted
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git diff --exit-code --quiet && echo "No changes to commit" || (git add . && git commit -m "Format Python code with psf/black" && git push)
