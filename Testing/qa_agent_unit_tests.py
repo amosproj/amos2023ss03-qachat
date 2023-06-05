@@ -55,7 +55,7 @@ class TestQAAgent(unittest.TestCase):
 
         self.agent.process_question(body, say)
         say.assert_called_with(body["event"]["text"])
-        self.assertEqual(self.agent.say_functions["U1"], say)
+        self.assertEqual(self.agent.say_functions["..."], say)
 
     # Tests if the answer is saved in the queue properly
     def test_receive_answer(self):
