@@ -7,9 +7,9 @@ from langchain import PromptTemplate, LLMChain
 
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = "YOUR_TOKEN_FROM_HUGGING_FACE"
 
-repo_id = "google/flan-t5-xl" # See https://huggingface.co/models?pipeline_tag=text-generation&sort=downloads for some other options
+repo_id = "google/flan-t5-xl"  # See https://huggingface.co/models?pipeline_tag=text-generation&sort=downloads for some other options
 
-llm = HuggingFaceHub(repo_id=repo_id, model_kwargs={"temperature":0, "max_length":64})
+llm = HuggingFaceHub(repo_id=repo_id, model_kwargs={"temperature": 0, "max_length": 64})
 
 template = """Question: {question}
 

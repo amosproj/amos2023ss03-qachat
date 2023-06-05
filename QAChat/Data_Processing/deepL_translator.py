@@ -2,16 +2,16 @@
 # SPDX-FileCopyrightText: 2023 Emanuel Erben
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 
-from dotenv import load_dotenv
-import deepl
 import os
+
+import deepl
+from dotenv import load_dotenv
 
 load_dotenv("../tokens.env")
 DEEPL_TOKEN = os.getenv("DEEPL_TOKEN")
 
 
 class DeepLTranslator:
-
     def __init__(self):
         super().__init__()
         # initialize a DeepL translator service
@@ -30,6 +30,6 @@ class DeepLTranslator:
         return result.text
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     translator = DeepLTranslator()
     print(translator.receive_question("Hallo wie geht es dir?"))

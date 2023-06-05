@@ -1,12 +1,19 @@
 name: run-unit-test-and-lint
 on:
   push:
+    branches: [master]
     paths-ignore:
       - 'README.md'
       - 'Deliverables/**'
       - 'Documentation/**'
       - 'DummyData/**'
-      - 'QAChat/**'
+  pull_request:
+    branches-ignore: [ master ]
+    paths-ignore:
+      - 'README.md'
+      - 'Deliverables/**'
+      - 'Documentation/**'
+      - 'DummyData/**'
 
 jobs:
   unit-tests-and-lint:
@@ -14,6 +21,18 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.LINT_TOKEN }}
+      - name: Check files using the black formatter
+        uses: rickstaa/action-black@v1
+        with:
+          black_args: "."
+
+      - name: Commit and push if it was formatted
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git diff --exit-code --quiet && echo "No changes to commit" || (git commit -am "Format Python code with psf/black" && git push)
 
       - name: setup python
         uses: actions/setup-python@v4
