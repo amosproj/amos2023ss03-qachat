@@ -31,3 +31,8 @@ hashlib
 psutil
 requests
 PyPDF2
+psutil
+pdf2image
+pytesseract
+flake8
+black

@@ -21,7 +21,6 @@ SIGNING_SECRET = os.getenv("SIGNING_SECRET")
 
 
 class QAAgent(BaseAgent):
-
     def __init__(self, app=None, client=None, handler=None):
         super().__init__()
         self.app = app or App(token=SLACK_TOKEN)
@@ -30,6 +29,7 @@ class QAAgent(BaseAgent):
 
         # Create a dictionary to hold say functions for each user
         self.say_functions = {}
+        self.channel_ids = {}
 
         # Create a queue to hold responses
         self.response_queue = Queue()
@@ -48,6 +48,7 @@ class QAAgent(BaseAgent):
             say = self.say_functions.get(user_id)
             if say is not None:
                 say(answer)
+                self.delete_processing_message(channel_id=self.channel_ids[user_id])
 
     def receive_question(self, question, user_id):
         self.api_interface.listen_for_requests(question, self, user_id)
@@ -57,23 +58,44 @@ class QAAgent(BaseAgent):
         self.response_queue.put((user_id, answer))
 
     def process_question(self, body, say):
-        text = body['event']['text']
-        user_id = body['event']['user']
-        say(text)
+        text = body["event"]["text"]
+        user_id = body["event"]["user"]
+        say("...")
+
+
         print(text)
 
         # Store the say function for this user
         self.say_functions[user_id] = say
+        self.channel_ids[user_id] = body["event"]["channel"]
 
         # Use a separate thread to call receive_question
         thread = Thread(target=self.receive_question, args=(text, user_id))
         thread.start()
 
     def start(self):
-        self.handler.app.message(re.compile('.*'))(self.process_question)
+        self.handler.app.message(re.compile(".*"))(self.process_question)
         self.handler.start()
 
     def delete_messages(self, channel_id):
+        # Get conversation history
+        result = self.client.conversations_history(channel=channel_id)
+
+        messages = result.data.get("messages")
+
+        # Loop through all messages
+        for msg in messages:
+            try:
+                # If it is a bot message...
+                if msg.get("bot_profile") is not None:
+                    ts = msg.get("ts")
+                    # ...delete a message
+                    self.client.chat_delete(channel=channel_id, ts=ts)
+                    print(f"Deleted bot message with ts={ts}")
+            except SlackApiError as e:
+                print(f"Error deleting message: {e}")
+
+    def delete_processing_message(self, channel_id):
 
         # Get conversation history
         result = self.client.conversations_history(channel=channel_id)
@@ -83,19 +105,17 @@ class QAAgent(BaseAgent):
         # Loop through all messages
         for msg in messages:
             try:
-                # If it is a bot message...
-                if msg.get('bot_profile') is not None:
+                if msg.get('text') is not None and msg.get('text') == "...":
                     ts = msg.get('ts')
                     # ...delete a message
                     self.client.chat_delete(
                         channel=channel_id,
                         ts=ts
                     )
-                    print(f"Deleted bot message with ts={ts}")
             except SlackApiError as e:
-                print(f"Error deleting message: {e}")
+                print(f"Error deleting loading message")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     agent = QAAgent()
     agent.start()
