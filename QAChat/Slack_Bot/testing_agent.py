@@ -5,10 +5,10 @@
 import tkinter as tk
 from base_agent import BaseAgent
 
-'''
+"""
     This is just an easy Testing Bot for testing reasons and should not be part of the final release. 
     Its purpose is to send and receive answers from our system, without having a functioning SlackBot or other.
-'''
+"""
 
 
 class TestingAgent(BaseAgent):
@@ -37,7 +37,7 @@ class TestingAgent(BaseAgent):
         self.result_label.config(text=answer)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     root = tk.Tk()
     gui = TestingAgent(root)
     root.mainloop()
