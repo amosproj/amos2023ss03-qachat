@@ -12,10 +12,11 @@ from datetime import datetime
 from typing import List
 import supabase
 import os, io
+import datetime
 from pdf_reader import read_pdf
 import requests
 
-load_dotenv("/Users/kad/Desktop/AMOS/amos2023ss03-qachat/tokens.env")
+load_dotenv("../tokens.env")
 
 # Get Confluence API credentials from environment variables
 CONFLUENCE_ADDRESS = os.getenv("CONFLUENCE_ADDRESS")
@@ -119,8 +120,7 @@ class ConfluencePreprocessor(DataPreprocessor):
             # Set final parameters for DataInformation
             last_changed = self.get_last_modified_formated_date(page_info)
             text = self.get_raw_text_from_page(page_with_body)
-            print(text)
-            pdf_text = self.get_page_attacments(page_id)
+            pdf_text = self.get_page_attachments(page_id)
             text += pdf_text
 
             # Add to list of DataInformation
@@ -135,7 +135,9 @@ class ConfluencePreprocessor(DataPreprocessor):
         for i in ids:
             self.supabase_client.table("data_embedding").delete().eq("id", i).execute()
         
-    def get_page_attacments(self, id):  
+    def get_page_attachments(self, id):
+        #TODO: PDF
+        """
         attachments_container = self.confluence.get_attachments_from_content(
             page_id=id, start=0, limit=500
         )
@@ -155,11 +157,14 @@ class ConfluencePreprocessor(DataPreprocessor):
                 if r.status_code == 200:
                     pdf_file = io.BytesIO(r.content)
                     pdf = read_pdf(pdf_file.getvalue(), datetime.datetime(2025, 1, 1), datetime.datetime(1970, 1, 1), DataSource.CONFLUENCE)
-                    for i in pdf:
-                        content += i.text + " "
+                    if pdf is not None:
+                        for i in pdf:
+                            content += i.text + " "
             pdf_content += content + "#"
-        
+
         return pdf_content
+        """
+        return ""
 
 
     def get_last_modified_formated_date(self, page_info) -> datetime:
@@ -183,28 +188,16 @@ class ConfluencePreprocessor(DataPreprocessor):
         # Convert HTML page content to raw text
         page_in_raw_text = BeautifulSoup(page_in_html, features="html.parser")
 
-        return " ".join(page_in_raw_text.get_text())
+        return page_in_raw_text.get_text()
 
     def load_preprocessed_data(self, before: datetime, after: datetime) -> List[DataInformation]:
 
         self.get_all_spaces()
         self.get_all_page_ids_from_spaces()
         self.get_relevant_data_from_pages()
-        self.delete_old_content()
-        return [data for data in self.all_page_information if after < data.last_changed <= before]
+        self.delete_old_content() # TODO: update
 
-import datetime
-if __name__ == "__main__":
-    cp = ConfluencePreprocessor()
-    
-    date_string = "2023-05-04"
-    format_string = "%Y-%m-%d"
+        return [data for data in self.all_page_information]
 
-    z = cp.load_preprocessed_data(datetime.datetime.now() , datetime.datetime.strptime(date_string, format_string) )
-    for i in z:
-        print(i.id)
-        print(i.text)
-        print(i.last_changed)
-        print("----"*5)
 
 
