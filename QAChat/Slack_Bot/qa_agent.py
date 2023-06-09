@@ -1,9 +1,12 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2023 Emanuel Erben
 # SPDX-FileCopyrightText: 2023 Felix Nützel
-
+import json
 from queue import Queue
 from threading import Thread
+
+import requests
+from google.cloud import aiplatform
 from slack_sdk.errors import SlackApiError
 from QAChat.Slack_Bot.base_agent import BaseAgent
 
@@ -51,7 +54,16 @@ class QAAgent(BaseAgent):
                 self.delete_processing_message(channel_id=self.channel_ids[user_id])
 
     def receive_question(self, question, user_id):
-        self.api_interface.listen_for_requests(question, self, user_id)
+        url = os.getenv("GOOGLE_CLOUD_QA_BOT")
+        headers = {'Content-type': 'application/json'}
+
+        data = {
+            "question": question
+        }
+
+        response = requests.post(url, data=json.dumps(data), headers=headers)
+        response_data = response.json()
+        self.receive_answer(response_data["answer"], user_id)
 
     def receive_answer(self, answer, user_id):
         # Put the answer and user_id in the queue instead of sending it directly
@@ -61,7 +73,6 @@ class QAAgent(BaseAgent):
         text = body["event"]["text"]
         user_id = body["event"]["user"]
         say("...")
-
 
         print(text)
 

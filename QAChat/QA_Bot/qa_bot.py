@@ -5,7 +5,6 @@
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 
 import os
-import time
 
 from huggingface_hub import hf_hub_download
 from langchain import LlamaCpp, PromptTemplate
@@ -15,7 +14,7 @@ from supabase import create_client
 from dotenv import load_dotenv
 from typing import List
 
-from QAChat.Data_Processing.deepL_translator import DeepLTranslator
+from deepL_translator import DeepLTranslator
 
 
 class QABot:
@@ -47,11 +46,11 @@ class QABot:
             self.model = self.get_llama_model()
 
     def get_llama_model(
-        self,
-        n_ctx=1024,
-        max_tokens=128,
-        repo_id="TheBloke/wizard-mega-13B-GGML",
-        filename="wizard-mega-13B.ggmlv3.q5_1.bin",
+            self,
+            n_ctx=2048,
+            max_tokens=128,
+            repo_id="TheBloke/wizard-mega-13B-GGML",
+            filename="wizard-mega-13B.ggmlv3.q4_1.bin",
     ):
         path = hf_hub_download(repo_id=repo_id, filename=filename)
 
@@ -61,6 +60,7 @@ class QABot:
             n_ctx=n_ctx,
             max_tokens=max_tokens,
             temperature=0,
+            n_gpu_layers=40,
         )
 
     def __answer_question_with_context(self, question: str, context: List[str]) -> str:
@@ -137,7 +137,7 @@ class QABot:
     def translate_text(self, question, language="EN-US"):
         return DeepLTranslator().translate_to(question, language)
 
-    def answer_question(self, question: str, user_id) -> str:
+    def answer_question(self, question: str):
         """
         This method takes a user's question as input and returns an appropriate answer.
 
@@ -154,7 +154,11 @@ class QABot:
         """
 
         translation = self.translate_text(question)
-        context = self.__sim_search(translation.text)
-        answer = self.__answer_question_with_context(question, context)
+        context = self.__sim_search(translation)
+        answer = self.__answer_question_with_context(translation, context)
         answer = self.translate_text(answer, translation.detected_source_lang).text
-        return answer
+        return {
+            "answer": answer,
+            "question": question,
+            "context": context,
+        }
