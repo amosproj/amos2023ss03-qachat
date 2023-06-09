@@ -21,6 +21,7 @@ SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN")
 SIGNING_SECRET = os.getenv("SIGNING_SECRET")
 
 
+
 class SlackPreprocessor(DataPreprocessor):
     def __init__(self):
         self.client = WebClient(token=SLACK_TOKEN)
@@ -31,6 +32,16 @@ class SlackPreprocessor(DataPreprocessor):
         self.supabase = create_client(
             os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
         )
+
+    def __map_users(self):
+        for message in self.conversation_history:
+            try:
+                # Call the users.info method using the WebClient
+                message["name"] = self.client.users_info(
+                    user=message["user"]
+                )["user"]["real_name"]
+            except SlackApiError as e:
+                print("Error fetching conversations: {}".format(e))
 
     def fetch_conversations(self):
         try:
@@ -63,11 +74,11 @@ class SlackPreprocessor(DataPreprocessor):
                 )
 
                 for message in result["messages"]:
+                    message["channel_id"] = channel_id
                     if "subtype" in message and message["subtype"] == "channel_join":
                         continue
-                    self.conversation_history.append(
-                        self.translator.translate_german_english(message["text"])
-                    )
+                    self.conversation_history.append(message)
+
 
                 # Print results
                 print(
@@ -115,14 +126,17 @@ class SlackPreprocessor(DataPreprocessor):
                 {"channel_id": channel_id, "channel_name": channel_name}
             ).execute()
 
+        self.__map_users()
+
         raw_data = []
-        for index, row in enumerate(self.conversation_history):
+        for index, message in enumerate(self.conversation_history):
+            print(message)
             raw_data.append(
                 DataInformation(
-                    id=f"{index}",
+                    id=message["channel_id"]+"_"+message["ts"],
                     last_changed=datetime.now(),
                     typ=DataSource.SLACK,
-                    text=row,
+                    text=message["name"] + ": " + message["text"],
                 )
             )
 
@@ -131,14 +145,6 @@ class SlackPreprocessor(DataPreprocessor):
 
 if __name__ == "__main__":
     preprocess = SlackPreprocessor()
-    preprocess.fetch_conversations()
-    preprocess.load_messages()
-    print("")
-    print("conversation_store")
-    print(preprocess.conversation_store)
-    print("")
-    print("preprocess.conversation_store.keys()")
-    print(preprocess.conversation_store.keys())
-    print("")
-    print("preprocess.conversation_history")
-    print(preprocess.conversation_history)
+
+    preprocess.load_preprocessed_data(datetime.now(), datetime(2000,1,1))
+
