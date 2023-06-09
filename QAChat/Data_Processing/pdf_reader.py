@@ -23,7 +23,7 @@ TESSDATA_PREFIX = os.getenv("TESSDATA_PREFIX")
 nltk.download("punkt")
 
 
-def read_pdf(pdf_object, before: datetime, after: datetime, data_src: DataSource):
+def read_pdf(pdf_object):
     # First try to read the PDF with PDFMiner
     text = __read_pdf_from_object(pdf_object)
 
@@ -31,32 +31,7 @@ def read_pdf(pdf_object, before: datetime, after: datetime, data_src: DataSource
     if len(text.strip()) < 100:
         text = __ocr_pdf(pdf_object)
 
-    return transform_to_data_information_list(text, before, after, data_src)
-
-
-def transform_to_data_information_list(
-        text, before: datetime, after: datetime, data_src: DataSource
-):
-    # Splits the text into sentences and then puts them in groups of twenty with an overlap of 1
-    raw_data = []
-    sentences = nltk.sent_tokenize(text)
-    n = 2  # group size
-    m = 1  # overlap size
-    overlapping_sentences = [
-        " ".join(sentences[i: i + n]) for i in range(0, len(sentences), n - m)
-    ]
-
-    for index, chunk in enumerate(overlapping_sentences):
-        raw_data.append(
-            DataInformation(
-                id=f"{index}",
-                last_changed=datetime(2021, 1, 1),
-                typ=data_src,
-                text=" ".join(chunk),
-            )
-        )
-
-    return [data for data in raw_data if after < data.last_changed <= before]
+    return text
 
 
 def __read_pdf_from_object(pdf_object):
@@ -115,9 +90,7 @@ if __name__ == "__main__":
     with open("../../Deliverables/sprint-03/planning-documents.pdf", "rb") as f:
         pdf_bytes = f.read()
     print(
-        read_pdf(
-            pdf_bytes, datetime(2025, 1, 1), datetime(1970, 1, 1), DataSource.CONFLUENCE
-        )
+        read_pdf(pdf_bytes)
     )
 
     print()
@@ -125,7 +98,5 @@ if __name__ == "__main__":
     with open("../../Deliverables/sprint-02/software-architecture.pdf", "rb") as f:
         pdf_bytes = f.read()
     print(
-        read_pdf(
-            pdf_bytes, datetime(2025, 1, 1), datetime(1970, 1, 1), DataSource.CONFLUENCE
-        )
+        read_pdf(pdf_bytes)
     )
