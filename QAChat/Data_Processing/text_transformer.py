@@ -12,10 +12,11 @@ def transform_text_to_chunks(data_information_list):
     for data_information in data_information_list:
         # translate text
         translator = DeepLTranslator()
-        data_information.text = translator.translate_to(data_information.text, "EN-US").text\
-            .replace("<name>", "")\
+        data_information.text = (
+            translator.translate_to(data_information.text, "EN-US")
+            .text.replace("<name>", "")
             .replace("</name>", "")
-
+        )
 
         # split the text
         nltk.download("punkt")
