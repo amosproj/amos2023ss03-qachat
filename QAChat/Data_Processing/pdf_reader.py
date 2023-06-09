@@ -35,7 +35,7 @@ def read_pdf(pdf_object, before: datetime, after: datetime, data_src: DataSource
 
 
 def transform_to_data_information_list(
-    text, before: datetime, after: datetime, data_src: DataSource
+        text, before: datetime, after: datetime, data_src: DataSource
 ):
     # Splits the text into sentences and then puts them in groups of twenty with an overlap of 1
     raw_data = []
@@ -43,7 +43,7 @@ def transform_to_data_information_list(
     n = 2  # group size
     m = 1  # overlap size
     overlapping_sentences = [
-        " ".join(sentences[i : i + n]) for i in range(0, len(sentences), n - m)
+        " ".join(sentences[i: i + n]) for i in range(0, len(sentences), n - m)
     ]
 
     for index, chunk in enumerate(overlapping_sentences):
