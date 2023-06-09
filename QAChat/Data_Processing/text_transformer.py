@@ -12,11 +12,15 @@ def transform_text_to_chunks(data_information_list):
     for data_information in data_information_list:
         # translate text
         translator = DeepLTranslator()
-        data_information.text = translator.translate_to(data_information.text, "EN-US").text
+        data_information.text = translator.translate_to(
+            data_information.text, "EN-US"
+        ).text
 
         # split the text
-        nltk.download('punkt')
-        text_splitter = NLTKTextSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
+        nltk.download("punkt")
+        text_splitter = NLTKTextSplitter(
+            chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP
+        )
         print(data_information.text)
         chunks = text_splitter.split_text(data_information.text)
 
