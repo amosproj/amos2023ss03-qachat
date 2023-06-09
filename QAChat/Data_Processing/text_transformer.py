@@ -18,8 +18,10 @@ def transform_text_to_chunks(data_information_list):
 
 
         # split the text
-        nltk.download('punkt')
-        text_splitter = NLTKTextSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
+        nltk.download("punkt")
+        text_splitter = NLTKTextSplitter(
+            chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP
+        )
         print(data_information.text)
         chunks = text_splitter.split_text(data_information.text)
 
