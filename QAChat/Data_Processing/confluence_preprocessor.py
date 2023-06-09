@@ -28,8 +28,6 @@ SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
 
 
-
-
 class ConfluencePreprocessor(DataPreprocessor):
 
     def __init__(self):
@@ -120,51 +118,24 @@ class ConfluencePreprocessor(DataPreprocessor):
             # Set final parameters for DataInformation
             last_changed = self.get_last_modified_formated_date(page_info)
             text = self.get_raw_text_from_page(page_with_body)
-            pdf_text = self.get_page_attachments(page_id)
-            text += pdf_text
 
-            # Add to list of DataInformation
-            self.all_page_information.append( #check for changes 
-                DataInformation(id=page_id, last_changed=last_changed, typ=DataSource.CONFLUENCE, text=text)) #TODO: append pdf
+            # Add Page content to list of DataInformation
+            self.all_page_information.append(
+                DataInformation(id=page_id, last_changed=last_changed, typ=DataSource.CONFLUENCE, text=text))
+
+            # Add Attachments to list of DataInformation
+            self.add_content_of_pdf_to_all_page_information(page_id)
+
 
     def delete_old_content(self):
-        response = self.supabase_client.table('data_embedding').select("id").eq('metadata->>type', "confluence").execute().data
+        response = self.supabase_client.table('data_embedding').select("id").eq('metadata->>type',
+                                                                                "confluence").execute().data
+
         ids = []
         for i in response:
             ids.append(i["id"])
         for i in ids:
             self.supabase_client.table("data_embedding").delete().eq("id", i).execute()
-        
-    def get_page_attachments(self, id):
-        #TODO: PDF
-        """
-        attachments_container = self.confluence.get_attachments_from_content(
-            page_id=id, start=0, limit=500
-        )
-        attachments = attachments_container["results"]
-        #print(attachments)
-
-        pdf_content = ""
-        for attachment in attachments:
-            if "application/pdf" == attachment["extensions"]["mediaType"]:
-                fname = attachment["title"]
-                content = ""
-                download_link = self.confluence.url + attachment["_links"]["download"]
-                print(fname)
-                r = requests.get(
-                    download_link, auth=(self.confluence.username, self.confluence.password)
-                )
-                if r.status_code == 200:
-                    pdf_file = io.BytesIO(r.content)
-                    pdf = read_pdf(pdf_file.getvalue(), datetime.datetime(2025, 1, 1), datetime.datetime(1970, 1, 1), DataSource.CONFLUENCE)
-                    if pdf is not None:
-                        for i in pdf:
-                            content += i.text + " "
-            pdf_content += content + "#"
-
-        return pdf_content
-        """
-        return ""
 
 
     def get_last_modified_formated_date(self, page_info) -> datetime:
@@ -190,14 +161,71 @@ class ConfluencePreprocessor(DataPreprocessor):
 
         return page_in_raw_text.get_text()
 
+    def add_content_of_pdf_to_all_page_information(self, page_id):
+
+        start = 0
+        limit = 100
+        attachments = []
+
+        number_of_attachments = self.confluence.get_attachments_from_content(
+            page_id=page_id, start=start, limit=limit
+        )["size"]
+
+        if number_of_attachments > 0:
+            # iterate over all attachments
+            while True:
+                attachments_container = self.confluence.get_attachments_from_content(
+                    page_id=page_id, start=start, limit=limit
+                )
+
+                attachments.extend(attachments_container["results"])
+
+                # Check if there are more spaces
+                if len(attachments_container) < limit:
+                    break
+                start = start + limit
+
+            if len(attachments) > 0:
+                for attachment in attachments:
+                    if "application/pdf" == attachment["extensions"]["mediaType"]:
+                        download_link = self.confluence.url + attachment["_links"]["download"]
+                        r = requests.get(
+                            download_link, auth=(self.confluence.username, self.confluence.password)
+                        )
+
+                        if r.status_code == 200:
+                            pdf_bytes = io.BytesIO(r.content).read()
+
+                            # Add to list of DataInformation
+                            self.all_page_information.extend(
+                                read_pdf(
+                                    pdf_bytes, datetime.datetime(2025, 1, 1), datetime.datetime(1970, 1, 1), DataSource.CONFLUENCE
+                                )
+                            )
+
+                            print(read_pdf(
+                                    pdf_bytes, datetime.datetime(2025, 1, 1), datetime.datetime(1970, 1, 1), DataSource.CONFLUENCE
+                                ))
+
     def load_preprocessed_data(self, before: datetime, after: datetime) -> List[DataInformation]:
 
         self.get_all_spaces()
         self.get_all_page_ids_from_spaces()
         self.get_relevant_data_from_pages()
-        self.delete_old_content() # TODO: update
+        self.delete_old_content()  # TODO: update
 
         return [data for data in self.all_page_information]
 
 
+if __name__ == "__main__":
+    cp = ConfluencePreprocessor()
 
+    date_string = "2023-05-04"
+    format_string = "%Y-%m-%d"
+
+    z = cp.load_preprocessed_data(datetime.datetime.now(), datetime.datetime.strptime(date_string, format_string))
+    for i in z:
+        print(i.id)
+        print(i.text)
+        print(i.last_changed)
+        print("----" * 5)
