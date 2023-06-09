@@ -21,7 +21,6 @@ SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN")
 SIGNING_SECRET = os.getenv("SIGNING_SECRET")
 
 
-
 class SlackPreprocessor(DataPreprocessor):
     def __init__(self):
         self.client = WebClient(token=SLACK_TOKEN)
@@ -37,9 +36,9 @@ class SlackPreprocessor(DataPreprocessor):
         for message in self.conversation_history:
             try:
                 # Call the users.info method using the WebClient
-                message["name"] = self.client.users_info(
-                    user=message["user"]
-                )["user"]["real_name"]
+                message["name"] = self.client.users_info(user=message["user"])["user"][
+                    "real_name"
+                ]
             except SlackApiError as e:
                 print("Error fetching conversations: {}".format(e))
 
@@ -78,7 +77,6 @@ class SlackPreprocessor(DataPreprocessor):
                     if "subtype" in message and message["subtype"] == "channel_join":
                         continue
                     self.conversation_history.append(message)
-
 
                 # Print results
                 print(
@@ -133,7 +131,7 @@ class SlackPreprocessor(DataPreprocessor):
             print(message)
             raw_data.append(
                 DataInformation(
-                    id=message["channel_id"]+"_"+message["ts"],
+                    id=message["channel_id"] + "_" + message["ts"],
                     last_changed=datetime.now(),
                     typ=DataSource.SLACK,
                     text=message["name"] + ": " + message["text"],
@@ -146,5 +144,4 @@ class SlackPreprocessor(DataPreprocessor):
 if __name__ == "__main__":
     preprocess = SlackPreprocessor()
 
-    preprocess.load_preprocessed_data(datetime.now(), datetime(2000,1,1))
-
+    preprocess.load_preprocessed_data(datetime.now(), datetime(2000, 1, 1))

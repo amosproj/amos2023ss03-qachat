@@ -89,14 +89,10 @@ def __ocr_pdf(pdf_object):
 if __name__ == "__main__":
     with open("../../Deliverables/sprint-03/planning-documents.pdf", "rb") as f:
         pdf_bytes = f.read()
-    print(
-        read_pdf(pdf_bytes)
-    )
+    print(read_pdf(pdf_bytes))
 
     print()
 
     with open("../../Deliverables/sprint-02/software-architecture.pdf", "rb") as f:
         pdf_bytes = f.read()
-    print(
-        read_pdf(pdf_bytes)
-    )
+    print(read_pdf(pdf_bytes))

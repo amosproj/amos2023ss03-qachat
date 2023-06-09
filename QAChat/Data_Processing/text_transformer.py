@@ -1,4 +1,3 @@
-
 from QAChat.Data_Processing.deepL_translator import DeepLTranslator
 from langchain.text_splitter import NLTKTextSplitter
 
@@ -9,7 +8,6 @@ def transform_text_to_chunks(data_information_list):
     new_data_information_list = []
 
     for data_information in data_information_list:
-
         # translate text
         translator = DeepLTranslator()
         data_information.text = translator.translate_to(data_information.text, "EN-US")
@@ -25,4 +23,3 @@ def transform_text_to_chunks(data_information_list):
             new_data_information_list.append(data_information)
 
     return new_data_information_list
-
