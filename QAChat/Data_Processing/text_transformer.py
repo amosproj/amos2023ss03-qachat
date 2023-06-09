@@ -7,12 +7,12 @@ CHUNK_OVERLAP = 50
 
 
 def transform_text_to_chunks(data_information_list):
-    '''
+    """
     Splits the data information needed for our vector database into chunks.
 
     :param data_information_list: a list of data_information objects with attributes id, typ, last_changed and text
     :return: a new data_information_list in which the data was split into chunks with a specific size and overlap
-    '''
+    """
 
     new_data_information_list = []
 
