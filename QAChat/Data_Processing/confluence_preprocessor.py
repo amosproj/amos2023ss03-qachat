@@ -222,8 +222,13 @@ class ConfluencePreprocessor(DataPreprocessor):
 
                             # Add to list of DataInformation
                             self.all_page_information.append(
-                                DataInformation(id=page_id+"_"+download_link, last_changed=datetime.now(), typ=DataSource.CONFLUENCE,
-                                                text=read_pdf(pdf_bytes)))
+                                DataInformation(
+                                    id=page_id + "_" + download_link,
+                                    last_changed=datetime.now(),
+                                    typ=DataSource.CONFLUENCE,
+                                    text=read_pdf(pdf_bytes),
+                                )
+                            )
 
                             print(read_pdf(pdf_bytes))
 
