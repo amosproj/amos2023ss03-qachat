@@ -4,10 +4,7 @@
 
 
 import io
-import os
-from datetime import datetime
 
-import nltk
 import pytesseract
 from pdf2image import convert_from_bytes
 from pdfminer.converter import TextConverter
@@ -16,11 +13,6 @@ from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfparser import PDFParser
-
-from document_embedder import DataInformation, DataSource
-
-TESSDATA_PREFIX = os.getenv("TESSDATA_PREFIX")
-nltk.download("punkt")
 
 
 def read_pdf(pdf_object):
