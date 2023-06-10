@@ -12,6 +12,8 @@ from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase.client import create_client
 
+from QAChat.Data_Processing.text_transformer import transform_text_to_chunks
+
 
 class DataSource(Enum):
     SLACK = "slack"
@@ -74,6 +76,8 @@ class DocumentEmbedder:
         all_changed_data = data_preprocessor.load_preprocessed_data(
             current_time, last_updated
         )
+
+        all_changed_data = transform_text_to_chunks(all_changed_data)
 
         if len(all_changed_data) != 0:
             ids = {data.id for data in all_changed_data}
