@@ -19,9 +19,6 @@ from pdfminer.pdfparser import PDFParser
 
 from QAChat.Data_Processing.document_embedder import DataInformation, DataSource
 
-TESSDATA_PREFIX = os.getenv("TESSDATA_PREFIX")
-nltk.download("punkt")
-
 
 def read_pdf(pdf_object):
     # First try to read the PDF with PDFMiner
