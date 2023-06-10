@@ -3,18 +3,21 @@
 # SPDX-FileCopyrightText: 2023 Abdelkader Alkadour
 
 
-from document_embedder import DataInformation, DataSource
-from data_preprocessor import DataPreprocessor
-from atlassian import Confluence
-from dotenv import load_dotenv
-from bs4 import BeautifulSoup
+import datetime
+import io
+import os
 from datetime import datetime
 from typing import List
-import supabase
-import os, io
-import datetime
-from pdf_reader import read_pdf
+
 import requests
+import supabase
+from atlassian import Confluence
+from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+
+from data_preprocessor import DataPreprocessor
+from document_embedder import DataInformation, DataSource
+from pdf_reader import read_pdf
 
 load_dotenv("../tokens.env")
 
@@ -197,15 +200,11 @@ class ConfluencePreprocessor(DataPreprocessor):
                             pdf_bytes = io.BytesIO(r.content).read()
 
                             # Add to list of DataInformation
-                            self.all_page_information.extend(
-                                read_pdf(
-                                    pdf_bytes, datetime.datetime(2025, 1, 1), datetime.datetime(1970, 1, 1), DataSource.CONFLUENCE
-                                )
-                            )
+                            self.all_page_information.append(
+                                DataInformation(id=page_id+"_"+download_link, last_changed=datetime.now(), typ=DataSource.CONFLUENCE,
+                                                text=read_pdf(pdf_bytes)))
 
-                            print(read_pdf(
-                                    pdf_bytes, datetime.datetime(2025, 1, 1), datetime.datetime(1970, 1, 1), DataSource.CONFLUENCE
-                                ))
+                            print(read_pdf(pdf_bytes))
 
     def load_preprocessed_data(self, before: datetime, after: datetime) -> List[DataInformation]:
 
