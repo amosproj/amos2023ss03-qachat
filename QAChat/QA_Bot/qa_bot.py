@@ -155,6 +155,7 @@ class QABot:
 
         translation = self.translate_text(question)
         context = self.__sim_search(translation.text)
+        print(context)
         answer = self.__answer_question_with_context(question, context)
         answer = self.translate_text(answer, translation.detected_source_lang).text
         return answer

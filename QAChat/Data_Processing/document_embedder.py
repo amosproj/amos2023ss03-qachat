@@ -12,6 +12,8 @@ from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase.client import create_client
 
+from QAChat.Data_Processing.text_transformer import transform_text_to_chunks
+
 
 class DataSource(Enum):
     SLACK = "slack"
@@ -48,13 +50,13 @@ class DocumentEmbedder:
     def store_information_in_database(self, typ: DataSource):
         if typ == DataSource.DUMMY:
             from dummy_preprocessor import DummyPreprocessor
-
             data_preprocessor = DummyPreprocessor()
         elif typ == DataSource.CONFLUENCE:
             from confluence_preprocessor import ConfluencePreprocessor
             data_preprocessor = ConfluencePreprocessor()
         elif typ == DataSource.SLACK:
             from slack_preprocessor import SlackPreprocessor
+
             data_preprocessor = SlackPreprocessor()
         else:
             raise ValueError("Invalid data source type")
@@ -76,6 +78,9 @@ class DocumentEmbedder:
         all_changed_data = data_preprocessor.load_preprocessed_data(
             current_time, last_updated
         )
+
+        # transform long entries into multiple chunks
+        all_changed_data = transform_text_to_chunks(all_changed_data)
 
         if len(all_changed_data) != 0:
             ids = {data.id for data in all_changed_data}
