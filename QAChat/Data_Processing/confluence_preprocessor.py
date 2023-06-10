@@ -133,18 +133,18 @@ class ConfluencePreprocessor(DataPreprocessor):
             last_changed = self.get_last_modified_formated_date(page_info)
             text = self.get_raw_text_from_page(page_with_body)
             pdf_content = self.add_content_of_pdf_to_all_page_information(page_id)
-            #replace consecutive occurrences of \n into one space
-            text = re.sub(r'\n+', ' ', text + " " + pdf_content) 
+            # replace consecutive occurrences of \n into one space
+            text = re.sub(r"\n+", " ", text + " " + pdf_content)
 
-            # Add Page content to list of DataInformation        
+            # Add Page content to list of DataInformation
             self.all_page_information.append(
                 DataInformation(
                     id=page_id,
                     last_changed=last_changed,
                     typ=DataSource.CONFLUENCE,
-                    text= text,
+                    text=text,
                 )
-            )            
+            )
 
     def delete_old_content(self):
         response = (
@@ -224,8 +224,6 @@ class ConfluencePreprocessor(DataPreprocessor):
 
                             pdf_content += read_pdf(pdf_bytes) + " "
         return pdf_content
-                          
-
 
     def load_preprocessed_data(
         self, before: datetime, after: datetime
