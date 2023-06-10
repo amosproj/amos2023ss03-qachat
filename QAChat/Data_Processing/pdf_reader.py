@@ -14,8 +14,6 @@ from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfparser import PDFParser
 
-from QAChat.Data_Processing.document_embedder import DataInformation, DataSource
-
 
 def read_pdf(pdf_object):
     # First try to read the PDF with PDFMiner

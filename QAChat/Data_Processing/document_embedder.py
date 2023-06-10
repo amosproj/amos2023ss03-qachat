@@ -52,6 +52,10 @@ class DocumentEmbedder:
             from dummy_preprocessor import DummyPreprocessor
 
             data_preprocessor = DummyPreprocessor()
+        elif typ == DataSource.CONFLUENCE:
+            from confluence_preprocessor import ConfluencePreprocessor
+
+            data_preprocessor = ConfluencePreprocessor()
         elif typ == DataSource.SLACK:
             from slack_preprocessor import SlackPreprocessor
 
@@ -77,6 +81,7 @@ class DocumentEmbedder:
             current_time, last_updated
         )
 
+        # transform long entries into multiple chunks
         all_changed_data = transform_text_to_chunks(all_changed_data)
 
         if len(all_changed_data) != 0:
