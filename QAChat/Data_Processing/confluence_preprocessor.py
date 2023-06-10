@@ -3,7 +3,6 @@
 # SPDX-FileCopyrightText: 2023 Abdelkader Alkadour
 
 
-import datetime
 import io
 import os
 from datetime import datetime
@@ -173,7 +172,7 @@ class ConfluencePreprocessor(DataPreprocessor):
         month = int(month_string)
         day = int(day_string)
 
-        return datetime.datetime(year, month, day)
+        return datetime(year, month, day)
 
     def get_raw_text_from_page(self, page_with_body) -> str:
         # Get page content
@@ -184,7 +183,7 @@ class ConfluencePreprocessor(DataPreprocessor):
 
         return page_in_raw_text.get_text()
 
-    def add_content_of_pdf_to_all_page_information(self, page_id):
+    def add_content_of_pdf_to_all_page_information(self, page_id)->str:
         start = 0
         limit = 100
         attachments = []
@@ -243,7 +242,7 @@ if __name__ == "__main__":
     format_string = "%Y-%m-%d"
 
     z = cp.load_preprocessed_data(
-        datetime.datetime.now(), datetime.datetime.strptime(date_string, format_string)
+        datetime.now(), datetime.strptime(date_string, format_string)
     )
     for i in z:
         print(i.id)
