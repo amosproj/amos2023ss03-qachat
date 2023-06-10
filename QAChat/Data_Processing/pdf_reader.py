@@ -4,10 +4,7 @@
 
 
 import io
-import os
-from datetime import datetime
 
-import nltk
 import pytesseract
 from pdf2image import convert_from_bytes
 from pdfminer.converter import TextConverter

@@ -4,7 +4,7 @@
 
 import copy
 from QAChat.Data_Processing.deepL_translator import DeepLTranslator
-from langchain.text_splitter import NLTKTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 import nltk
 
 CHUNK_SIZE = 200
@@ -31,11 +31,11 @@ def transform_text_to_chunks(data_information_list):
         )
 
         # split the text
-        nltk.download("punkt")
-        text_splitter = NLTKTextSplitter(
+        nltk.download("punkt", quiet=True)
+        text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP
         )
-        print(data_information.text)
+
         chunks = text_splitter.split_text(data_information.text)
 
         for index, chunk in enumerate(chunks):
