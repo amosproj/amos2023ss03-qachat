@@ -8,6 +8,7 @@ import io
 import os
 from datetime import datetime
 from typing import List
+import re
 
 import requests
 import supabase
@@ -131,19 +132,19 @@ class ConfluencePreprocessor(DataPreprocessor):
             # Set final parameters for DataInformation
             last_changed = self.get_last_modified_formated_date(page_info)
             text = self.get_raw_text_from_page(page_with_body)
+            pdf_content = self.add_content_of_pdf_to_all_page_information(page_id)
+            #replace consecutive occurrences of \n into one space
+            text = re.sub(r'\n+', ' ', text + " " + pdf_content) 
 
-            # Add Page content to list of DataInformation
+            # Add Page content to list of DataInformation        
             self.all_page_information.append(
                 DataInformation(
                     id=page_id,
                     last_changed=last_changed,
                     typ=DataSource.CONFLUENCE,
-                    text=text,
+                    text= text,
                 )
-            )
-
-            # Add Attachments to list of DataInformation
-            self.add_content_of_pdf_to_all_page_information(page_id)
+            )            
 
     def delete_old_content(self):
         response = (
@@ -191,6 +192,7 @@ class ConfluencePreprocessor(DataPreprocessor):
         number_of_attachments = self.confluence.get_attachments_from_content(
             page_id=page_id, start=start, limit=limit
         )["size"]
+        pdf_content = ""
 
         if number_of_attachments > 0:
             # iterate over all attachments
@@ -220,17 +222,10 @@ class ConfluencePreprocessor(DataPreprocessor):
                         if r.status_code == 200:
                             pdf_bytes = io.BytesIO(r.content).read()
 
-                            # Add to list of DataInformation
-                            self.all_page_information.append(
-                                DataInformation(
-                                    id=page_id + "_" + download_link,
-                                    last_changed=datetime.now(),
-                                    typ=DataSource.CONFLUENCE,
-                                    text=read_pdf(pdf_bytes),
-                                )
-                            )
+                            pdf_content += read_pdf(pdf_bytes) + " "
+        return pdf_content
+                          
 
-                            print(read_pdf(pdf_bytes))
 
     def load_preprocessed_data(
         self, before: datetime, after: datetime
@@ -255,5 +250,6 @@ if __name__ == "__main__":
     for i in z:
         print(i.id)
         print(i.text)
+        print(i.typ)
         print(i.last_changed)
         print("----" * 5)
