@@ -183,7 +183,7 @@ class ConfluencePreprocessor(DataPreprocessor):
 
         return page_in_raw_text.get_text()
 
-    def add_content_of_pdf_to_all_page_information(self, page_id)->str:
+    def add_content_of_pdf_to_all_page_information(self, page_id) -> str:
         start = 0
         limit = 100
         attachments = []
