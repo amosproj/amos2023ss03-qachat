@@ -1,3 +1,4 @@
+import copy
 from QAChat.Data_Processing.deepL_translator import DeepLTranslator
 from langchain.text_splitter import NLTKTextSplitter
 import nltk
@@ -34,7 +35,7 @@ def transform_text_to_chunks(data_information_list):
         chunks = text_splitter.split_text(data_information.text)
 
         for index, chunk in enumerate(chunks):
-            new_data_information = data_information
+            new_data_information = copy.deepcopy(data_information)
             new_data_information.text = chunk
             new_data_information.id = data_information.id + "_" + str(index)
             new_data_information_list.append(data_information)
