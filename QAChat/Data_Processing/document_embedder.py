@@ -50,9 +50,11 @@ class DocumentEmbedder:
     def store_information_in_database(self, typ: DataSource):
         if typ == DataSource.DUMMY:
             from dummy_preprocessor import DummyPreprocessor
+
             data_preprocessor = DummyPreprocessor()
         elif typ == DataSource.CONFLUENCE:
             from confluence_preprocessor import ConfluencePreprocessor
+
             data_preprocessor = ConfluencePreprocessor()
         elif typ == DataSource.SLACK:
             from slack_preprocessor import SlackPreprocessor
@@ -101,4 +103,5 @@ class DocumentEmbedder:
             )
 
         self.supabase.table("last_update_per_data_typ").upsert(
-            {"type": typ.value, "last_update": current_time.isoformat()}, ).execute()
+            {"type": typ.value, "last_update": current_time.isoformat()},
+        ).execute()
