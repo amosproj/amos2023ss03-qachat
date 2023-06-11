@@ -42,6 +42,6 @@ def transform_text_to_chunks(data_information_list):
             new_data_information = copy.deepcopy(data_information)
             new_data_information.text = chunk
             new_data_information.id = data_information.id + "_" + str(index)
-            new_data_information_list.append(data_information)
+            new_data_information_list.append(new_data_information)
 
     return new_data_information_list
