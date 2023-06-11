@@ -43,6 +43,7 @@ class ConfluencePreprocessor(DataPreprocessor):
         self.all_pages_id = []
         self.all_page_information = []
         self.restricted_pages = []
+        self.restricted_spaces = []
         self.supabase_client = supabase.create_client(
             SUPABASE_URL, SUPABASE_SERVICE_KEY
         )
@@ -82,10 +83,12 @@ class ConfluencePreprocessor(DataPreprocessor):
                 start=start, limit=limit, expand=None
             )
 
-            # exclude personal/user spaces only global spaces
             for space in spaces_data["results"]:
+                # exclude personal/user spaces only global spaces
                 if space["type"] == "global":
-                    self.all_spaces.append(space)
+                    # exclude blacklisted spaces
+                    if space["key"] not in self.restricted_spaces:
+                        self.all_spaces.append(space)
 
             # Check if there are more spaces
             if len(spaces_data) < limit:
@@ -227,6 +230,7 @@ class ConfluencePreprocessor(DataPreprocessor):
     def load_preprocessed_data(
         self, before: datetime, after: datetime
     ) -> List[DataInformation]:
+        self.init_blacklist()
         self.get_all_spaces()
         self.get_all_page_ids_from_spaces()
         self.get_relevant_data_from_pages()
