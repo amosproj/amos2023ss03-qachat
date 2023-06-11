@@ -6,3 +6,4 @@ sentence-transformers
 deepl
 huggingface_hub
 python-dotenv
+gunicorn

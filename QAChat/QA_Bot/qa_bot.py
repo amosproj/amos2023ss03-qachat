@@ -153,10 +153,16 @@ class QABot:
         'The sky is blue during a clear day.'
         """
 
+        print(f"Receive Question: {question}")
         translation = self.translate_text(question)
-        context = self.__sim_search(translation)
-        answer = self.__answer_question_with_context(translation, context)
+        translated_question = translation.text
+        print(f"Translation: {translated_question}")
+        context = self.__sim_search(translated_question)
+        print(f"Context: {context}")
+        answer = self.__answer_question_with_context(translated_question, context)
+        print(f"Answer: {answer}")
         answer = self.translate_text(answer, translation.detected_source_lang).text
+        print(f"Translated answer: {answer}")
         return {
             "answer": answer,
             "question": question,

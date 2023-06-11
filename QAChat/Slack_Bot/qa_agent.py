@@ -60,7 +60,7 @@ class QAAgent(BaseAgent):
         data = {
             "question": question
         }
-
+        print("Sending question to Google Cloud QA Bot")
         response = requests.post(url, data=json.dumps(data), headers=headers)
         response_data = response.json()
         self.receive_answer(response_data["answer"], user_id)
