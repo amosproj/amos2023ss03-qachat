@@ -19,9 +19,9 @@ class TestQAAgent(unittest.TestCase):
     @patch("slack_bolt.App", autospec=True)
     @patch("slack_sdk.WebClient", autospec=True)
     @patch("slack_bolt.adapter.socket_mode.SocketModeHandler", autospec=True)
-    @patch("QAChat.QA_Bot.api_interface.APIInterface", autospec=True)
+    @patch("QAChat.Slack_Bot.qa_bot_api_interface.QABotAPIInterface", autospec=True)
     def setUp(
-        self, mock_socket_mode_handler, mock_web_client, mock_app, mock_api_interface
+            self, mock_socket_mode_handler, mock_web_client, mock_app, mock_api_interface
     ):
         mock_socket_mode_handler.return_value = MagicMock()
         mock_socket_mode_handler.start = MagicMock()
@@ -38,7 +38,7 @@ class TestQAAgent(unittest.TestCase):
         self.mock_app = mock_app
         self.mock_api_interface = mock_api_interface
         self.agent = QAAgent(
-            self.mock_app, self.mock_web_client, self.mock_socket_mode_handler
+            self.mock_app, self.mock_web_client, self.mock_socket_mode_handler, self.mock_api_interface
         )
 
     def test_init(self):

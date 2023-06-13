@@ -6,7 +6,6 @@ from queue import Queue
 from threading import Thread
 
 import requests
-from google.cloud import aiplatform
 from slack_sdk.errors import SlackApiError
 from QAChat.Slack_Bot.base_agent import BaseAgent
 
@@ -17,6 +16,8 @@ import re
 from dotenv import load_dotenv
 import os
 
+from qa_bot_api_interface import QABotAPIInterface
+
 load_dotenv("../tokens.env")
 SLACK_TOKEN = os.getenv("SLACK_TOKEN")
 SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN")
@@ -24,11 +25,12 @@ SIGNING_SECRET = os.getenv("SIGNING_SECRET")
 
 
 class QAAgent(BaseAgent):
-    def __init__(self, app=None, client=None, handler=None):
+    def __init__(self, app=None, client=None, handler=None, api_interface=None):
         super().__init__()
         self.app = app or App(token=SLACK_TOKEN)
         self.client = client or WebClient(token=SLACK_TOKEN)
         self.handler = handler or SocketModeHandler(self.app, SLACK_APP_TOKEN)
+        self.api_interface = api_interface or QABotAPIInterface()
 
         # Create a dictionary to hold say functions for each user
         self.say_functions = {}
@@ -54,16 +56,8 @@ class QAAgent(BaseAgent):
                 self.delete_processing_message(channel_id=self.channel_ids[user_id])
 
     def receive_question(self, question, user_id):
-        url = os.getenv("GOOGLE_CLOUD_QA_BOT")
-        headers = {'Content-type': 'application/json'}
-
-        data = {
-            "question": question
-        }
-        print("Sending question to Google Cloud QA Bot")
-        response = requests.post(url, data=json.dumps(data), headers=headers)
-        response_data = response.json()
-        self.receive_answer(response_data["answer"], user_id)
+        answer = self.api_interface.request(question)
+        self.receive_answer(answer, user_id)
 
     def receive_answer(self, answer, user_id):
         # Put the answer and user_id in the queue instead of sending it directly

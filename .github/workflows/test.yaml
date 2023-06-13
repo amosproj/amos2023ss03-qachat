@@ -38,7 +38,9 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=$(pwd):$(pwd)/amos2023ss03-qachat" >> $GITHUB_ENV
+        run: |
+          echo "PYTHONPATH=$(pwd):$(pwd)/amos2023ss03-qachat" >> $GITHUB_ENV
+          echo "PYTHONPATH=$(pwd):$(pwd)/amos2023ss03-qachat/QAChat/Slack_Bot" >> $GITHUB_ENV
 
       - name: Run unit tests
         working-directory: ./Testing
