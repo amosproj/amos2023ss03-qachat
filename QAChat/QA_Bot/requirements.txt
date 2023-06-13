@@ -1,0 +1,9 @@
+flask
+langchain
+supabase
+InstructorEmbedding
+sentence-transformers
+deepl
+huggingface_hub
+python-dotenv
+gunicorn
