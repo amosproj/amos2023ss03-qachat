@@ -107,22 +107,18 @@ class QAAgent(BaseAgent):
                 print(f"Error deleting message: {e}")
 
     def delete_processing_message(self, channel_id):
-
         # Get conversation history
         result = self.client.conversations_history(channel=channel_id)
 
-        messages = result.data.get('messages')
+        messages = result.data.get("messages")
 
         # Loop through all messages
         for msg in messages:
             try:
-                if msg.get('text') is not None and msg.get('text') == "...":
-                    ts = msg.get('ts')
+                if msg.get("text") is not None and msg.get("text") == "...":
+                    ts = msg.get("ts")
                     # ...delete a message
-                    self.client.chat_delete(
-                        channel=channel_id,
-                        ts=ts
-                    )
+                    self.client.chat_delete(channel=channel_id, ts=ts)
             except SlackApiError as e:
                 print(f"Error deleting loading message")
 

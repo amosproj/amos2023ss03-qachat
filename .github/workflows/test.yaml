@@ -44,11 +44,24 @@ jobs:
         working-directory: ./Testing
         run: pytest -s qa_agent_unit_tests.py
 
-      - name: Check files using the black formatter
-        uses: actions/checkout@v2
+      - name: Run DB Test
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL}}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY}}
+
+        working-directory: ./Testing
+        run: python db_intergration_test.py
+
+      - name: Run autoformatting
+        uses: wearerequired/lint-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          black: true
+          auto_fix: true
 
       - name: Commit and push if it was formatted
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git diff --exit-code --quiet && echo "No changes to commit" || (git add . && git commit -m "Format Python code with psf/black" && git push)
+
