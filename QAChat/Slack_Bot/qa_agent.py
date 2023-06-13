@@ -16,7 +16,7 @@ import re
 from dotenv import load_dotenv
 import os
 
-from qa_bot_api_interface import QABotAPIInterface
+from QAChat.Slack_Bot.qa_bot_api_interface import QABotAPIInterface
 
 load_dotenv("../tokens.env")
 SLACK_TOKEN = os.getenv("SLACK_TOKEN")
