@@ -6,7 +6,7 @@
 class BaseAgent:
     def __init__(self):
         pass
-    
+
     def receive_question(self, question, user_id):
         pass
 
