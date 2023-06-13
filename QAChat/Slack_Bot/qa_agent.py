@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2023 Emanuel Erben
 # SPDX-FileCopyrightText: 2023 Felix Nützel
-
+import json
 from queue import Queue
 from threading import Thread
+
+import requests
 from slack_sdk.errors import SlackApiError
 from QAChat.Slack_Bot.base_agent import BaseAgent
 
@@ -14,6 +16,8 @@ import re
 from dotenv import load_dotenv
 import os
 
+from QAChat.Slack_Bot.qa_bot_api_interface import QABotAPIInterface
+
 load_dotenv("../tokens.env")
 SLACK_TOKEN = os.getenv("SLACK_TOKEN")
 SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN")
@@ -21,11 +25,12 @@ SIGNING_SECRET = os.getenv("SIGNING_SECRET")
 
 
 class QAAgent(BaseAgent):
-    def __init__(self, app=None, client=None, handler=None):
+    def __init__(self, app=None, client=None, handler=None, api_interface=None):
         super().__init__()
         self.app = app or App(token=SLACK_TOKEN)
         self.client = client or WebClient(token=SLACK_TOKEN)
         self.handler = handler or SocketModeHandler(self.app, SLACK_APP_TOKEN)
+        self.api_interface = api_interface or QABotAPIInterface()
 
         # Create a dictionary to hold say functions for each user
         self.say_functions = {}
@@ -51,7 +56,8 @@ class QAAgent(BaseAgent):
                 self.delete_processing_message(channel_id=self.channel_ids[user_id])
 
     def receive_question(self, question, user_id):
-        self.api_interface.listen_for_requests(question, self, user_id)
+        answer = self.api_interface.request(question)
+        self.receive_answer(answer, user_id)
 
     def receive_answer(self, answer, user_id):
         # Put the answer and user_id in the queue instead of sending it directly

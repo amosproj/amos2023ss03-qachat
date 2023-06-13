@@ -84,7 +84,6 @@ class ConfluencePreprocessor(DataPreprocessor):
                 start=start, limit=limit, expand=None
             )
 
-            # exclude personal/user spaces only global spaces
             for space in spaces_data["results"]:
                 # exclude personal/user spaces only global spaces
                 if space["type"] == "global":

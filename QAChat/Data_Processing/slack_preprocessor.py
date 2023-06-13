@@ -12,7 +12,7 @@ from slack_sdk.errors import SlackApiError
 from supabase.client import create_client
 
 from QAChat.Data_Processing.data_preprocessor import DataPreprocessor
-from QAChat.Data_Processing.deepL_translator import DeepLTranslator
+from QAChat.QA_Bot.deepL_translator import DeepLTranslator
 from QAChat.Data_Processing.document_embedder import DataInformation, DataSource
 
 load_dotenv("../tokens.env")
