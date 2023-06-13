@@ -32,3 +32,4 @@ pdf2image
 pytesseract
 flake8
 black
+google-cloud-aiplatform

@@ -4,7 +4,7 @@ from datetime import datetime
 from nltk import word_tokenize
 from nltk.translate.bleu_score import sentence_bleu
 from rapidfuzz.distance import Levenshtein
-from QAChat.Data_Processing.deepL_translator import DeepLTranslator
+from QAChat.QA_Bot.deepL_translator import DeepLTranslator
 import numpy as np
 import datetime
 
