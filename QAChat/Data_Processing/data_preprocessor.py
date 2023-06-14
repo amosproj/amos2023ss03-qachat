@@ -12,7 +12,7 @@ from document_embedder import DataInformation
 class DataPreprocessor(ABC):
     @abstractmethod
     def load_preprocessed_data(
-        self, before: datetime, after: datetime
+            self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
         """
         Loads preprocessed data of a specific type that was created or modified
@@ -21,8 +21,8 @@ class DataPreprocessor(ABC):
         The specific data type is defined by the superclass of the instance calling this method.
 
         Parameters:
-        before (type): The end of the timeframe during which the data was created or modified.
-        after (type): The start of the timeframe during which the data was created or modified.
+        end_of_timeframe (type): The end of the timeframe during which the data was created or modified.
+        start_of_timeframe (type): The start of the timeframe during which the data was created or modified.
 
         Returns:
         List[DataInformation]: A list of DataInformation instances representing the preprocessed data.
