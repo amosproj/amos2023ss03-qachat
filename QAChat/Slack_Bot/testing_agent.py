@@ -3,18 +3,20 @@
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 
 import tkinter as tk
-from base_agent import BaseAgent
 
-"""
-    This is just an easy Testing Bot for testing reasons and should not be part of the final release. 
-    Its purpose is to send and receive answers from our system, without having a functioning SlackBot or other.
-"""
+from QAChat.Slack_Bot.qa_bot_api_interface import QABotAPIInterface
 
 
-class TestingAgent(BaseAgent):
+class TestingAgent:
+    """
+        This is just an easy Testing Bot for testing reasons and should not be part of the final release.
+        Its purpose is to send and receive answers from our system, without having a functioning SlackBot or other.
+    """
+
     def __init__(self, master):
         super().__init__()
         self.master = master
+        self.api_interface = QABotAPIInterface()
         master.title("My GUI")
 
         self.label = tk.Label(master, text="Enter some text:")
@@ -29,11 +31,9 @@ class TestingAgent(BaseAgent):
         self.result_label = tk.Label(master, text="")
         self.result_label.pack()
 
-    def receive_question(self, question=None, user_id=None):
+    def receive_question(self):
         input_text = self.entry.get()
-        self.api_interface.listen_for_requests(input_text, self, user_id)
-
-    def receive_answer(self, answer, user_id=None):
+        answer = self.api_interface.request(input_text)
         self.result_label.config(text=answer)
 
 
