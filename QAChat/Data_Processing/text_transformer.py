@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 
 import copy
-from QAChat.Data_Processing.deepL_translator import DeepLTranslator
+from QAChat.QA_Bot.deepL_translator import DeepLTranslator
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import nltk
 
