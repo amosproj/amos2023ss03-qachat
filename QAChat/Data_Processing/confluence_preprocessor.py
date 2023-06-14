@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 
 from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
-from pdf_reader import read_pdf
+from pdf_reader import PDFReader
 
 load_dotenv("../tokens.env")
 
@@ -38,6 +38,7 @@ class ConfluencePreprocessor(DataPreprocessor):
             password=CONFLUENCE_TOKEN,
             cloud=True,
         )
+        self.pdf_reader = PDFReader()
         self.all_spaces = []
         self.all_pages_id = []
         self.all_page_information = []
@@ -210,7 +211,7 @@ class ConfluencePreprocessor(DataPreprocessor):
                         if r.status_code == 200:
                             pdf_bytes = io.BytesIO(r.content).read()
 
-                            pdf_content += read_pdf(pdf_bytes) + " "
+                            pdf_content += self.pdf_reader.read_pdf(pdf_bytes) + " "
         return pdf_content
 
     def load_preprocessed_data(
