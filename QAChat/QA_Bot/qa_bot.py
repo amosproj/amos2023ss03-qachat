@@ -14,7 +14,7 @@ from supabase import create_client
 from dotenv import load_dotenv
 from typing import List
 
-from deepL_translator import DeepLTranslator
+from QAChat.Common.deepL_translator import DeepLTranslator
 
 
 class QABot:
@@ -46,11 +46,11 @@ class QABot:
             self.model = self.get_llama_model()
 
     def get_llama_model(
-        self,
-        n_ctx=2048,
-        max_tokens=128,
-        repo_id="TheBloke/wizard-mega-13B-GGML",
-        filename="wizard-mega-13B.ggmlv3.q4_1.bin",
+            self,
+            n_ctx=2048,
+            max_tokens=128,
+            repo_id="TheBloke/wizard-mega-13B-GGML",
+            filename="wizard-mega-13B.ggmlv3.q4_1.bin",
     ):
         path = hf_hub_download(repo_id=repo_id, filename=filename)
 
