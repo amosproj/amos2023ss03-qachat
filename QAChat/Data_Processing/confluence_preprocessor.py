@@ -60,13 +60,13 @@ class ConfluencePreprocessor(DataPreprocessor):
         )
 
         # Extract restricted spaces and restricted pages from the blacklist data
-        for i in blacklist:
-            if "/pages/" in i["identifer"]:
+        for entries in blacklist:
+            if "/pages/" in entries["identifer"]:
                 # Split by slash and get the page id, https://.../pages/PAGE_ID
-                self.restricted_pages.append(i["identifer"].split("/")[7])
+                self.restricted_pages.append(entries["identifer"].split("/")[7])
             else:
                 # Split by slash and get the space name, https://.../space/SPACE_NAME
-                self.restricted_spaces.append(i["identifer"].split("/")[5])
+                self.restricted_spaces.append(entries["identifer"].split("/")[5])
 
     def get_all_spaces(self):
         start = 0
