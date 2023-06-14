@@ -13,7 +13,7 @@ from document_embedder import DataInformation, DataSource
 
 class DummyPreprocessor(DataPreprocessor):
     def load_preprocessed_data(
-            self, end_of_timeframe: datetime, start_of_timeframe: datetime
+        self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
         df = pd.read_csv("../../DummyData/qa.csv", sep=";")
         raw_data = []
@@ -27,4 +27,8 @@ class DummyPreprocessor(DataPreprocessor):
                 )
             )
 
-        return [data for data in raw_data if start_of_timeframe < data.last_changed <= end_of_timeframe]
+        return [
+            data
+            for data in raw_data
+            if start_of_timeframe < data.last_changed <= end_of_timeframe
+        ]

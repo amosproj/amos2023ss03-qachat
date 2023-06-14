@@ -90,7 +90,7 @@ class SlackPreprocessor(DataPreprocessor):
                 print("Error creating conversation: {}".format(e))
 
     def load_preprocessed_data(
-            self, end_of_timeframe: datetime, start_of_timeframe: datetime
+        self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
         self.fetch_conversations()
         oldest = start_of_timeframe.timestamp()

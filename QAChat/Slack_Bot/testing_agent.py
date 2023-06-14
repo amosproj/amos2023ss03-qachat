@@ -9,8 +9,8 @@ from QAChat.Slack_Bot.qa_bot_api_interface import QABotAPIInterface
 
 class TestingAgent:
     """
-        This is just an easy Testing Bot for testing reasons and should not be part of the final release.
-        Its purpose is to send and receive answers from our system, without having a functioning SlackBot or other.
+    This is just an easy Testing Bot for testing reasons and should not be part of the final release.
+    Its purpose is to send and receive answers from our system, without having a functioning SlackBot or other.
     """
 
     def __init__(self, master):

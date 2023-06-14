@@ -17,9 +17,7 @@ class TestQAAgent(unittest.TestCase):
     @patch("slack_bolt.App", autospec=True)
     @patch("slack_sdk.WebClient", autospec=True)
     @patch("slack_bolt.adapter.socket_mode.SocketModeHandler", autospec=True)
-    def setUp(
-            self, mock_socket_mode_handler, mock_web_client, mock_app
-    ):
+    def setUp(self, mock_socket_mode_handler, mock_web_client, mock_app):
         mock_socket_mode_handler.return_value = MagicMock()
         mock_socket_mode_handler.start = MagicMock()
 
