@@ -33,3 +33,5 @@ pytesseract
 flake8
 black
 google-cloud-aiplatform
+google-api-python-client
+pydrive2
