@@ -14,6 +14,7 @@ from atlassian import Confluence
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
+from QAChat.Data_Processing.google_processor import get_text_from_googledoc
 from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
 from pdf_reader import read_pdf
@@ -135,6 +136,14 @@ class ConfluencePreprocessor(DataPreprocessor):
             # Set final parameters for DataInformation
             last_changed = self.get_last_modified_formated_date(page_info)
             text = self.get_raw_text_from_page(page_with_body)
+
+            # get googledoc links:
+            urls = re.findall(r"https?://docs\.google\.com\S+", text)
+            for url in urls:
+                print(get_text_from_googledoc(url))
+                #text = text.replace(url, "")
+                text += get_text_from_googledoc(url)
+
             pdf_content = self.add_content_of_pdf_to_all_page_information(page_id)
             # replace consecutive occurrences of \n into one space
             text = re.sub(r"\n+", " ", text + " " + pdf_content)
