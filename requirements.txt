@@ -33,3 +33,4 @@ pytesseract
 flake8
 black
 google-cloud-aiplatform
+spacy
