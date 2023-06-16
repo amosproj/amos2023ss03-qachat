@@ -52,7 +52,7 @@ class DocumentEmbedder:
             query_name="match_data",
         )
 
-        #name identification
+        # name identification
         spacy.cli.download("xx_ent_wiki_sm")
         spacy.load("xx_ent_wiki_sm")
         self.muulti_lang_nlp = xx_ent_wiki_sm.load()
@@ -129,10 +129,12 @@ class DocumentEmbedder:
         :param all_data:  which is the List of DataInformation that gets send to the chunking
         :return: the input list with added name tags to persons
         """
-        
+
         for data in all_data:
             # identify language of text
-            language = self.translator.translate_to(data.text, "EN-US").detected_source_lang
+            language = self.translator.translate_to(
+                data.text, "EN-US"
+            ).detected_source_lang
             # choose spacy model after language
             if language == "DE":
                 nlp = self.de_lang_nlp
