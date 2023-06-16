@@ -11,6 +11,10 @@ from dotenv import load_dotenv
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase.client import create_client
+import spacy
+import spacy.cli
+import xx_ent_wiki_sm
+import de_core_news_sm
 
 from QAChat.Data_Processing.text_transformer import transform_text_to_chunks
 from QAChat.QA_Bot.deepL_translator import DeepLTranslator
