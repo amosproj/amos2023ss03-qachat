@@ -25,19 +25,25 @@ from pydrive2.drive import GoogleDrive
 
 from QAChat.Data_Processing.pdf_reader import read_pdf
 
-SCOPES = 'https://www.googleapis.com/auth/documents.readonly'
-DISCOVERY_DOC = 'https://docs.googleapis.com/$discovery/rest?version=v1'
-DOCUMENT_ID = 'YOUR_DOCUMENT_ID'
+SCOPES = "https://www.googleapis.com/auth/documents.readonly"
+DISCOVERY_DOC = "https://docs.googleapis.com/$discovery/rest?version=v1"
+DOCUMENT_ID = "YOUR_DOCUMENT_ID"
 
 settings = {
     "client_config_backend": "file",
     "client_config_file": "client_secrets.json",
-    "client_config": {"client_id": "your_client_id", "client_secret": "your_client_secret"},
+    "client_config": {
+        "client_id": "your_client_id",
+        "client_secret": "your_client_secret",
+    },
     "save_credentials": True,
     "save_credentials_backend": "file",
     "save_credentials_file": "credentials.json",
-    "oauth_scope": ["https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/drive.install"],
-    "client_config_service": "installed"
+    "oauth_scope": [
+        "https://www.googleapis.com/auth/drive",
+        "https://www.googleapis.com/auth/drive.install",
+    ],
+    "client_config_service": "installed",
 }
 gauth = GoogleAuth(settings=settings)
 gauth.LocalWebserverAuth()
@@ -46,57 +52,53 @@ print(gauth.credentials)
 
 drive = GoogleDrive(gauth)
 
+
 def get_google_doc_id_from_link(link):
-     return link.split("/d/")[1].split("/")[0]
+    return link.split("/d/")[1].split("/")[0]
 
-     # Regular expression pattern to match Google Docs document ID
-     #pattern = r"https?:\/\/docs\.google\.com\/document\/d\/[a-zA-Z0-9_-]+"
+    # Regular expression pattern to match Google Docs document ID
+    # pattern = r"https?:\/\/docs\.google\.com\/document\/d\/[a-zA-Z0-9_-]+"
 
+    # Find the document ID using the pattern
+    # match = re.search(pattern, link)
 
-     # Find the document ID using the pattern
-     #match = re.search(pattern, link)
+    # if match:
+    #    return match.gs
+    # else:
+    #    return None
 
-
-     #if match:
-     #    return match.gs
-     #else:
-     #    return None
 
 def get_text_from_googledoc(url):
     id = get_google_doc_id_from_link(url)
-    text = drive.CreateFile({'id': id}).GetContentString(mimetype="text/plain")
+    text = drive.CreateFile({"id": id}).GetContentString(mimetype="text/plain")
     return text
 
 
 def get_google_doc_as_pdf(url):
-
     id = get_google_doc_id_from_link(url)
 
     # Retrieve the file by ID
-    file = drive.CreateFile({'id': id})
+    file = drive.CreateFile({"id": id})
 
     # Set the download format to PDF
-    file['exportFormat'] = 'pdf'
+    file["exportFormat"] = "pdf"
 
     # Download the file as PDF
-    file.GetContentFile('output.pdf')
+    file.GetContentFile("output.pdf")
 
     # Process the downloaded PDF file
-    #pdf_content = read_pdf( ).read())
+    # pdf_content = read_pdf( ).read())
+
+    # print(read_pdf(io.BytesIO(file.GetContentFile('output.pdf').content).read()))
+
+    # return pdf_content
 
 
-    #print(read_pdf(io.BytesIO(file.GetContentFile('output.pdf').content).read()))
+if __name__ == "__main__":
+    # text = get_text_from_googledoc("https://docs.google.com/document/d/1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs/edit")
+    # print(text)
 
-    #return pdf_content
-
-
-
-
-if __name__ == '__main__':
-    #text = get_text_from_googledoc("https://docs.google.com/document/d/1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs/edit")
-    #print(text)
-
-    text = get_google_doc_as_pdf("https://docs.google.com/presentation/u/0/d/1ZslqpJ6lG4WFEzekqJ8qv0vx-UwPeJkZ/edit?usp=slides_home&ths=true&rtpof=true")
+    text = get_google_doc_as_pdf(
+        "https://docs.google.com/presentation/u/0/d/1ZslqpJ6lG4WFEzekqJ8qv0vx-UwPeJkZ/edit?usp=slides_home&ths=true&rtpof=true"
+    )
     print(text)
-
-
