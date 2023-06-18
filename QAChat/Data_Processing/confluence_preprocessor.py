@@ -14,7 +14,7 @@ from atlassian import Confluence
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
-from QAChat.Data_Processing.google_processor import get_text_from_googledoc
+from QAChat.Data_Processing.google_doc_preprocessor import export_pdf
 from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
 from pdf_reader import read_pdf
@@ -139,14 +139,14 @@ class ConfluencePreprocessor(DataPreprocessor):
 
             # get googledoc links:
             urls = re.findall(r"https?://docs\.google\.com\S+", text)
-            for url in urls:
-                print(get_text_from_googledoc(url))
-                #text = text.replace(url, "")
-                text += get_text_from_googledoc(url)
+
+
+            google_doc_content = self.get_content_from_google_drive(urls)
 
             pdf_content = self.add_content_of_pdf_to_all_page_information(page_id)
+
             # replace consecutive occurrences of \n into one space
-            text = re.sub(r"\n+", " ", text + " " + pdf_content)
+            text = re.sub(r"\n+", " ", text + " " + google_doc_content + " " + pdf_content)
 
             # Add Page content to list of DataInformation
             self.all_page_information.append(
@@ -180,6 +180,17 @@ class ConfluencePreprocessor(DataPreprocessor):
         page_in_raw_text = BeautifulSoup(page_in_html, features="html.parser")
 
         return page_in_raw_text.get_text()
+
+
+    def get_content_from_google_drive(self, urls):
+        pdf_content = ""
+        for url in urls:
+            google_drive_id = url.split("/d/")[1].split("/")[0]
+            pdf_bytes = export_pdf(google_drive_id)
+            pdf_content += read_pdf(pdf_bytes) + " "
+
+        return pdf_content
+
 
     def add_content_of_pdf_to_all_page_information(self, page_id) -> str:
         start = 0
@@ -220,6 +231,7 @@ class ConfluencePreprocessor(DataPreprocessor):
                             pdf_bytes = io.BytesIO(r.content).read()
 
                             pdf_content += read_pdf(pdf_bytes) + " "
+
         return pdf_content
 
     def load_preprocessed_data(
