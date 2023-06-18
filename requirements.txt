@@ -35,3 +35,4 @@ black
 google-cloud-aiplatform
 google-api-python-client
 pydrive2
+google-auth google-auth-oauthlib
