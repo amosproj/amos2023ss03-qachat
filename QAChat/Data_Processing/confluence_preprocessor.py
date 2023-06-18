@@ -137,12 +137,13 @@ class ConfluencePreprocessor(DataPreprocessor):
             last_changed = self.get_last_modified_formated_date(page_info)
             text = self.get_raw_text_from_page(page_with_body)
 
-            # get googledoc links:
+            # get googledoc url:
             urls = re.findall(r"https?://docs\.google\.com\S+", text)
 
-
+            # get content from googledoc
             google_doc_content = self.get_content_from_google_drive(urls)
 
+            # get content from confluence attachments
             pdf_content = self.add_content_of_pdf_to_all_page_information(page_id)
 
             # replace consecutive occurrences of \n into one space
@@ -184,9 +185,16 @@ class ConfluencePreprocessor(DataPreprocessor):
 
     def get_content_from_google_drive(self, urls):
         pdf_content = ""
+
+        # go through all urls
         for url in urls:
+            # get id from url
             google_drive_id = url.split("/d/")[1].split("/")[0]
+
+            # get pdf by id
             pdf_bytes = export_pdf(google_drive_id)
+
+            # get content from pdf
             pdf_content += read_pdf(pdf_bytes) + " "
 
         return pdf_content
