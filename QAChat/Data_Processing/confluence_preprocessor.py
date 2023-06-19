@@ -147,7 +147,9 @@ class ConfluencePreprocessor(DataPreprocessor):
             pdf_content = self.add_content_of_pdf_to_all_page_information(page_id)
 
             # replace consecutive occurrences of \n into one space
-            text = re.sub(r"\n+", " ", text + " " + google_doc_content + " " + pdf_content)
+            text = re.sub(
+                r"\n+", " ", text + " " + google_doc_content + " " + pdf_content
+            )
 
             # Add Page content to list of DataInformation
             self.all_page_information.append(
@@ -182,7 +184,6 @@ class ConfluencePreprocessor(DataPreprocessor):
 
         return page_in_raw_text.get_text()
 
-
     def get_content_from_google_drive(self, urls):
         pdf_content = ""
 
@@ -198,7 +199,6 @@ class ConfluencePreprocessor(DataPreprocessor):
             pdf_content += read_pdf(pdf_bytes) + " "
 
         return pdf_content
-
 
     def add_content_of_pdf_to_all_page_information(self, page_id) -> str:
         start = 0
@@ -228,7 +228,7 @@ class ConfluencePreprocessor(DataPreprocessor):
                 for attachment in attachments:
                     if "application/pdf" == attachment["extensions"]["mediaType"]:
                         download_link = (
-                                self.confluence.url + attachment["_links"]["download"]
+                            self.confluence.url + attachment["_links"]["download"]
                         )
                         r = requests.get(
                             download_link,
@@ -243,7 +243,7 @@ class ConfluencePreprocessor(DataPreprocessor):
         return pdf_content
 
     def load_preprocessed_data(
-            self, before: datetime, after: datetime
+        self, before: datetime, after: datetime
     ) -> List[DataInformation]:
         self.init_lookup_tables()
         self.init_blacklist()
@@ -255,10 +255,13 @@ class ConfluencePreprocessor(DataPreprocessor):
 
     def init_lookup_tables(self):
         # get the metadata of type Confluence from DB
-        data = self.supabase_client \
-            .table("data_embedding") \
-            .select("metadata") \
-            .eq("metadata->>type", "confluence").execute().data
+        data = (
+            self.supabase_client.table("data_embedding")
+            .select("metadata")
+            .eq("metadata->>type", "confluence")
+            .execute()
+            .data
+        )
 
         for i in data:
             page_id = i["metadata"]["id"].split("_")[0]
@@ -267,7 +270,9 @@ class ConfluencePreprocessor(DataPreprocessor):
 
             # add each ID in dict last_update_lookup
             if page_id not in self.last_update_lookup:
-                self.last_update_lookup[page_id] = datetime.strptime(last_update.split("T")[0], "%Y-%m-%d")
+                self.last_update_lookup[page_id] = datetime.strptime(
+                    last_update.split("T")[0], "%Y-%m-%d"
+                )
 
             # add max of chunk ID to chunk_id_lookup_table
             if page_id not in self.chunk_id_lookup_table:
@@ -280,24 +285,38 @@ class ConfluencePreprocessor(DataPreprocessor):
         to_delete = []
         for i in self.all_page_information:
             if i.id in self.last_update_lookup:  # if page is already in DB
-                if i.last_changed > self.last_update_lookup[i.id]:  # if there is a change in the page
+                if (
+                    i.last_changed > self.last_update_lookup[i.id]
+                ):  # if there is a change in the page
                     self.remove_from_db(i.id)  # remove from DB
-                    self.last_update_lookup[i.id] = None  # make the dict's entry None -> To detect remove page
-                elif i.last_changed == self.last_update_lookup[i.id]:  # if no change in the page
+                    self.last_update_lookup[
+                        i.id
+                    ] = None  # make the dict's entry None -> To detect remove page
+                elif (
+                    i.last_changed == self.last_update_lookup[i.id]
+                ):  # if no change in the page
                     to_delete.append(i)  # append in the list
-                    self.last_update_lookup[i.id] = None  # make the dict's entry None -> To detect remove page
+                    self.last_update_lookup[
+                        i.id
+                    ] = None  # make the dict's entry None -> To detect remove page
 
         for i in to_delete:
-            self.all_page_information.remove(i)  # remove the page where no changes from the internal list
+            self.all_page_information.remove(
+                i
+            )  # remove the page where no changes from the internal list
 
         for i in self.last_update_lookup:
-            if self.last_update_lookup[i] is not None:  # check which entry is not None -> Page is deleted from website
+            if (
+                self.last_update_lookup[i] is not None
+            ):  # check which entry is not None -> Page is deleted from website
                 self.remove_from_db(i)  # remove it from DB
 
     def remove_from_db(self, id):
         # loop over max number in chunk id and remove all the rows from DB
         for i in range(0, int(self.chunk_id_lookup_table[id]) + 1):
-            self.supabase_client.table("data_embedding").delete().eq("metadata->>id", str(id) + "_" + str(i)).execute()
+            self.supabase_client.table("data_embedding").delete().eq(
+                "metadata->>id", str(id) + "_" + str(i)
+            ).execute()
 
 
 if __name__ == "__main__":
