@@ -13,7 +13,6 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 
 
 class GoogleDocPreProcessor:
-
     def __init__(self):
         self.creds = None
 
@@ -48,9 +47,11 @@ class GoogleDocPreProcessor:
 
 if __name__ == "__main__":
     g_doc_proc = GoogleDocPreProcessor()
-    file_data = g_doc_proc.export_pdf(real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs")
+    file_data = g_doc_proc.export_pdf(
+        real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs"
+    )
     print(read_pdf(file_data))
-    file_data = g_doc_proc.export_pdf(real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs")
+    file_data = g_doc_proc.export_pdf(
+        real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs"
+    )
     print(read_pdf(file_data))
-
-
