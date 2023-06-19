@@ -17,16 +17,15 @@ class GoogleDocPreProcessor:
     def __init__(self):
         self.creds = None
 
-    def export_pdf(self, real_file_id, creds=None):
-        if creds is None or not creds.valid:
+    def export_pdf(self, real_file_id):
+        if self.creds is None or not self.creds.valid:
             flow = InstalledAppFlow.from_client_secrets_file(
                 "client_secrets.json", ["https://www.googleapis.com/auth/drive"]
             )
-            creds = flow.run_local_server()
-            self.creds = creds
+            self.creds = flow.run_local_server()
 
         try:
-            service = build("drive", "v3", credentials=creds)
+            service = build("drive", "v3", credentials=self.creds)
 
             request = service.files().export_media(
                 fileId=real_file_id, mimeType="application/pdf"
@@ -49,10 +48,9 @@ class GoogleDocPreProcessor:
 
 if __name__ == "__main__":
     g_doc_proc = GoogleDocPreProcessor()
-    file_data = g_doc_proc.export_pdf(real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs",
-                                      creds=g_doc_proc.creds)
+    file_data = g_doc_proc.export_pdf(real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs")
+    print(read_pdf(file_data))
+    file_data = g_doc_proc.export_pdf(real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs")
     print(read_pdf(file_data))
 
-    file_data = g_doc_proc.export_pdf(real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs",
-                                      creds=g_doc_proc.creds)
-    print(read_pdf(file_data))
+

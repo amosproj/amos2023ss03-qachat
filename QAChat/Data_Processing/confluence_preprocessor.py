@@ -14,7 +14,7 @@ from atlassian import Confluence
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
-from QAChat.Data_Processing.google_doc_preprocessor import export_pdf
+from QAChat.Data_Processing.google_doc_preprocessor import GoogleDocPreProcessor
 from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
 from pdf_reader import read_pdf
@@ -49,6 +49,7 @@ class ConfluencePreprocessor(DataPreprocessor):
         )
         self.last_update_lookup = dict()
         self.chunk_id_lookup_table = dict()
+        self.g_docs_proc = GoogleDocPreProcessor()
 
     def init_blacklist(self):
         # Retrieve blacklist data from Supabase table
@@ -193,7 +194,7 @@ class ConfluencePreprocessor(DataPreprocessor):
             google_drive_id = url.split("/d/")[1].split("/")[0]
 
             # get pdf by id
-            pdf_bytes = export_pdf(google_drive_id)
+            pdf_bytes = self.g_docs_proc.export_pdf(google_drive_id)
 
             # get content from pdf
             pdf_content += read_pdf(pdf_bytes) + " "
