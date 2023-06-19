@@ -1,6 +1,13 @@
 name: run-unit-test-and-lint
 
 on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths-ignore:
+      - 'README.md'
+      - 'Deliverables/**'
+      - 'Documentation/**'
+      - 'DummyData/**'
   push:
     branches:
       - master
@@ -8,15 +15,7 @@ on:
       - 'README.md'
       - 'Deliverables/**'
       - 'Documentation/**'
-      - 'DummyData/**'
-  pull_request:
-    branches-ignore:
-      - master
-    paths-ignore:
-      - 'README.md'
-      - 'Deliverables/**'
-      - 'Documentation/**'
-      - 'DummyData/**'
+      - 'DummyData/**'    
 
 jobs:
   unit-tests-and-lint:
