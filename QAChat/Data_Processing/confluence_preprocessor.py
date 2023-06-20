@@ -17,13 +17,16 @@ from dotenv import load_dotenv
 from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
 from pdf_reader import PDFReader
+from get_tokens import get_tokens_path
 
-load_dotenv("../tokens.env")
+
+load_dotenv(get_tokens_path())
 
 # Get Confluence API credentials from environment variables
 CONFLUENCE_ADDRESS = os.getenv("CONFLUENCE_ADDRESS")
 CONFLUENCE_USERNAME = os.getenv("CONFLUENCE_USERNAME")
 CONFLUENCE_TOKEN = os.getenv("CONFLUENCE_TOKEN")
+print(CONFLUENCE_TOKEN)
 
 # Get Supabase API credentials from environment variables
 SUPABASE_URL = os.getenv("SUPABASE_URL")

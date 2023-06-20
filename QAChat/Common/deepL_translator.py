@@ -6,8 +6,10 @@ import os
 
 import deepl
 from dotenv import load_dotenv
+from get_tokens import get_tokens_path
 
-load_dotenv("../../tokens.env")
+
+load_dotenv(get_tokens_path())
 DEEPL_TOKEN = os.getenv("DEEPL_TOKEN")
 
 

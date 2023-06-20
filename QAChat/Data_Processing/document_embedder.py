@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase.client import create_client
+from get_tokens import get_tokens_path
 
 from QAChat.Data_Processing.text_transformer import transform_text_to_chunks
 
@@ -36,7 +37,7 @@ class DocumentEmbedder:
             model_name="hkunlp/instructor-xl",
         )
 
-        load_dotenv("../../tokens.env")
+        load_dotenv(get_tokens_path())
         self.supabase = create_client(
             os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
         )

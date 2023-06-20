@@ -3,8 +3,8 @@ import os
 
 import requests
 from dotenv import load_dotenv
-
-load_dotenv("../../tokens.env")
+from get_tokens import get_tokens_path
+load_dotenv(get_tokens_path())
 
 
 class QABotAPIInterface:
