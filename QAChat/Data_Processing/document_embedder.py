@@ -17,10 +17,11 @@ import spacy
 import spacy.cli
 import xx_ent_wiki_sm
 import de_core_news_sm
+
+from QAChat.Common.deepL_translator import DeepLTranslator
 from get_tokens import get_tokens_path
 
 from QAChat.Data_Processing.text_transformer import transform_text_to_chunks
-from QAChat.QA_Bot.deepL_translator import DeepLTranslator
 
 
 class DataSource(Enum):
