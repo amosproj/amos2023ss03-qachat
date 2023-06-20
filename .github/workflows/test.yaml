@@ -3,11 +3,7 @@ name: run-unit-test-and-lint
 on:
   pull_request:
     types: [opened, reopened, synchronize]
-    paths-ignore:
-      - 'README.md'
-      - 'Deliverables/**'
-      - 'Documentation/**'
-      - 'DummyData/**'
+    
   push:
     branches:
       - master
@@ -39,6 +35,8 @@ jobs:
           pip install -r QAChat/QA_Bot/requirements.txt
           pip install -r QAChat/Slack_Bot/requirements.txt
           pip install -r Testing/requirements.txt
+          python -m spacy download xx_ent_wiki_sm
+          python -m spacy download de_core_news_sm
 
       - name: Set PYTHONPATH
         run: |

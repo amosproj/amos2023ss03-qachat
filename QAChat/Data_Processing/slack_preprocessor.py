@@ -134,7 +134,8 @@ class SlackPreprocessor(DataPreprocessor):
                     id=message["channel_id"] + "_" + message["ts"],
                     last_changed=datetime.now(),
                     typ=DataSource.SLACK,
-                    text="<name>" + message["name"] + "</name>: " + message["text"],
+                    text=message["name"] + ": " + message["text"],
+                    # text="<name>" + message["name"] + "</name>: " + message["text"],
                 )
             )
 

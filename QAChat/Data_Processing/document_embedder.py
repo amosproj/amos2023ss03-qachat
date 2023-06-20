@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2023 Jesse Tim Palarus
 # SPDX-FileCopyrightText: 2023 Amela Pucic
+# SPDX-FileCopyrightText: 2023 Felix Nützel
+# SPDX-FileCopyrightText: 2023 Emanuel Erben
 
 import os
 from datetime import datetime
@@ -11,6 +13,12 @@ from dotenv import load_dotenv
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase.client import create_client
+import spacy
+import spacy.cli
+import xx_ent_wiki_sm
+import de_core_news_sm
+
+from QAChat.Common.deepL_translator import DeepLTranslator
 from get_tokens import get_tokens_path
 
 from QAChat.Data_Processing.text_transformer import transform_text_to_chunks
@@ -48,6 +56,15 @@ class DocumentEmbedder:
             query_name="match_data",
         )
 
+        # name identification
+        spacy.cli.download("xx_ent_wiki_sm")
+        spacy.load("xx_ent_wiki_sm")
+        self.muulti_lang_nlp = xx_ent_wiki_sm.load()
+        spacy.cli.download("de_core_news_sm")
+        spacy.load("de_core_news_sm")
+        self.de_lang_nlp = de_core_news_sm.load()
+        self.translator = DeepLTranslator()
+
     def store_information_in_database(self, typ: DataSource):
         if typ == DataSource.DUMMY:
             from dummy_preprocessor import DummyPreprocessor
@@ -82,7 +99,10 @@ class DocumentEmbedder:
             current_time, last_updated
         )
 
-        # transform long entries into multiple chunks
+        # identify names and add name-tags before chunking and translation
+        all_changed_data = self.identify_names(all_changed_data)
+
+        # transform long entries into multiple chunks and translation to english
         all_changed_data = transform_text_to_chunks(all_changed_data)
 
         if len(all_changed_data) != 0:
@@ -106,3 +126,31 @@ class DocumentEmbedder:
         self.supabase.table("last_update_per_data_typ").upsert(
             {"type": typ.value, "last_update": current_time.isoformat()},
         ).execute()
+
+    def identify_names(self, all_data: list[DataInformation]) -> list[DataInformation]:
+        """
+        Method identifies names with spacy and adds name tags to the text
+        :param all_data:  which is the List of DataInformation that gets send to the chunking
+        :return: the input list with added name tags to persons
+        """
+
+        for data in all_data:
+            # identify language of text
+            language = self.translator.translate_to(
+                data.text, "EN-US"
+            ).detected_source_lang
+            # choose spacy model after language
+            if language == "DE":
+                nlp = self.de_lang_nlp
+            else:
+                nlp = self.muulti_lang_nlp
+            # identify sentence parts
+            doc = nlp(data.text)
+            already_replaced = []
+            for ent in doc.ents:
+                if ent.text in already_replaced or ent.label_ != "PER":
+                    continue
+                # only person names are flanked by tag and multiplicity is avoided
+                already_replaced.append(ent.text)
+                data.text = data.text.replace(ent.text, "<name>" + ent.text + "</name>")
+        return all_data
