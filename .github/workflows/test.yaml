@@ -20,6 +20,7 @@ on:
 jobs:
   unit-tests-and-lint:
     runs-on: ubuntu-latest
+    environment: qachat
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
