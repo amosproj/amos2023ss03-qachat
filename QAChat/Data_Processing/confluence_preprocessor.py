@@ -14,6 +14,7 @@ from atlassian import Confluence
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
+from QAChat.Data_Processing.google_doc_preprocessor import GoogleDocPreProcessor
 from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
 from pdf_reader import PDFReader
@@ -26,7 +27,6 @@ load_dotenv(get_tokens_path())
 CONFLUENCE_ADDRESS = os.getenv("CONFLUENCE_ADDRESS")
 CONFLUENCE_USERNAME = os.getenv("CONFLUENCE_USERNAME")
 CONFLUENCE_TOKEN = os.getenv("CONFLUENCE_TOKEN")
-print(CONFLUENCE_TOKEN)
 
 # Get Supabase API credentials from environment variables
 SUPABASE_URL = os.getenv("SUPABASE_URL")
@@ -52,6 +52,7 @@ class ConfluencePreprocessor(DataPreprocessor):
         )
         self.last_update_lookup = dict()
         self.chunk_id_lookup_table = dict()
+        self.g_docs_proc = GoogleDocPreProcessor()
 
     def init_blacklist(self):
         # Retrieve blacklist data from Supabase table
@@ -139,9 +140,20 @@ class ConfluencePreprocessor(DataPreprocessor):
             # Set final parameters for DataInformation
             last_changed = self.get_last_modified_formated_date(page_info)
             text = self.get_raw_text_from_page(page_with_body)
+
+            # get googledoc url:
+            urls = re.findall(r"https?://docs\.google\.com\S+", text)
+
+            # get content from googledoc
+            google_doc_content = self.get_content_from_google_drive(urls)
+
+            # get content from confluence attachments
             pdf_content = self.add_content_of_pdf_to_all_page_information(page_id)
+
             # replace consecutive occurrences of \n into one space
-            text = re.sub(r"\n+", " ", text + " " + pdf_content)
+            text = re.sub(
+                r"\n+", " ", text + " " + google_doc_content + " " + pdf_content
+            )
 
             # Add Page content to list of DataInformation
             self.all_page_information.append(
@@ -175,6 +187,22 @@ class ConfluencePreprocessor(DataPreprocessor):
         page_in_raw_text = BeautifulSoup(page_in_html, features="html.parser")
 
         return page_in_raw_text.get_text()
+
+    def get_content_from_google_drive(self, urls):
+        pdf_content = ""
+
+        # go through all urls
+        for url in urls:
+            # get id from url
+            google_drive_id = url.split("/d/")[1].split("/")[0]
+
+            # get pdf by id
+            pdf_bytes = self.g_docs_proc.export_pdf(google_drive_id)
+
+            # get content from pdf
+            pdf_content += read_pdf(pdf_bytes) + " "
+
+        return pdf_content
 
     def add_content_of_pdf_to_all_page_information(self, page_id) -> str:
         start = 0

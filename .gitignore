@@ -276,3 +276,7 @@ fabric.properties
 tokens.env
 QAChat/Data_Processing/client_secrets.json
 QAChat/Data_Processing/credentials.json
+
+*client_secret_*.apps.googleusercontent.com.json
+*client_secrets.json
+*secret*
