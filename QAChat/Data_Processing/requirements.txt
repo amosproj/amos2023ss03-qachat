@@ -13,3 +13,7 @@ requests
 slack-sdk
 bs4
 atlassian-python-api
+google-api-python-client
+pydrive2
+google-auth
+google-auth-oauthlib
