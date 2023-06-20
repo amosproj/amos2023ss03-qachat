@@ -46,6 +46,8 @@ jobs:
 
       - name: Run unit tests
         working-directory: ./Testing
+        env:
+          DEEPL_TOKEN: ${{ secrets.DEEPL_TOKEN}}
         run: |
           pytest -s qa_agent_unit_tests.py
           pytest -s chunking_unit_tests.py
