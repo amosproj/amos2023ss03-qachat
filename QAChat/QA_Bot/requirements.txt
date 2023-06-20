@@ -7,3 +7,4 @@ deepl
 huggingface_hub
 python-dotenv
 gunicorn
+llama-cpp-python

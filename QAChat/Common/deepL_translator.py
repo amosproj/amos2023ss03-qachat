@@ -6,9 +6,12 @@ import os
 
 import deepl
 from dotenv import load_dotenv
+from get_tokens import get_tokens_path
 
-load_dotenv("../tokens.env")
 DEEPL_TOKEN = os.getenv("DEEPL_TOKEN")
+if DEEPL_TOKEN is None:
+    load_dotenv(get_tokens_path())
+    DEEPL_TOKEN = os.getenv("DEEPL_TOKEN")
 
 
 class DeepLTranslator:
@@ -30,7 +33,6 @@ class DeepLTranslator:
 
 if __name__ == "__main__":
     translator = DeepLTranslator()
-    # print(translator.receive_question("Was sind xyhj"))
     result = translator.translate_to("Was sind xyhj", "EN-US")
 
     print(result.text)

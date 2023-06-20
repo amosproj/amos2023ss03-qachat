@@ -14,7 +14,8 @@ from supabase import create_client
 from dotenv import load_dotenv
 from typing import List
 
-from deepL_translator import DeepLTranslator
+from QAChat.Common.deepL_translator import DeepLTranslator
+from get_tokens import get_tokens_path
 
 
 class QABot:
@@ -22,7 +23,7 @@ class QABot:
         self.answer = None
         self.context = None
         self.use_gpu = use_gpu
-        load_dotenv("../tokens.env")
+        load_dotenv(get_tokens_path())
 
         self.embeddings = embeddings
         if embeddings is None:

@@ -272,7 +272,11 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+
+tokens.env
+QAChat/Data_Processing/client_secrets.json
+QAChat/Data_Processing/credentials.json
+
 *client_secret_*.apps.googleusercontent.com.json
 *client_secrets.json
 *secret*
-credentials.json
