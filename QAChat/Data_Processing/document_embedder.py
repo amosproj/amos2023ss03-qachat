@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 
 from dateutil import parser
+from dotenv import load_dotenv
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase.client import create_client
