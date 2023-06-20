@@ -1,0 +1,16 @@
+langchain
+nltk
+deepl
+python-dateutil
+supabase
+pytesseract
+pdf2image
+pdfminer.six
+InstructorEmbedding
+sentence-transformers
+pandas
+requests
+slack-sdk
+bs4
+atlassian-python-api
+spacy

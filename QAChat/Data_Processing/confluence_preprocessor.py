@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 
 from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
-from pdf_reader import read_pdf
+from pdf_reader import PDFReader
 
 load_dotenv("../tokens.env")
 
@@ -38,6 +38,7 @@ class ConfluencePreprocessor(DataPreprocessor):
             password=CONFLUENCE_TOKEN,
             cloud=True,
         )
+        self.pdf_reader = PDFReader()
         self.all_spaces = []
         self.all_pages_id = []
         self.all_page_information = []
@@ -59,13 +60,13 @@ class ConfluencePreprocessor(DataPreprocessor):
         )
 
         # Extract restricted spaces and restricted pages from the blacklist data
-        for i in blacklist:
-            if "/pages/" in i["identifer"]:
+        for entries in blacklist:
+            if "/pages/" in entries["identifer"]:
                 # Split by slash and get the page id, https://.../pages/PAGE_ID
-                self.restricted_pages.append(i["identifer"].split("/")[7])
+                self.restricted_pages.append(entries["identifer"].split("/")[7])
             else:
                 # Split by slash and get the space name, https://.../space/SPACE_NAME
-                self.restricted_spaces.append(i["identifer"].split("/")[5])
+                self.restricted_spaces.append(entries["identifer"].split("/")[5])
 
     def get_all_spaces(self):
         start = 0
@@ -210,11 +211,11 @@ class ConfluencePreprocessor(DataPreprocessor):
                         if r.status_code == 200:
                             pdf_bytes = io.BytesIO(r.content).read()
 
-                            pdf_content += read_pdf(pdf_bytes) + " "
+                            pdf_content += self.pdf_reader.read_pdf(pdf_bytes) + " "
         return pdf_content
 
     def load_preprocessed_data(
-        self, before: datetime, after: datetime
+        self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
         self.init_lookup_tables()
         self.init_blacklist()
