@@ -12,7 +12,6 @@ from slack_sdk.errors import SlackApiError
 from supabase.client import create_client
 
 from QAChat.Data_Processing.data_preprocessor import DataPreprocessor
-from QAChat.QA_Bot.deepL_translator import DeepLTranslator
 from QAChat.Data_Processing.document_embedder import DataInformation, DataSource
 
 load_dotenv("../tokens.env")
@@ -26,7 +25,6 @@ class SlackPreprocessor(DataPreprocessor):
         self.client = WebClient(token=SLACK_TOKEN)
         self.conversation_store = {}
         self.conversation_history = []
-        self.translator = DeepLTranslator()
         self.count_found_messages = 0
         self.supabase = create_client(
             os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
@@ -92,10 +90,10 @@ class SlackPreprocessor(DataPreprocessor):
                 print("Error creating conversation: {}".format(e))
 
     def load_preprocessed_data(
-        self, before: datetime, after: datetime
+        self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
         self.fetch_conversations()
-        oldest = after.timestamp()
+        oldest = start_of_timeframe.timestamp()
         already_loaded_ids = (
             self.supabase.table("slack_loaded_channels")
             .select("channel_id")
@@ -138,7 +136,7 @@ class SlackPreprocessor(DataPreprocessor):
                 )
             )
 
-        return [data for data in raw_data if after < data.last_changed]
+        return [data for data in raw_data if start_of_timeframe < data.last_changed]
 
 
 if __name__ == "__main__":

@@ -3,9 +3,10 @@
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 
 import copy
-from QAChat.QA_Bot.deepL_translator import DeepLTranslator
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import nltk
+
+from QAChat.Common.deepL_translator import DeepLTranslator
 
 CHUNK_SIZE = 200
 CHUNK_OVERLAP = 50

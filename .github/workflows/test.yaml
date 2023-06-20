@@ -35,11 +35,15 @@ jobs:
           cache: 'pip'
 
       - name: Install Python dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r QAChat/Data_Processing/requirements.txt
+          pip install -r QAChat/QA_Bot/requirements.txt
+          pip install -r QAChat/Slack_Bot/requirements.txt
+          pip install -r Testing/requirements.txt
 
       - name: Set PYTHONPATH
         run: |
-          echo "PYTHONPATH=$(pwd):$(pwd)/amos2023ss03-qachat:$(pwd)/amos2023ss03-qachat/QAChat/Slack_Bot" >> $GITHUB_ENV
+          echo "PYTHONPATH=$(pwd):$(pwd)/amos2023ss03-qachat" >> $GITHUB_ENV
 
       - name: Run unit tests
         working-directory: ./Testing
