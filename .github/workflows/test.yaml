@@ -45,6 +45,8 @@ jobs:
           echo "PYTHONPATH=$(pwd):$(pwd)/amos2023ss03-qachat" >> $GITHUB_ENV
 
       - name: Run unit tests
+        env:
+          DEEPL_TOKEN: ${{ secrets.DEEPL_TOKEN}}
         working-directory: ./Testing
         run: |
           pytest -s qa_agent_unit_tests.py
