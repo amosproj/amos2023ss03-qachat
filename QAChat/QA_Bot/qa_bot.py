@@ -22,7 +22,7 @@ class QABot:
         self.answer = None
         self.context = None
         self.use_gpu = use_gpu
-        load_dotenv("../tokens.env")
+        load_dotenv("../../tokens.env")
 
         self.embeddings = embeddings
         if embeddings is None:

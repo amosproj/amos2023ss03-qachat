@@ -36,7 +36,7 @@ class DocumentEmbedder:
             model_name="hkunlp/instructor-xl",
         )
 
-        load_dotenv("../tokens.env")
+        load_dotenv("../../tokens.env")
         self.supabase = create_client(
             os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
         )

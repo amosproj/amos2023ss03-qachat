@@ -18,7 +18,7 @@ import os
 
 from QAChat.Slack_Bot.qa_bot_api_interface import QABotAPIInterface
 
-load_dotenv("../tokens.env")
+load_dotenv("../../tokens.env")
 SLACK_TOKEN = os.getenv("SLACK_TOKEN")
 SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN")
 SIGNING_SECRET = os.getenv("SIGNING_SECRET")

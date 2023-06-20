@@ -15,7 +15,7 @@ from QAChat.Data_Processing.data_preprocessor import DataPreprocessor
 from QAChat.QA_Bot.deepL_translator import DeepLTranslator
 from QAChat.Data_Processing.document_embedder import DataInformation, DataSource
 
-load_dotenv("../tokens.env")
+load_dotenv("../../tokens.env")
 SLACK_TOKEN = os.getenv("SLACK_TOKEN")
 SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN")
 SIGNING_SECRET = os.getenv("SIGNING_SECRET")

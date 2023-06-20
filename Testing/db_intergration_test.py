@@ -5,6 +5,7 @@
 import unittest
 import os
 import supabase
+from dotenv import load_dotenv
 
 """
 Here is an integration test to  verify the existence of two databses
@@ -13,6 +14,7 @@ Here is an integration test to  verify the existence of two databses
 
 class DatabaseIntegrationTestDBExist(unittest.TestCase):
     def setUp(self):
+        load_dotenv("../tokens.env")
         # Creating a Supabase client using environment variables
         self.supabase_client = supabase.create_client(
             os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")

@@ -42,7 +42,9 @@ jobs:
 
       - name: Run unit tests
         working-directory: ./Testing
-        run: pytest -s qa_agent_unit_tests.py
+        run: |
+          pytest -s qa_agent_unit_tests.py
+          pytest -s chunking_unit_tests.py
 
       - name: Run DB Test
         env:

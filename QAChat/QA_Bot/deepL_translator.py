@@ -7,7 +7,7 @@ import os
 import deepl
 from dotenv import load_dotenv
 
-load_dotenv("../tokens.env")
+load_dotenv("../../tokens.env")
 DEEPL_TOKEN = os.getenv("DEEPL_TOKEN")
 
 

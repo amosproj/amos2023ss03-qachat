@@ -4,7 +4,7 @@ import os
 import requests
 from dotenv import load_dotenv
 
-load_dotenv("../tokens.env")
+load_dotenv("../../tokens.env")
 
 
 class QABotAPIInterface:
