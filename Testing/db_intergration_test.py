@@ -5,6 +5,9 @@
 import unittest
 import os
 import supabase
+from dotenv import load_dotenv
+
+from get_tokens import get_tokens_path
 
 """
 Here is an integration test to  verify the existence of two databses
@@ -13,9 +16,16 @@ Here is an integration test to  verify the existence of two databses
 
 class DatabaseIntegrationTestDBExist(unittest.TestCase):
     def setUp(self):
+        self.supabase_url = os.environ.get("SUPABASE_URL")
+        self.service_key = os.environ.get("SUPABASE_SERVICE_KEY")
+        if self.supabase_url is None or self.service_key is None:
+            load_dotenv(get_tokens_path())
+            self.supabase_url = os.environ.get("SUPABASE_URL")
+            self.service_key = os.environ.get("SUPABASE_SERVICE_KEY")
+
         # Creating a Supabase client using environment variables
         self.supabase_client = supabase.create_client(
-            os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
+            self.supabase_url, self.service_key
         )
 
     def test_if_data_embedding_exists(self):
@@ -46,9 +56,16 @@ Here is an integration to check the writing, reading and deleting from the datab
 
 class DatabaseIntegrationTestDBInteract(unittest.TestCase):
     def setUp(self):
+        self.supabase_url = os.environ.get("SUPABASE_URL")
+        self.service_key = os.environ.get("SUPABASE_SERVICE_KEY")
+        if self.supabase_url is None or self.service_key is None:
+            load_dotenv(get_tokens_path())
+            self.supabase_url = os.environ.get("SUPABASE_URL")
+            self.service_key = os.environ.get("SUPABASE_SERVICE_KEY")
+
         # Creating a Supabase client using environment variables
         self.supabase_client = supabase.create_client(
-            os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
+            self.supabase_url, self.service_key
         )
 
     def test_db_interaction(self):

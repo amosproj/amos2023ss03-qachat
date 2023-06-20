@@ -17,6 +17,7 @@ import spacy
 import spacy.cli
 import xx_ent_wiki_sm
 import de_core_news_sm
+from get_tokens import get_tokens_path
 
 from QAChat.Data_Processing.text_transformer import transform_text_to_chunks
 from QAChat.QA_Bot.deepL_translator import DeepLTranslator
@@ -43,7 +44,7 @@ class DocumentEmbedder:
             model_name="hkunlp/instructor-xl",
         )
 
-        load_dotenv("../tokens.env")
+        load_dotenv(get_tokens_path())
         self.supabase = create_client(
             os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
         )

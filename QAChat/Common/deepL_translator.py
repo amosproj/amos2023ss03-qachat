@@ -6,9 +6,12 @@ import os
 
 import deepl
 from dotenv import load_dotenv
+from get_tokens import get_tokens_path
 
-load_dotenv("../tokens.env")
 DEEPL_TOKEN = os.getenv("DEEPL_TOKEN")
+if DEEPL_TOKEN is None:
+    load_dotenv(get_tokens_path())
+    DEEPL_TOKEN = os.getenv("DEEPL_TOKEN")
 
 
 class DeepLTranslator:
