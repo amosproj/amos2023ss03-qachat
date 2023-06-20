@@ -14,7 +14,7 @@ from supabase import create_client
 from dotenv import load_dotenv
 from typing import List
 
-from deepL_translator import DeepLTranslator
+from QAChat.Common.deepL_translator import DeepLTranslator
 
 
 class QABot:
