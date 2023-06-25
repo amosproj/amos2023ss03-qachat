@@ -10,6 +10,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaIoBaseDownload
 from google_auth_oauthlib.flow import InstalledAppFlow
+from google.oauth2 import service_account
 
 
 class GoogleDocPreProcessor:
@@ -18,13 +19,11 @@ class GoogleDocPreProcessor:
 
     def export_pdf(self, real_file_id):
         if self.creds is None or not self.creds.valid:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                "client_secrets.json", ["https://www.googleapis.com/auth/drive"]
+            credentials = service_account.Credentials.from_service_account_file(
+                "credentials_file.json", scopes=["https://www.googleapis.com/auth/drive"]
             )
-            self.creds = flow.run_local_server()
-
         try:
-            service = build("drive", "v3", credentials=self.creds)
+            service = build("drive", "v3", credentials=credentials)
 
             request = service.files().export_media(
                 fileId=real_file_id, mimeType="application/pdf"
