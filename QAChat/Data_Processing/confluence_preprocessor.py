@@ -148,7 +148,7 @@ class ConfluencePreprocessor(DataPreprocessor):
             google_doc_content = self.get_content_from_google_drive(urls)
 
             # get content from confluence attachments
-            pdf_content = self.add_content_of_pdf_to_all_page_information(page_id)
+            pdf_content = self.get_content_from_page_attachments(page_id)
 
             # replace consecutive occurrences of \n into one space
             text = re.sub(
@@ -204,7 +204,7 @@ class ConfluencePreprocessor(DataPreprocessor):
 
         return pdf_content
 
-    def add_content_of_pdf_to_all_page_information(self, page_id) -> str:
+    def get_content_from_page_attachments(self, page_id) -> str:
         start = 0
         limit = 100
         attachments = []
