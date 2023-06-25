@@ -38,7 +38,9 @@ def test_llm_speed():
         sum_of_chars += len(output.generations[0][0].text)
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print(f'LLM test time: {elapsed_time} seconds ({sum_of_chars / elapsed_time} chars per second).')
+    print(
+        f"LLM test time: {elapsed_time} seconds ({sum_of_chars / elapsed_time} chars per second)."
+    )
 
 
 def test_deepl_speed():
@@ -58,7 +60,7 @@ def test_deepl_speed():
         "Was sind einige beliebte Machine-Learning-Algorithmen und ihre Anwendungen?",
         "Können Sie ein detailliertes Rezept für hausgemachte Pizza liefern?",
         "Was sind die wichtigsten Beiträge von Albert Einstein zur Physik?",
-        "Was ist das aktuelle Verständnis von der Auswirkung des Mikrobioms auf die menschliche Gesundheit?"
+        "Was ist das aktuelle Verständnis von der Auswirkung des Mikrobioms auf die menschliche Gesundheit?",
     ]
 
     start_time = time.time()
@@ -66,7 +68,7 @@ def test_deepl_speed():
         qa_bot.translator.translate_to(question, "EN-US")
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print(f'LLM test time: {elapsed_time} seconds.')
+    print(f"LLM test time: {elapsed_time} seconds.")
 
 
 def test_embedding_speed():
@@ -81,7 +83,7 @@ def test_embedding_speed():
         qa_bot.embeddings.embed_query(question)
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print(f'Embedding test time: {elapsed_time} seconds.')
+    print(f"Embedding test time: {elapsed_time} seconds.")
 
 
 def test_supabase_speed():
@@ -97,7 +99,7 @@ def test_supabase_speed():
         qa_bot.database.similarity_search_by_vector(random_embedding, 3)
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print(f'Supabase reading time: {elapsed_time} seconds.')
+    print(f"Supabase reading time: {elapsed_time} seconds.")
 
 
 def time_this(original_method):
@@ -105,7 +107,9 @@ def time_this(original_method):
         start_time = time.time()
         result = original_method(*args, **kwargs)
         end_time = time.time()
-        print(f"{original_method.__name__} took {end_time - start_time} seconds to execute")
+        print(
+            f"{original_method.__name__} took {end_time - start_time} seconds to execute"
+        )
         return result
 
     return side_effect
@@ -116,7 +120,9 @@ def time_this(original_method):
         start_time = time.time()
         result = original_method(*args, **kwargs)
         end_time = time.time()
-        print(f"{original_method.__name__} took {end_time - start_time} seconds to execute")
+        print(
+            f"{original_method.__name__} took {end_time - start_time} seconds to execute"
+        )
         return result
 
     return side_effect
@@ -128,9 +134,15 @@ def test_overall_performance():
     database_mock = create_autospec(qa_bot_original.database)
     llm_mock = create_autospec(qa_bot_original.model)
 
-    translator_mock.translate_to.side_effect = time_this(qa_bot_original.translator.translate_to)
-    database_mock.similarity_search.side_effect = time_this(qa_bot_original.database.similarity_search)
-    llm_mock.generate_prompt.side_effect = time_this(qa_bot_original.model.generate_prompt)
+    translator_mock.translate_to.side_effect = time_this(
+        qa_bot_original.translator.translate_to
+    )
+    database_mock.similarity_search.side_effect = time_this(
+        qa_bot_original.database.similarity_search
+    )
+    llm_mock.generate_prompt.side_effect = time_this(
+        qa_bot_original.model.generate_prompt
+    )
 
     qa_bot = QABot(
         translator=translator_mock,
@@ -146,10 +158,12 @@ def test_overall_performance():
         sum_of_chars += len(output["answer"])
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print(f'Overall performance: {elapsed_time} seconds ({sum_of_chars / elapsed_time} chars per second).')
+    print(
+        f"Overall performance: {elapsed_time} seconds ({sum_of_chars / elapsed_time} chars per second)."
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     load_dotenv(get_tokens_path())
     test_llm_speed()
     test_deepl_speed()

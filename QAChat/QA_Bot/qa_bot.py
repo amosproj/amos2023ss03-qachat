@@ -51,11 +51,11 @@ class QABot:
             self.translator = DeepLTranslator()
 
     def get_llama_model(
-            self,
-            n_ctx=2048,
-            max_tokens=128,
-            repo_id="TheBloke/wizard-mega-13B-GGML",
-            filename="wizard-mega-13B.ggmlv3.q4_1.bin",
+        self,
+        n_ctx=2048,
+        max_tokens=128,
+        repo_id="TheBloke/wizard-mega-13B-GGML",
+        filename="wizard-mega-13B.ggmlv3.q4_1.bin",
     ):
         path = hf_hub_download(repo_id=repo_id, filename=filename)
 
