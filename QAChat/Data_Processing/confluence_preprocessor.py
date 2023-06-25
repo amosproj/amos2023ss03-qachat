@@ -15,8 +15,8 @@ from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
 from QAChat.Data_Processing.google_doc_preprocessor import GoogleDocPreProcessor
-from data_preprocessor import DataPreprocessor
-from document_embedder import DataInformation, DataSource
+from QAChat.Data_Processing.data_preprocessor import DataPreprocessor
+from QAChat.Data_Processing.document_embedder import DataInformation, DataSource
 from pdf_reader import PDFReader
 from get_tokens import get_tokens_path
 
@@ -200,7 +200,7 @@ class ConfluencePreprocessor(DataPreprocessor):
             pdf_bytes = self.g_docs_proc.export_pdf(google_drive_id)
 
             # get content from pdf
-            pdf_content += read_pdf(pdf_bytes) + " "
+            pdf_content += self.pdf_reader.read_pdf(pdf_bytes) + " "
 
         return pdf_content
 
