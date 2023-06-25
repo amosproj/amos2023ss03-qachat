@@ -20,7 +20,8 @@ class GoogleDocPreProcessor:
     def export_pdf(self, real_file_id):
         if self.creds is None or not self.creds.valid:
             credentials = service_account.Credentials.from_service_account_file(
-                "credentials_file.json", scopes=["https://www.googleapis.com/auth/drive"]
+                "credentials_file.json",
+                scopes=["https://www.googleapis.com/auth/drive"],
             )
         try:
             service = build("drive", "v3", credentials=credentials)

@@ -34,6 +34,7 @@ SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
 
 print(SUPABASE_URL)
 
+
 class ConfluencePreprocessor(DataPreprocessor):
     def __init__(self):
         self.confluence = Confluence(
