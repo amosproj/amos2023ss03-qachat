@@ -16,13 +16,13 @@ from typing import List
 
 from QAChat.Common.deepL_translator import DeepLTranslator
 from get_tokens import get_tokens_path
+from unittest.mock import Mock
 
 
 class QABot:
-    def __init__(self, use_gpu=False, embeddings=None, database=None, model=None):
+    def __init__(self, embeddings=None, database=None, model=None, translator=None):
         self.answer = None
         self.context = None
-        self.use_gpu = use_gpu
         load_dotenv(get_tokens_path())
 
         self.embeddings = embeddings
@@ -46,12 +46,16 @@ class QABot:
         if model is None:
             self.model = self.get_llama_model()
 
+        self.translator = translator
+        if translator is None:
+            self.translator = DeepLTranslator()
+
     def get_llama_model(
-        self,
-        n_ctx=2048,
-        max_tokens=128,
-        repo_id="TheBloke/wizard-mega-13B-GGML",
-        filename="wizard-mega-13B.ggmlv3.q4_1.bin",
+            self,
+            n_ctx=2048,
+            max_tokens=128,
+            repo_id="TheBloke/wizard-mega-13B-GGML",
+            filename="wizard-mega-13B.ggmlv3.q4_1.bin",
     ):
         path = hf_hub_download(repo_id=repo_id, filename=filename)
 
@@ -136,7 +140,7 @@ class QABot:
         ]
 
     def translate_text(self, question, language="EN-US"):
-        return DeepLTranslator().translate_to(question, language)
+        return self.translator.translate_to(question, language)
 
     def answer_question(self, question: str):
         """
