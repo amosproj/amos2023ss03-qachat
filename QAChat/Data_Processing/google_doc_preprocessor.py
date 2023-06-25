@@ -5,7 +5,7 @@
 
 from __future__ import print_function
 import io
-from pdf_reader import read_pdf
+from QAChat.Data_Processing.pdf_reader import PDFReader
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaIoBaseDownload
@@ -47,11 +47,12 @@ class GoogleDocPreProcessor:
 
 if __name__ == "__main__":
     g_doc_proc = GoogleDocPreProcessor()
+    pdf_reader = PDFReader()
     file_data = g_doc_proc.export_pdf(
         real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs"
     )
-    print(read_pdf(file_data))
+    print(pdf_reader.read_pdf(file_data))
     file_data = g_doc_proc.export_pdf(
         real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs"
     )
-    print(read_pdf(file_data))
+    print(pdf_reader.read_pdf(file_data))
