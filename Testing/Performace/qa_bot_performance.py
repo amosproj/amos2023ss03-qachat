@@ -115,17 +115,6 @@ def time_this(original_method):
     return side_effect
 
 
-def time_this(original_method):
-    def side_effect(*args, **kwargs):
-        start_time = time.time()
-        result = original_method(*args, **kwargs)
-        end_time = time.time()
-        print(
-            f"{original_method.__name__} took {end_time - start_time} seconds to execute"
-        )
-        return result
-
-    return side_effect
 
 
 def test_overall_performance():
