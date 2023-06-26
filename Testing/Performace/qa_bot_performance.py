@@ -115,8 +115,6 @@ def time_this(original_method):
     return side_effect
 
 
-
-
 def test_overall_performance():
     qa_bot_original = QABot()
     translator_mock = create_autospec(qa_bot_original.translator)
