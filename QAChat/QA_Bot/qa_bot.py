@@ -19,7 +19,7 @@ from get_tokens import get_tokens_path
 
 
 class QABot:
-    def __init__(self, embeddings=None, database=None, model=None, translator=None):
+    def __init__(self, embeddings=None, database=None, model=None, translator=None, embeddings_gpu=False):
         self.answer = None
         self.context = None
         load_dotenv(get_tokens_path())
@@ -28,6 +28,7 @@ class QABot:
         if embeddings is None:
             self.embeddings = HuggingFaceInstructEmbeddings(
                 model_name="hkunlp/instructor-xl",
+                model_kwargs=None if embeddings_gpu else {"device": "cpu"}
             )
 
         self.database = database
@@ -54,7 +55,7 @@ class QABot:
             n_ctx=2048,
             max_tokens=512,
             repo_id="TheBloke/wizard-mega-13B-GGML",
-            filename="wizard-mega-13B.ggmlv3.q4_1.bin",
+            filename="wizard-mega-13B.ggmlv3.q4_0.bin",
     ):
         path = hf_hub_download(repo_id=repo_id, filename=filename)
 
