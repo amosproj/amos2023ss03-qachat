@@ -43,3 +43,11 @@ def init_db(weaviate_client):
                 ]
             }
         )
+
+
+def clear_db(weaviate_client):
+    return weaviate_client.schema.delete_all()
+
+
+def add_entry_to_black_list(weaviate_client, identifier, note=None):
+    return weaviate_client.data_object.create({"identifier": identifier, "note": note}, "BlackList")
