@@ -3,20 +3,23 @@
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 # SPDX-FileCopyrightText: 2023 Emanuel Erben
-
+import json
 import os
 from datetime import datetime
 from enum import Enum
 
+import weaviate
 from dateutil import parser
 from dotenv import load_dotenv
 from langchain.embeddings import HuggingFaceInstructEmbeddings
-from langchain.vectorstores import SupabaseVectorStore
-from supabase.client import create_client
+from langchain.vectorstores import Weaviate
+from weaviate.embedded import EmbeddedOptions
 import spacy
 import spacy.cli
 import xx_ent_wiki_sm
 import de_core_news_sm
+from typing import List
+from QAChat.Common.init_db import init_db
 
 from QAChat.Common.deepL_translator import DeepLTranslator
 from get_tokens import get_tokens_path
@@ -46,17 +49,13 @@ class DocumentEmbedder:
         )
 
         load_dotenv(get_tokens_path())
-        self.supabase = create_client(
-            os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
-        )
-        self.vector_store = SupabaseVectorStore(
-            self.supabase,
-            embedding=self.embedder,
-            table_name="data_embedding",
-            query_name="match_data",
-        )
+
+        self.weaviate_client = weaviate.Client(embedded_options=EmbeddedOptions())
+
+        init_db(self.weaviate_client)
 
         # name identification
+        '''
         spacy.cli.download("xx_ent_wiki_sm")
         spacy.load("xx_ent_wiki_sm")
         self.muulti_lang_nlp = xx_ent_wiki_sm.load()
@@ -64,6 +63,7 @@ class DocumentEmbedder:
         spacy.load("de_core_news_sm")
         self.de_lang_nlp = de_core_news_sm.load()
         self.translator = DeepLTranslator()
+        '''
 
     def store_information_in_database(self, typ: DataSource):
         if typ == DataSource.DUMMY:
@@ -81,18 +81,24 @@ class DocumentEmbedder:
         else:
             raise ValueError("Invalid data source type")
 
-        last_updated_database_result = (
-            self.supabase.table("last_update_per_data_typ")
-            .select("last_update")
-            .eq("type", typ.value)
-            .execute()
-        )
-        if len(last_updated_database_result.data) == 0:
+        where_filter_last_update = {
+            "path": ["type"],
+            "operator": "Equal",
+            "valueString": typ.value,
+        }
+
+        print(self.weaviate_client.query.get("Embeddings", ["type_id", "text"]).do().items())
+
+        last_update_object = (self.weaviate_client.query
+                              .get("LastModified", ["last_update"])
+                              .with_where(where_filter_last_update)
+                              .do())
+
+        if len(last_update_object["data"]["Get"]["LastModified"]) == 0:
             last_updated = datetime(1970, 1, 1)
         else:
-            last_updated = parser.parse(
-                last_updated_database_result.data[0]["last_update"]
-            ).replace(tzinfo=None)
+            last_updated = datetime.strptime(last_update_object["data"]["Get"]["LastModified"][0]['last_update'],
+                                             "%Y-%m-%dT%H:%M:%S.%f")
 
         current_time = datetime.now()
         all_changed_data = data_preprocessor.load_preprocessed_data(
@@ -100,34 +106,40 @@ class DocumentEmbedder:
         )
 
         # identify names and add name-tags before chunking and translation
-        all_changed_data = self.identify_names(all_changed_data)
+        # all_changed_data = self.identify_names(all_changed_data)
 
         # transform long entries into multiple chunks and translation to english
         all_changed_data = transform_text_to_chunks(all_changed_data)
-
+        print(self.weaviate_client.query.get("Embeddings", ["type_id", "text"]).do().items())
         if len(all_changed_data) != 0:
-            ids = {data.id for data in all_changed_data}
-            self.supabase.rpc(
-                "delete_old_embeddings", {"ids": list(ids), "delete_type": typ.value}
-            ).execute()
 
+            ids = {data.id for data in all_changed_data}
+            for type_id in ids:
+                result = self.weaviate_client.batch.delete_objects("Embeddings",
+                                                                   where={"path": ["type_id"],
+                                                                          "operator": "Equal",
+                                                                          "valueString": type_id})
+                print(json.dumps(result, indent=4))
             self.vector_store.add_texts(
                 [data.text for data in all_changed_data],
                 [
                     {
-                        "last_changed": data.last_changed.isoformat(),
+                        "type_id": data.id,
                         "type": typ.value,
-                        "id": data.id,
+                        "last_changed": data.last_changed.isoformat(),
+                        "text": data.text,
                     }
                     for data in all_changed_data
                 ],
             )
 
-        self.supabase.table("last_update_per_data_typ").upsert(
-            {"type": typ.value, "last_update": current_time.isoformat()},
-        ).execute()
+            self.weaviate_client.data_object.create(
+                {"type": typ.value, "last_update": current_time.isoformat()}, 'LastModified')
 
-    def identify_names(self, all_data: list[DataInformation]) -> list[DataInformation]:
+            print(self.weaviate_client.query.get("Embeddings", ["type_id", "text"]).do().items())
+            print(self.weaviate_client.query.get("LastModified", ["lastupdate", "type"]).do().items())
+
+    def identify_names(self, all_data: List[DataInformation]) -> List[DataInformation]:
         """
         Method identifies names with spacy and adds name tags to the text
         :param all_data:  which is the List of DataInformation that gets send to the chunking

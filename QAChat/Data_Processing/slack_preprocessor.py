@@ -9,12 +9,12 @@ from typing import List
 from dotenv import load_dotenv
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
-from supabase.client import create_client
+import weaviate
 from get_tokens import get_tokens_path
-
+from weaviate.embedded import EmbeddedOptions
 from QAChat.Data_Processing.data_preprocessor import DataPreprocessor
 from QAChat.Data_Processing.document_embedder import DataInformation, DataSource
-
+from QAChat.Common.init_db import init_db
 
 load_dotenv(get_tokens_path())
 SLACK_TOKEN = os.getenv("SLACK_TOKEN")
@@ -28,9 +28,9 @@ class SlackPreprocessor(DataPreprocessor):
         self.conversation_store = {}
         self.conversation_history = []
         self.count_found_messages = 0
-        self.supabase = create_client(
-            os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
-        )
+        self.weaviate = weaviate.Client(embedded_options=EmbeddedOptions())
+        init_db(self.weaviate)
+
 
     def __map_users(self):
         for message in self.conversation_history:
@@ -92,15 +92,12 @@ class SlackPreprocessor(DataPreprocessor):
                 print("Error creating conversation: {}".format(e))
 
     def load_preprocessed_data(
-        self, end_of_timeframe: datetime, start_of_timeframe: datetime
+            self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
         self.fetch_conversations()
         oldest = start_of_timeframe.timestamp()
         already_loaded_ids = (
-            self.supabase.table("slack_loaded_channels")
-            .select("channel_id")
-            .execute()
-            .data
+            self.weaviate.query.get("LoadedChannels", ["channel_id"]).do().items()
         )
 
         new_channels = [
@@ -120,10 +117,7 @@ class SlackPreprocessor(DataPreprocessor):
         ]
 
         for channel_id, channel_name in zip(new_channels, new_channels_names):
-            self.supabase.table("slack_loaded_channels").insert(
-                {"channel_id": channel_id, "channel_name": channel_name}
-            ).execute()
-
+            self.weaviate.data_object.create({"channel_id": channel_id, "channel_name": channel_name}, "LoadedChannels")
         self.__map_users()
 
         raw_data = []

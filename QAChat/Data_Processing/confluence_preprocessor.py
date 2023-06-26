@@ -9,7 +9,8 @@ from typing import List
 import re
 
 import requests
-import supabase
+from weaviate.embedded import EmbeddedOptions
+import weaviate
 from atlassian import Confluence
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -19,7 +20,7 @@ from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
 from pdf_reader import PDFReader
 from get_tokens import get_tokens_path
-
+from QAChat.Common.init_db import init_db
 
 load_dotenv(get_tokens_path())
 
@@ -27,10 +28,6 @@ load_dotenv(get_tokens_path())
 CONFLUENCE_ADDRESS = os.getenv("CONFLUENCE_ADDRESS")
 CONFLUENCE_USERNAME = os.getenv("CONFLUENCE_USERNAME")
 CONFLUENCE_TOKEN = os.getenv("CONFLUENCE_TOKEN")
-
-# Get Supabase API credentials from environment variables
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
 
 
 class ConfluencePreprocessor(DataPreprocessor):
@@ -47,20 +44,16 @@ class ConfluencePreprocessor(DataPreprocessor):
         self.all_page_information = []
         self.restricted_pages = []
         self.restricted_spaces = []
-        self.supabase_client = supabase.create_client(
-            SUPABASE_URL, SUPABASE_SERVICE_KEY
-        )
+        self.weaviate_client = weaviate.Client(embedded_options=EmbeddedOptions())
         self.last_update_lookup = dict()
         self.chunk_id_lookup_table = dict()
         self.g_docs_proc = GoogleDocPreProcessor()
+        init_db(self.weaviate_client)
 
     def init_blacklist(self):
         # Retrieve blacklist data from Supabase table
         blacklist = (
-            self.supabase_client.table("confluence_blacklist")
-            .select("*")
-            .execute()
-            .data
+            self.weaviate_client.query.get("BlackList", ["identifier", "note"]).do().items()
         )
 
         # Extract restricted spaces and restricted pages from the blacklist data
@@ -200,7 +193,7 @@ class ConfluencePreprocessor(DataPreprocessor):
             pdf_bytes = self.g_docs_proc.export_pdf(google_drive_id)
 
             # get content from pdf
-            pdf_content += read_pdf(pdf_bytes) + " "
+            pdf_content += self.pdf_reader.read_pdf(pdf_bytes) + " "
 
         return pdf_content
 
@@ -232,7 +225,7 @@ class ConfluencePreprocessor(DataPreprocessor):
                 for attachment in attachments:
                     if "application/pdf" == attachment["extensions"]["mediaType"]:
                         download_link = (
-                            self.confluence.url + attachment["_links"]["download"]
+                                self.confluence.url + attachment["_links"]["download"]
                         )
                         r = requests.get(
                             download_link,
@@ -246,7 +239,7 @@ class ConfluencePreprocessor(DataPreprocessor):
         return pdf_content
 
     def load_preprocessed_data(
-        self, end_of_timeframe: datetime, start_of_timeframe: datetime
+            self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
         self.init_lookup_tables()
         self.init_blacklist()
@@ -258,18 +251,14 @@ class ConfluencePreprocessor(DataPreprocessor):
 
     def init_lookup_tables(self):
         # get the metadata of type Confluence from DB
-        data = (
-            self.supabase_client.table("data_embedding")
-            .select("metadata")
-            .eq("metadata->>type", "confluence")
-            .execute()
-            .data
-        )
+        data = self.weaviate_client.query.get("Embeddings", ["type"]).with_where({"path": ["type"],
+                                                                                  "operator": "Equal",
+                                                                                  "valueString": "confluence"}).do().items()
 
         for i in data:
-            page_id = i["metadata"]["id"].split("_")[0]
-            chunk_id = i["metadata"]["id"].split("_")[1]
-            last_update = i["metadata"]["last_changed"]
+            page_id = i["type_id"].split("_")[0]
+            chunk_id = i["type_id"].split("_")[1]
+            last_update = i["last_changed"]
 
             # add each ID in dict last_update_lookup
             if page_id not in self.last_update_lookup:
@@ -289,14 +278,14 @@ class ConfluencePreprocessor(DataPreprocessor):
         for i in self.all_page_information:
             if i.id in self.last_update_lookup:  # if page is already in DB
                 if (
-                    i.last_changed > self.last_update_lookup[i.id]
+                        i.last_changed > self.last_update_lookup[i.id]
                 ):  # if there is a change in the page
                     self.remove_from_db(i.id)  # remove from DB
                     self.last_update_lookup[
                         i.id
                     ] = None  # make the dict's entry None -> To detect remove page
                 elif (
-                    i.last_changed == self.last_update_lookup[i.id]
+                        i.last_changed == self.last_update_lookup[i.id]
                 ):  # if no change in the page
                     to_delete.append(i)  # append in the list
                     self.last_update_lookup[
@@ -310,16 +299,16 @@ class ConfluencePreprocessor(DataPreprocessor):
 
         for i in self.last_update_lookup:
             if (
-                self.last_update_lookup[i] is not None
+                    self.last_update_lookup[i] is not None
             ):  # check which entry is not None -> Page is deleted from website
                 self.remove_from_db(i)  # remove it from DB
 
     def remove_from_db(self, id):
         # loop over max number in chunk id and remove all the rows from DB
         for i in range(0, int(self.chunk_id_lookup_table[id]) + 1):
-            self.supabase_client.table("data_embedding").delete().eq(
-                "metadata->>id", str(id) + "_" + str(i)
-            ).execute()
+            self.weaviate_client.batch.delete_objects("Embeddings", {"path": ["type_id"],
+                                                                     "operator": "Equal",
+                                                                     "valueString": str(id) + "_" + str(i)})
 
 
 if __name__ == "__main__":

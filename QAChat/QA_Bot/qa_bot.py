@@ -9,8 +9,9 @@ import os
 from huggingface_hub import hf_hub_download
 from langchain import LlamaCpp, PromptTemplate
 from langchain.embeddings import HuggingFaceInstructEmbeddings
-from langchain.vectorstores import SupabaseVectorStore
-from supabase import create_client
+from langchain.vectorstores import Weaviate
+from weaviate.embedded import EmbeddedOptions
+import weaviate
 from dotenv import load_dotenv
 from typing import List
 
@@ -33,14 +34,12 @@ class QABot:
 
         self.database = database
         if database is None:
-            client = create_client(
-                os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
-            )
-            self.database = SupabaseVectorStore(
+            client = weaviate.Client(embedded_options=EmbeddedOptions())
+            self.database = Weaviate(
                 client=client,
                 embedding=self.embeddings,
-                table_name="data_embedding",
-                query_name="match_data",
+                index_name="Embeddings",
+                text_key="original",
             )
         self.model = model
         if model is None:
