@@ -54,6 +54,8 @@ class DocumentEmbedder:
 
         init_db(self.weaviate_client)
 
+        self.vector_store = Weaviate(self.weaviate_client, embedding=self.embedder, index_name="Embeddings", text_key="original")
+
         # name identification
         '''
         spacy.cli.download("xx_ent_wiki_sm")
@@ -119,7 +121,6 @@ class DocumentEmbedder:
                                                                    where={"path": ["type_id"],
                                                                           "operator": "Equal",
                                                                           "valueString": type_id})
-                print(json.dumps(result, indent=4))
             self.vector_store.add_texts(
                 [data.text for data in all_changed_data],
                 [
@@ -137,7 +138,7 @@ class DocumentEmbedder:
                 {"type": typ.value, "last_update": current_time.isoformat()}, 'LastModified')
 
             print(self.weaviate_client.query.get("Embeddings", ["type_id", "text"]).do().items())
-            print(self.weaviate_client.query.get("LastModified", ["lastupdate", "type"]).do().items())
+            print(self.weaviate_client.query.get("LastModified", ["last_update", "type"]).do().items())
 
     def identify_names(self, all_data: List[DataInformation]) -> List[DataInformation]:
         """
@@ -145,7 +146,6 @@ class DocumentEmbedder:
         :param all_data:  which is the List of DataInformation that gets send to the chunking
         :return: the input list with added name tags to persons
         """
-
         for data in all_data:
             # identify language of text
             language = self.translator.translate_to(

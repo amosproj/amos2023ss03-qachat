@@ -97,7 +97,7 @@ class SlackPreprocessor(DataPreprocessor):
         self.fetch_conversations()
         oldest = start_of_timeframe.timestamp()
         already_loaded_ids = (
-            self.weaviate.query.get("LoadedChannels", ["channel_id"]).do().items()
+            self.weaviate.query.get("LoadedChannels", ["channel_id"]).do()["data"]["Get"]["LoadedChannels"]
         )
 
         new_channels = [
