@@ -5,18 +5,17 @@
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 
 import os
+from typing import List
 
+from dotenv import load_dotenv
 from huggingface_hub import hf_hub_download
 from langchain import LlamaCpp, PromptTemplate
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase import create_client
-from dotenv import load_dotenv
-from typing import List
 
 from QAChat.Common.deepL_translator import DeepLTranslator
 from get_tokens import get_tokens_path
-from unittest.mock import Mock
 
 
 class QABot:
@@ -51,11 +50,11 @@ class QABot:
             self.translator = DeepLTranslator()
 
     def get_llama_model(
-        self,
-        n_ctx=2048,
-        max_tokens=128,
-        repo_id="TheBloke/wizard-mega-13B-GGML",
-        filename="wizard-mega-13B.ggmlv3.q4_1.bin",
+            self,
+            n_ctx=2048,
+            max_tokens=512,
+            repo_id="TheBloke/wizard-mega-13B-GGML",
+            filename="wizard-mega-13B.ggmlv3.q4_1.bin",
     ):
         path = hf_hub_download(repo_id=repo_id, filename=filename)
 
@@ -65,7 +64,7 @@ class QABot:
             n_ctx=n_ctx,
             max_tokens=max_tokens,
             temperature=0,
-            n_gpu_layers=40,
+            n_gpu_layers=60,
         )
 
     def __answer_question_with_context(self, question: str, context: List[str]) -> str:
