@@ -55,7 +55,7 @@ class ConfluencePreprocessor(DataPreprocessor):
         self.last_update_lookup = dict()
         self.chunk_id_lookup_table = dict()
         self.g_docs_proc = GoogleDocPreProcessor()
-        self.pdf_reder = PDFReader()
+        self.pdf_reader = PDFReader()
 
     def init_blacklist(self):
         # Retrieve blacklist data from Supabase table
@@ -151,7 +151,7 @@ class ConfluencePreprocessor(DataPreprocessor):
             google_doc_content = self.get_content_from_google_drive(urls)
 
             # get content from confluence attachments
-            pdf_content = self.add_content_of_pdf_to_all_page_information(page_id)
+            pdf_content = self.get_content_from_page_attachments(page_id)
 
             # replace consecutive occurrences of \n into one space
             text = re.sub(
@@ -203,11 +203,11 @@ class ConfluencePreprocessor(DataPreprocessor):
             pdf_bytes = self.g_docs_proc.export_pdf(google_drive_id)
 
             # get content from pdf
-            pdf_content += self.pdf_reder.read_pdf(pdf_bytes) + " "
+            pdf_content += self.pdf_reader.read_pdf(pdf_bytes) + " "
 
         return pdf_content
 
-    def add_content_of_pdf_to_all_page_information(self, page_id) -> str:
+    def get_content_from_page_attachments(self, page_id) -> str:
         start = 0
         limit = 100
         attachments = []

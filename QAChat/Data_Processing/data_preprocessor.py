@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import List
 
-from document_embedder import DataInformation
+from QAChat.Data_Processing.document_embedder import DataInformation
 
 
 class DataPreprocessor(ABC):
