@@ -9,8 +9,9 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaIoBaseDownload
 from google_auth_oauthlib.flow import InstalledAppFlow
-
 from QAChat.Data_Processing.pdf_reader import PDFReader
+from google.oauth2 import service_account
+import os
 
 
 class GoogleDocPreProcessor:
@@ -18,14 +19,19 @@ class GoogleDocPreProcessor:
         self.creds = None
 
     def export_pdf(self, real_file_id):
-        if self.creds is None or not self.creds.valid:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                "client_secrets.json", ["https://www.googleapis.com/auth/drive"]
-            )
-            self.creds = flow.run_local_server()
-
+        credentials = "credentials_file.json"
         try:
-            service = build("drive", "v3", credentials=self.creds)
+            with open(credentials) as file:
+                pass
+        except FileNotFoundError:
+            credentials = os.getenv("CREDENTIALS_JSON_FILE")
+
+        if self.creds is None or not self.creds.valid:
+            credentials = service_account.Credentials.from_service_account_file(
+                credentials, scopes=["https://www.googleapis.com/auth/drive"]
+            )
+        try:
+            service = build("drive", "v3", credentials=credentials)
 
             request = service.files().export_media(
                 fileId=real_file_id, mimeType="application/pdf"
@@ -48,11 +54,12 @@ class GoogleDocPreProcessor:
 
 if __name__ == "__main__":
     g_doc_proc = GoogleDocPreProcessor()
+    pdf_reader = PDFReader()
     file_data = g_doc_proc.export_pdf(
         real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs"
     )
-    print(read_pdf(file_data))
+    print(pdf_reader.read_pdf(file_data))
     file_data = g_doc_proc.export_pdf(
         real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs"
     )
-    print(read_pdf(file_data))
+    print(pdf_reader.read_pdf(file_data))
