@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 from QAChat.Data_Processing.google_doc_preprocessor import GoogleDocPreProcessor
 from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
-from pdf_reader import PDFReader
+from QAChat.Data_Processing.pdf_reader import PDFReader
 from get_tokens import get_tokens_path
 
 
@@ -31,6 +31,8 @@ CONFLUENCE_TOKEN = os.getenv("CONFLUENCE_TOKEN")
 # Get Supabase API credentials from environment variables
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
+
+print(SUPABASE_URL)
 
 
 class ConfluencePreprocessor(DataPreprocessor):
@@ -53,6 +55,7 @@ class ConfluencePreprocessor(DataPreprocessor):
         self.last_update_lookup = dict()
         self.chunk_id_lookup_table = dict()
         self.g_docs_proc = GoogleDocPreProcessor()
+        self.pdf_reder = PDFReader()
 
     def init_blacklist(self):
         # Retrieve blacklist data from Supabase table
@@ -200,7 +203,7 @@ class ConfluencePreprocessor(DataPreprocessor):
             pdf_bytes = self.g_docs_proc.export_pdf(google_drive_id)
 
             # get content from pdf
-            pdf_content += read_pdf(pdf_bytes) + " "
+            pdf_content += self.pdf_reder.read_pdf(pdf_bytes) + " "
 
         return pdf_content
 
