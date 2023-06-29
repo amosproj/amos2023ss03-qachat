@@ -61,7 +61,12 @@ class DocumentEmbedder:
 
         init_db(self.weaviate_client)
 
-        self.vector_store = Weaviate(self.weaviate_client, embedding=self.embedder, index_name="Embeddings", text_key="original")
+        self.vector_store = Weaviate(
+            self.weaviate_client,
+            embedding=self.embedder,
+            index_name="Embeddings",
+            text_key="original",
+        )
 
         # name identification
         spacy.cli.download("xx_ent_wiki_sm")
@@ -94,18 +99,25 @@ class DocumentEmbedder:
             "valueString": typ.value,
         }
 
-        print(self.weaviate_client.query.get("Embeddings", ["type_id", "text"]).do().items())
+        print(
+            self.weaviate_client.query.get("Embeddings", ["type_id", "text"])
+            .do()
+            .items()
+        )
 
-        last_update_object = (self.weaviate_client.query
-                              .get("LastModified", ["last_update"])
-                              .with_where(where_filter_last_update)
-                              .do())
+        last_update_object = (
+            self.weaviate_client.query.get("LastModified", ["last_update"])
+            .with_where(where_filter_last_update)
+            .do()
+        )
 
         if len(last_update_object["data"]["Get"]["LastModified"]) == 0:
             last_updated = datetime(1970, 1, 1)
         else:
-            last_updated = datetime.strptime(last_update_object["data"]["Get"]["LastModified"][0]['last_update'],
-                                             "%Y-%m-%dT%H:%M:%S.%f")
+            last_updated = datetime.strptime(
+                last_update_object["data"]["Get"]["LastModified"][0]["last_update"],
+                "%Y-%m-%dT%H:%M:%S.%f",
+            )
 
         current_time = datetime.now()
         all_changed_data = data_preprocessor.load_preprocessed_data(
@@ -117,15 +129,22 @@ class DocumentEmbedder:
 
         # transform long entries into multiple chunks and translation to english
         all_changed_data = transform_text_to_chunks(all_changed_data)
-        print(self.weaviate_client.query.get("Embeddings", ["type_id", "text"]).do().items())
+        print(
+            self.weaviate_client.query.get("Embeddings", ["type_id", "text"])
+            .do()
+            .items()
+        )
         if len(all_changed_data) != 0:
-
             ids = {data.id for data in all_changed_data}
             for type_id in ids:
-                result = self.weaviate_client.batch.delete_objects("Embeddings",
-                                                                   where={"path": ["type_id"],
-                                                                          "operator": "Equal",
-                                                                          "valueString": type_id})
+                result = self.weaviate_client.batch.delete_objects(
+                    "Embeddings",
+                    where={
+                        "path": ["type_id"],
+                        "operator": "Equal",
+                        "valueString": type_id,
+                    },
+                )
             self.vector_store.add_texts(
                 [data.text for data in all_changed_data],
                 [
@@ -140,10 +159,20 @@ class DocumentEmbedder:
             )
 
             self.weaviate_client.data_object.create(
-                {"type": typ.value, "last_update": current_time.isoformat()}, 'LastModified')
+                {"type": typ.value, "last_update": current_time.isoformat()},
+                "LastModified",
+            )
 
-            print(self.weaviate_client.query.get("Embeddings", ["type_id", "text"]).do().items())
-            print(self.weaviate_client.query.get("LastModified", ["last_update", "type"]).do().items())
+            print(
+                self.weaviate_client.query.get("Embeddings", ["type_id", "text"])
+                .do()
+                .items()
+            )
+            print(
+                self.weaviate_client.query.get("LastModified", ["last_update", "type"])
+                .do()
+                .items()
+            )
 
     def identify_names(self, all_data: List[DataInformation]) -> List[DataInformation]:
         """

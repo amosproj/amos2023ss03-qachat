@@ -31,7 +31,6 @@ class SlackPreprocessor(DataPreprocessor):
         self.weaviate = weaviate.Client(embedded_options=EmbeddedOptions())
         init_db(self.weaviate)
 
-
     def __map_users(self):
         for message in self.conversation_history:
             try:
@@ -92,13 +91,13 @@ class SlackPreprocessor(DataPreprocessor):
                 print("Error creating conversation: {}".format(e))
 
     def load_preprocessed_data(
-            self, end_of_timeframe: datetime, start_of_timeframe: datetime
+        self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
         self.fetch_conversations()
         oldest = start_of_timeframe.timestamp()
-        already_loaded_ids = (
-            self.weaviate.query.get("LoadedChannels", ["channel_id"]).do()["data"]["Get"]["LoadedChannels"]
-        )
+        already_loaded_ids = self.weaviate.query.get(
+            "LoadedChannels", ["channel_id"]
+        ).do()["data"]["Get"]["LoadedChannels"]
 
         new_channels = [
             channel
@@ -117,7 +116,10 @@ class SlackPreprocessor(DataPreprocessor):
         ]
 
         for channel_id, channel_name in zip(new_channels, new_channels_names):
-            self.weaviate.data_object.create({"channel_id": channel_id, "channel_name": channel_name}, "LoadedChannels")
+            self.weaviate.data_object.create(
+                {"channel_id": channel_id, "channel_name": channel_name},
+                "LoadedChannels",
+            )
         self.__map_users()
 
         raw_data = []

@@ -7,8 +7,8 @@ def init_db(weaviate_client):
                     {"name": "type_id", "dataType": ["string"]},
                     {"name": "type", "dataType": ["string"]},
                     {"name": "last_changed", "dataType": ["string"]},
-                    {"name": "text", "dataType": ["string"]}
-                ]
+                    {"name": "text", "dataType": ["string"]},
+                ],
             }
         )
     if not weaviate_client.schema.exists("LastModified"):
@@ -17,8 +17,8 @@ def init_db(weaviate_client):
                 "class": "LastModified",
                 "properties": [
                     {"name": "type", "dataType": ["string"]},
-                    {"name": "last_update", "dataType": ["string"]}
-                ]
+                    {"name": "last_update", "dataType": ["string"]},
+                ],
             }
         )
 
@@ -29,7 +29,7 @@ def init_db(weaviate_client):
                 "properties": [
                     {"name": "identifier", "dataType": ["string"]},
                     {"name": "note", "dataType": ["string"]},
-                ]
+                ],
             }
         )
 
@@ -40,7 +40,7 @@ def init_db(weaviate_client):
                 "properties": [
                     {"name": "channel_id", "dataType": ["string"]},
                     {"name": "channel_name", "dataType": ["string"]},
-                ]
+                ],
             }
         )
 
@@ -50,4 +50,6 @@ def clear_db(weaviate_client):
 
 
 def add_entry_to_black_list(weaviate_client, identifier, note=None):
-    return weaviate_client.data_object.create({"identifier": identifier, "note": note}, "BlackList")
+    return weaviate_client.data_object.create(
+        {"identifier": identifier, "note": note}, "BlackList"
+    )
