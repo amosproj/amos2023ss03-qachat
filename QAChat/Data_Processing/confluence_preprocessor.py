@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 from QAChat.Data_Processing.google_doc_preprocessor import GoogleDocPreProcessor
 from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
-from pdf_reader import PDFReader
+from QAChat.Data_Processing.pdf_reader import PDFReader
 from get_tokens import get_tokens_path
 from QAChat.Common.init_db import init_db
 
@@ -28,6 +28,7 @@ load_dotenv(get_tokens_path())
 CONFLUENCE_ADDRESS = os.getenv("CONFLUENCE_ADDRESS")
 CONFLUENCE_USERNAME = os.getenv("CONFLUENCE_USERNAME")
 CONFLUENCE_TOKEN = os.getenv("CONFLUENCE_TOKEN")
+
 
 
 class ConfluencePreprocessor(DataPreprocessor):
@@ -48,7 +49,9 @@ class ConfluencePreprocessor(DataPreprocessor):
         self.last_update_lookup = dict()
         self.chunk_id_lookup_table = dict()
         self.g_docs_proc = GoogleDocPreProcessor()
+
         init_db(self.weaviate_client)
+        self.pdf_reader = PDFReader()
 
     def init_blacklist(self):
         # Retrieve blacklist data from Supabase table
@@ -141,7 +144,7 @@ class ConfluencePreprocessor(DataPreprocessor):
             google_doc_content = self.get_content_from_google_drive(urls)
 
             # get content from confluence attachments
-            pdf_content = self.add_content_of_pdf_to_all_page_information(page_id)
+            pdf_content = self.get_content_from_page_attachments(page_id)
 
             # replace consecutive occurrences of \n into one space
             text = re.sub(
@@ -197,7 +200,7 @@ class ConfluencePreprocessor(DataPreprocessor):
 
         return pdf_content
 
-    def add_content_of_pdf_to_all_page_information(self, page_id) -> str:
+    def get_content_from_page_attachments(self, page_id) -> str:
         start = 0
         limit = 100
         attachments = []
