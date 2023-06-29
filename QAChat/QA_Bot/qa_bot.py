@@ -47,11 +47,11 @@ class QABot:
             self.model = self.get_llama_model()
 
     def get_llama_model(
-        self,
-        n_ctx=2048,
-        max_tokens=128,
-        repo_id="TheBloke/wizard-mega-13B-GGML",
-        filename="wizard-mega-13B.ggmlv3.q4_1.bin",
+            self,
+            n_ctx=2048,
+            max_tokens=128,
+            repo_id="TheBloke/wizard-mega-13B-GGML",
+            filename="wizard-mega-13B.ggmlv3.q4_1.bin",
     ):
         path = hf_hub_download(repo_id=repo_id, filename=filename)
 
@@ -130,9 +130,10 @@ class QABot:
 
         Note: The actual return value will depend on the contents of your database.
         """
+        embedding = self.embeddings.embed_query(question)
         return [
             context.page_content
-            for context in self.database.similarity_search(question, k=3)
+            for context in self.database.similarity_search_by_vector(embedding, k=3)
         ]
 
     def translate_text(self, question, language="EN-US"):
