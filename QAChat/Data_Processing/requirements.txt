@@ -19,3 +19,4 @@ pydrive2
 google-auth
 google-auth-oauthlib
 python-dotenv
+weaviate-client

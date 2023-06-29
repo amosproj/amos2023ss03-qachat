@@ -53,7 +53,7 @@ class ConfluencePreprocessor(DataPreprocessor):
     def init_blacklist(self):
         # Retrieve blacklist data from Supabase table
         blacklist = (
-            self.weaviate_client.query.get("BlackList", ["identifier", "note"]).do().items()
+            self.weaviate_client.query.get("BlackList", ["identifier", "note"]).do()["data"]["Get"]["BlackList"]
         )
 
         # Extract restricted spaces and restricted pages from the blacklist data
@@ -251,9 +251,11 @@ class ConfluencePreprocessor(DataPreprocessor):
 
     def init_lookup_tables(self):
         # get the metadata of type Confluence from DB
-        data = self.weaviate_client.query.get("Embeddings", ["type"]).with_where({"path": ["type"],
-                                                                                  "operator": "Equal",
-                                                                                  "valueString": "confluence"}).do().items()
+        data = \
+        self.weaviate_client.query.get("Embeddings", ["type", "type_id", "last_changed"]).with_where({"path": ["type"],
+                                                                                                      "operator": "Equal",
+                                                                                                      "valueString": "confluence"}).do()[
+            "data"]["Get"]["Embeddings"]
 
         for i in data:
             page_id = i["type_id"].split("_")[0]
