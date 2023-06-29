@@ -52,10 +52,16 @@ class DocumentEmbedder:
 
         self.weaviate_client = weaviate.Client(embedded_options=EmbeddedOptions())
 
+        self.vector_store = Weaviate(
+            client=self.weaviate_client,
+            embedding=self.embedder,
+            index_name="Embeddings",
+            text_key="original",
+        )
+
         init_db(self.weaviate_client)
 
         # name identification
-        '''
         spacy.cli.download("xx_ent_wiki_sm")
         spacy.load("xx_ent_wiki_sm")
         self.muulti_lang_nlp = xx_ent_wiki_sm.load()
@@ -63,7 +69,6 @@ class DocumentEmbedder:
         spacy.load("de_core_news_sm")
         self.de_lang_nlp = de_core_news_sm.load()
         self.translator = DeepLTranslator()
-        '''
 
     def store_information_in_database(self, typ: DataSource):
         if typ == DataSource.DUMMY:

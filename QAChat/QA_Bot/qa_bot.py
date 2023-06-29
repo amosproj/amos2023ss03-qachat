@@ -17,6 +17,7 @@ from typing import List
 
 from QAChat.Common.deepL_translator import DeepLTranslator
 from get_tokens import get_tokens_path
+from QAChat.Common.bucket_managing import download_database
 
 
 class QABot:
@@ -25,7 +26,7 @@ class QABot:
         self.context = None
         self.use_gpu = use_gpu
         load_dotenv(get_tokens_path())
-
+        download_database()
         self.embeddings = embeddings
         if embeddings is None:
             self.embeddings = HuggingFaceInstructEmbeddings(
