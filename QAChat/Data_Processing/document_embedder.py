@@ -56,7 +56,7 @@ class DocumentEmbedder:
             client=self.weaviate_client,
             embedding=self.embedder,
             index_name="Embeddings",
-            text_key="original",
+            text_key="text",
         )
 
         init_db(self.weaviate_client)

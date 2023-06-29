@@ -40,7 +40,7 @@ class QABot:
                 client=client,
                 embedding=self.embeddings,
                 index_name="Embeddings",
-                text_key="original",
+                text_key="text",
             )
         self.model = model
         if model is None:
