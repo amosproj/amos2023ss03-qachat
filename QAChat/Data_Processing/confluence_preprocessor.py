@@ -18,8 +18,6 @@ from QAChat.Data_Processing.google_doc_preprocessor import GoogleDocPreProcessor
 from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
 from QAChat.Data_Processing.pdf_reader import PDFReader
-from get_tokens import get_tokens_path
-
 
 load_dotenv("../tokens.env")
 
