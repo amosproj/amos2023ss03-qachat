@@ -154,10 +154,12 @@ class ConfluencePreprocessor(DataPreprocessor):
 
             # replace consecutive occurrences of \n into one space
             text = re.sub(
-                r"\n+", " ", text
-                             # commented out because we don't have access tho client's google drive
-                             # + " " + google_doc_content
-                             + " " + pdf_content
+                r"\n+",
+                " ",
+                text
+                # commented out because we don't have access tho client's google drive
+                # + " " + google_doc_content
+                + " " + pdf_content,
             )
 
             # Add Page content to list of DataInformation
@@ -237,7 +239,7 @@ class ConfluencePreprocessor(DataPreprocessor):
                 for attachment in attachments:
                     if "application/pdf" == attachment["extensions"]["mediaType"]:
                         download_link = (
-                                self.confluence.url + attachment["_links"]["download"]
+                            self.confluence.url + attachment["_links"]["download"]
                         )
                         r = requests.get(
                             download_link,
@@ -251,7 +253,7 @@ class ConfluencePreprocessor(DataPreprocessor):
         return pdf_content
 
     def load_preprocessed_data(
-            self, end_of_timeframe: datetime, start_of_timeframe: datetime
+        self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
         self.init_lookup_tables()
         self.init_blacklist()
@@ -294,14 +296,14 @@ class ConfluencePreprocessor(DataPreprocessor):
         for i in self.all_page_information:
             if i.id in self.last_update_lookup:  # if page is already in DB
                 if (
-                        i.last_changed > self.last_update_lookup[i.id]
+                    i.last_changed > self.last_update_lookup[i.id]
                 ):  # if there is a change in the page
                     self.remove_from_db(i.id)  # remove from DB
                     self.last_update_lookup[
                         i.id
                     ] = None  # make the dict's entry None -> To detect remove page
                 elif (
-                        i.last_changed == self.last_update_lookup[i.id]
+                    i.last_changed == self.last_update_lookup[i.id]
                 ):  # if no change in the page
                     to_delete.append(i)  # append in the list
                     self.last_update_lookup[
@@ -315,7 +317,7 @@ class ConfluencePreprocessor(DataPreprocessor):
 
         for i in self.last_update_lookup:
             if (
-                    self.last_update_lookup[i] is not None
+                self.last_update_lookup[i] is not None
             ):  # check which entry is not None -> Page is deleted from website
                 self.remove_from_db(i)  # remove it from DB
 
