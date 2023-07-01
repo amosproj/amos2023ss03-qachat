@@ -21,7 +21,7 @@ from QAChat.Data_Processing.pdf_reader import PDFReader
 from get_tokens import get_tokens_path
 
 
-load_dotenv(get_tokens_path())
+load_dotenv("../tokens.env")
 
 # Get Confluence API credentials from environment variables
 CONFLUENCE_ADDRESS = os.getenv("CONFLUENCE_ADDRESS")
