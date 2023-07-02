@@ -17,14 +17,14 @@ from get_tokens import get_tokens_path
 
 class QABot:
     def __init__(
-            self,
-            embeddings=None,
-            database=None,
-            model=None,
-            translator=None,
-            embeddings_gpu=False,
-            repo_id="TheBloke/WizardLM-13B-V1.0-Uncensored-GGML",
-            filename="wizardlm-13b-v1.0-uncensored.ggmlv3.q5_0.bin",
+        self,
+        embeddings=None,
+        database=None,
+        model=None,
+        translator=None,
+        embeddings_gpu=False,
+        repo_id="TheBloke/WizardLM-13B-V1.0-Uncensored-GGML",
+        filename="wizardlm-13b-v1.0-uncensored.ggmlv3.q5_0.bin",
     ):
         self.answer = None
         self.context = None
@@ -57,11 +57,11 @@ class QABot:
             self.translator = DeepLTranslator()
 
     def get_llama_model(
-            self,
-            repo_id,
-            filename,
-            n_ctx=2048,
-            max_tokens=512,
+        self,
+        repo_id,
+        filename,
+        n_ctx=2048,
+        max_tokens=512,
     ):
         path = hf_hub_download(repo_id=repo_id, filename=filename)
 
@@ -94,9 +94,7 @@ class QABot:
         'The sky is blue during a clear day.'
         """
 
-        context_str = "\n\n".join(
-            f"{x}" for i, x in enumerate(context)
-        )
+        context_str = "\n\n".join(f"{x}" for i, x in enumerate(context))
 
         template = (
             "You are a chatbot, your primary task is to help people by answering their questions. Keep your responses short, precise, and directly related to the user's question, using the following context to guide your answer:\n"
