@@ -4,10 +4,7 @@
 # SPDX-FileCopyrightText: 2023 Jesse Palarus
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 
-import os
-from typing import List
 
-from dotenv import load_dotenv
 from huggingface_hub import hf_hub_download
 from langchain import LlamaCpp, PromptTemplate
 from langchain.embeddings import HuggingFaceInstructEmbeddings
@@ -20,12 +17,14 @@ from get_tokens import get_tokens_path
 
 class QABot:
     def __init__(
-        self,
-        embeddings=None,
-        database=None,
-        model=None,
-        translator=None,
-        embeddings_gpu=False,
+            self,
+            embeddings=None,
+            database=None,
+            model=None,
+            translator=None,
+            embeddings_gpu=False,
+            repo_id="TheBloke/WizardLM-13B-V1.0-Uncensored-GGML",
+            filename="wizardlm-13b-v1.0-uncensored.ggmlv3.q5_0.bin",
     ):
         self.answer = None
         self.context = None
@@ -51,18 +50,18 @@ class QABot:
             )
         self.model = model
         if model is None:
-            self.model = self.get_llama_model()
+            self.model = self.get_llama_model(repo_id=repo_id, filename=filename)
 
         self.translator = translator
         if translator is None:
             self.translator = DeepLTranslator()
 
     def get_llama_model(
-        self,
-        n_ctx=2048,
-        max_tokens=512,
-        repo_id="TheBloke/wizard-mega-13B-GGML",
-        filename="wizard-mega-13B.ggmlv3.q4_0.bin",
+            self,
+            repo_id,
+            filename,
+            n_ctx=2048,
+            max_tokens=512,
     ):
         path = hf_hub_download(repo_id=repo_id, filename=filename)
 
@@ -72,10 +71,11 @@ class QABot:
             n_ctx=n_ctx,
             max_tokens=max_tokens,
             temperature=0,
-            n_gpu_layers=60,
+            n_gpu_layers=100,
+            repeat_penalty=0.9,
         )
 
-    def __answer_question_with_context(self, question: str, context: List[str]) -> str:
+    def answer_question_with_context(self, question: str, context: List[str]) -> str:
         """
         This method takes a question and a list of context strings as input, and attempts to answer the question using the provided context.
 
@@ -95,26 +95,22 @@ class QABot:
         """
 
         context_str = "\n\n".join(
-            f"### INFORMATION: {x}" for i, x in enumerate(context)
+            f"{x}" for i, x in enumerate(context)
         )
 
         template = (
-            "### Instruction: You are a chatbot helping other people to answer questions."
-            "You should answer short and accurately and only answer the question from the user and nothing else.\n"
-            "To answer the question you are provided with the following information:\n"
+            "You are a chatbot, your primary task is to help people by answering their questions. Keep your responses short, precise, and directly related to the user's question, using the following context to guide your answer:\n"
             "{context_str}\n\n"
-            "### Instruction: It is really important to answer the question correctly, and only with the context you have.\n"
-            "Please also filter the context so you only answer with the necessary information.\n"
-            "Please note that you are also not allowed to made up new information.\n"
-            "If the required information to answer the question is not given in the context or you are not sure, you should say that you are not sure."
+            "Try your best to answer based on the given context, and avoid creating new information. If the context does not provide enough details to formulate a response, or if you are unsure, kindly state that you can't provide a certain answer.\n"
             "\n\n"
-            "### USER: {question}\n\n"
-            "### ASSISTANT:"
+            "USER: {question}"
+            "ASSISTANT:"
         )
         prompt = PromptTemplate(
             template=template, input_variables=["question", "context_str"]
         )
 
+        print(prompt.format_prompt(question=question, context_str=context_str))
         answer = self.model.generate_prompt(
             [
                 prompt.format_prompt(question=question, context_str=context_str),
@@ -171,7 +167,7 @@ class QABot:
         print(f"Translation: {translated_question}")
         context = self.__sim_search(translated_question)
         print(f"Context: {context}")
-        answer = self.__answer_question_with_context(translated_question, context)
+        answer = self.answer_question_with_context(translated_question, context)
         print(f"Answer: {answer}")
         answer = self.translate_text(answer, translation.detected_source_lang).text
         print(f"Translated answer: {answer}")
