@@ -4,3 +4,4 @@ slack-sdk
 python-dotenv
 requests
 google-cloud-storage
+prettytable

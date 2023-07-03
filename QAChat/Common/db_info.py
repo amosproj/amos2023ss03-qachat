@@ -5,15 +5,17 @@ import weaviate
 from prettytable import PrettyTable
 import sys
 import os
+import re
 
 LIMIT = 1000
 
 
-def print_index_content(index_name=None, limit=LIMIT):
+def print_index_content(index_name=None, condition=None, limit=LIMIT):
     '''
     A function to print index content as tables or to print all indeces with their properties.
     :param index_name: Name of the class you want to see. Leave as None if you want to see the classes and their properties
     :param limit: Limit the number of entries you want to see.
+    :param condition: a string of the form '<property_index><operator><value>'
     '''
 
     # silences log messages from startup
@@ -36,7 +38,21 @@ def print_index_content(index_name=None, limit=LIMIT):
         properties = []
         for property in index_dict['properties']:
             properties.append(property['name'])
-        result = weaviate_client.query.get(index_name, properties).with_additional(["id vector"]).with_limit(limit).do()
+        if condition is None:
+            result = weaviate_client.query.get(index_name, properties).with_limit(limit).do()
+        else:
+            pattern = r'^(\d+)(And|Or|Equal|NotEqual|GreaterThan|GreaterThanEqual|LessThan|LessThanEqual|Like)(\S+)$'
+            match = re.match(pattern, condition)
+            if match:
+                condition_tuple = match.groups()
+                print(condition_tuple)
+                result = weaviate_client.query.get(index_name, properties).\
+                    with_where({"path": [properties[int(condition_tuple[0])]],
+                                "operator": condition_tuple[1],
+                                "valueString": condition_tuple[2]}).with_limit(limit).do()
+            else:
+                sys.exit("Bad condition format!")
+
         table = PrettyTable()
         table.field_names = properties
         for record in result['data']['Get'][index_name]:
