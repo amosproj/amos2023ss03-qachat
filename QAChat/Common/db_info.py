@@ -15,8 +15,11 @@ def print_index_content(index_name=None, limit=LIMIT):
     :param index_name: Name of the class you want to see. Leave as None if you want to see the classes and their properties
     :param limit: Limit the number of entries you want to see.
     '''
+
+    # silences log messages from startup
     fd = os.open('/dev/null', os.O_WRONLY)
     os.dup2(fd, 2)
+
     weaviate_client = weaviate.Client(embedded_options=EmbeddedOptions())
     index_dict = weaviate_client.schema.get(index_name)
     if index_name is None:
