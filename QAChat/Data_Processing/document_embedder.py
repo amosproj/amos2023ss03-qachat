@@ -61,13 +61,6 @@ class DocumentEmbedder:
 
         init_db(self.weaviate_client)
 
-        self.vector_store = Weaviate(
-            self.weaviate_client,
-            embedding=self.embedder,
-            index_name="Embeddings",
-            text_key="original",
-        )
-
         # name identification
         spacy.cli.download("xx_ent_wiki_sm")
         spacy.load("xx_ent_wiki_sm")

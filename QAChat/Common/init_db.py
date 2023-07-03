@@ -1,4 +1,7 @@
+# SPDX-FileCopyrightText: 2023 Felix Nützel
 def init_db(weaviate_client):
+    global client
+    client = weaviate_client
     if not weaviate_client.schema.exists("Embeddings"):
         weaviate_client.schema.create_class(
             {
