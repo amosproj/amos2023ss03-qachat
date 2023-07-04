@@ -3,7 +3,10 @@
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 # SPDX-FileCopyrightText: 2023 Jesse Palarus
 import os
+import queue
 import re
+import threading
+import time
 
 from threading import Thread
 
@@ -28,20 +31,47 @@ class QAAgent(BaseAgent):
         self.handler = handler or SocketModeHandler(self.app, SLACK_APP_TOKEN)
         self.api_interface = api_interface or QABotAPIInterface()
 
-    def receive_question(self, question, say, channel_id):
+    def post_most_recent_message(self, channel_id, message_queue):
         initial_message = self.client.chat_postMessage(channel=channel_id, text="...")
         initial_ts = initial_message["ts"]
 
-        try:
-            for answer in self.api_interface.request(question):
-                self.client.chat_update(
-                    channel=channel_id,
-                    ts=initial_ts,
-                    text=answer
-                )
-        except Exception as e:
-            say(f"Error: {e}")
-            print(f"Error: {e}")
+        message = message_queue.get()
+        none_received = False
+
+        while True:
+            # Process the current message
+            self.client.chat_update(
+                channel=channel_id,
+                ts=initial_ts,
+                text=message
+            )
+
+            if none_received:
+                break
+
+            # Check for a new message in the queue, replacing the old message if there is one
+            while not message_queue.empty():
+                new_message = message_queue.get()
+                if new_message is None:
+                    none_received = True
+                    break
+                message = new_message
+
+            # If the queue is empty, block until a new message arrives
+            if not none_received and message_queue.empty():
+                message = message_queue.get()
+
+    def receive_question(self, question, say, channel_id):
+        message_queue = queue.Queue()
+
+        thread = threading.Thread(target=self.post_most_recent_message, args=(channel_id, message_queue))
+        thread.start()
+
+        for answer in self.api_interface.request(question):
+            message_queue.put(answer)
+
+        message_queue.put(None)
+        thread.join()
 
     def process_question(self, body, say):
         """

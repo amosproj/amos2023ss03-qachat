@@ -11,6 +11,7 @@ from typing import List
 from dotenv import load_dotenv
 from huggingface_hub import hf_hub_download
 from langchain import LlamaCpp, PromptTemplate
+from langchain.callbacks import StreamingStdOutCallbackHandler
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase import create_client
@@ -122,7 +123,7 @@ class QABot:
                 prompt.format_prompt(question=question, context_str=context_str),
             ],
             stop=["</s>"],
-            callbacks=[handler],
+            callbacks=None if handler is None else [handler],
         )
         return answer.generations[0][0].text.strip()
 
@@ -188,4 +189,4 @@ class QABot:
 
 if __name__ == '__main__':
     qa_bot = QABot()
-    qa_bot.answer_question("What is the color of the sky?")
+    qa_bot.answer_question("What is the color of the sky?", StreamingStdOutCallbackHandler())
