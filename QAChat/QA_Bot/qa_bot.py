@@ -5,6 +5,7 @@
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 
 import os
+from time import time
 from typing import List
 
 from dotenv import load_dotenv
@@ -20,12 +21,12 @@ from get_tokens import get_tokens_path
 
 class QABot:
     def __init__(
-        self,
-        embeddings=None,
-        database=None,
-        model=None,
-        translator=None,
-        embeddings_gpu=False,
+            self,
+            embeddings=None,
+            database=None,
+            model=None,
+            translator=None,
+            embeddings_gpu=False,
     ):
         self.answer = None
         self.context = None
@@ -58,11 +59,11 @@ class QABot:
             self.translator = DeepLTranslator()
 
     def get_llama_model(
-        self,
-        n_ctx=2048,
-        max_tokens=512,
-        repo_id="TheBloke/wizard-mega-13B-GGML",
-        filename="wizard-mega-13B.ggmlv3.q4_0.bin",
+            self,
+            n_ctx=2048,
+            max_tokens=512,
+            repo_id="TheBloke/wizard-mega-13B-GGML",
+            filename="wizard-mega-13B.ggmlv3.q4_0.bin",
     ):
         path = hf_hub_download(repo_id=repo_id, filename=filename)
 
@@ -73,9 +74,10 @@ class QABot:
             max_tokens=max_tokens,
             temperature=0,
             n_gpu_layers=60,
+            n_batch=256,
         )
 
-    def __answer_question_with_context(self, question: str, context: List[str]) -> str:
+    def __answer_question_with_context(self, question: str, context: List[str], handler) -> str:
         """
         This method takes a question and a list of context strings as input, and attempts to answer the question using the provided context.
 
@@ -120,6 +122,7 @@ class QABot:
                 prompt.format_prompt(question=question, context_str=context_str),
             ],
             stop=["</s>"],
+            callbacks=[handler],
         )
         return answer.generations[0][0].text.strip()
 
@@ -149,7 +152,7 @@ class QABot:
     def translate_text(self, question, language="EN-US"):
         return self.translator.translate_to(question, language)
 
-    def answer_question(self, question: str):
+    def answer_question(self, question: str, handler):
         """
         This method takes a user's question as input and returns an appropriate answer.
 
@@ -166,17 +169,23 @@ class QABot:
         """
 
         print(f"Receive Question: {question}")
-        translation = self.translate_text(question)
-        translated_question = translation.text
+        # translation = self.translate_text(question)
+        # translated_question = translation.text
+        translated_question = question
         print(f"Translation: {translated_question}")
         context = self.__sim_search(translated_question)
         print(f"Context: {context}")
-        answer = self.__answer_question_with_context(translated_question, context)
+        answer = self.__answer_question_with_context(translated_question, context, handler)
         print(f"Answer: {answer}")
-        answer = self.translate_text(answer, translation.detected_source_lang).text
+        # answer = self.translate_text(answer, translation.detected_source_lang).text
         print(f"Translated answer: {answer}")
         return {
             "answer": answer,
             "question": question,
             "context": context,
         }
+
+
+if __name__ == '__main__':
+    qa_bot = QABot()
+    qa_bot.answer_question("What is the color of the sky?")
