@@ -24,6 +24,7 @@ from QAChat.Common.init_db import init_db
 
 load_dotenv(get_tokens_path())
 
+
 # Get Confluence API credentials from environment variables
 CONFLUENCE_ADDRESS = os.getenv("CONFLUENCE_ADDRESS")
 CONFLUENCE_USERNAME = os.getenv("CONFLUENCE_USERNAME")
@@ -140,14 +141,20 @@ class ConfluencePreprocessor(DataPreprocessor):
             urls = re.findall(r"https?://docs\.google\.com\S+", text)
 
             # get content from googledoc
-            google_doc_content = self.get_content_from_google_drive(urls)
+            # commented out because we don't have access tho client's google drive
+            # google_doc_content = self.get_content_from_google_drive(urls)
 
             # get content from confluence attachments
             pdf_content = self.get_content_from_page_attachments(page_id)
 
             # replace consecutive occurrences of \n into one space
             text = re.sub(
-                r"\n+", " ", text + " " + google_doc_content + " " + pdf_content
+                r"\n+",
+                " ",
+                text
+                # commented out because we don't have access tho client's google drive
+                # + " " + google_doc_content
+                + " " + pdf_content,
             )
 
             # Add Page content to list of DataInformation
