@@ -6,8 +6,10 @@ from prettytable import PrettyTable
 import sys
 import os
 import re
+import textwrap
 
 LIMIT = 1000
+MAX_TEXT_LENGTH = 150
 
 
 def print_index_content(index_name=None, condition=None, limit=LIMIT):
@@ -45,8 +47,7 @@ def print_index_content(index_name=None, condition=None, limit=LIMIT):
             match = re.match(pattern, condition)
             if match:
                 condition_tuple = match.groups()
-                print(condition_tuple)
-                result = weaviate_client.query.get(index_name, properties).\
+                result = weaviate_client.query.get(index_name, properties). \
                     with_where({"path": [properties[int(condition_tuple[0])]],
                                 "operator": condition_tuple[1],
                                 "valueString": condition_tuple[2]}).with_limit(limit).do()
@@ -57,8 +58,13 @@ def print_index_content(index_name=None, condition=None, limit=LIMIT):
         table.field_names = properties
         for record in result['data']['Get'][index_name]:
             row = [record[property] for property in properties]
-            table.add_row(row)
+            table.add_row([*row[:-1], wrap_text(row[-1], MAX_TEXT_LENGTH)])
+        table.align = 'l'
         print(table)
+
+
+def wrap_text(text, max_width):
+    return "\n".join(textwrap.wrap(text, max_width))
 
 
 if __name__ == "__main__":
