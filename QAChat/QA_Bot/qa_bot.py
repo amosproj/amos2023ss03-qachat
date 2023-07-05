@@ -8,11 +8,15 @@
 from huggingface_hub import hf_hub_download
 from langchain import LlamaCpp, PromptTemplate
 from langchain.embeddings import HuggingFaceInstructEmbeddings
-from langchain.vectorstores import SupabaseVectorStore
-from supabase import create_client
+from langchain.vectorstores import Weaviate
+from weaviate.embedded import EmbeddedOptions
+import weaviate
+from dotenv import load_dotenv
+from typing import List
 
 from QAChat.Common.deepL_translator import DeepLTranslator
 from get_tokens import get_tokens_path
+from QAChat.Common.bucket_managing import download_database
 
 
 class QABot:
@@ -29,7 +33,7 @@ class QABot:
         self.answer = None
         self.context = None
         load_dotenv(get_tokens_path())
-
+        download_database()
         self.embeddings = embeddings
         if embeddings is None:
             self.embeddings = HuggingFaceInstructEmbeddings(
@@ -39,14 +43,12 @@ class QABot:
 
         self.database = database
         if database is None:
-            client = create_client(
-                os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
-            )
-            self.database = SupabaseVectorStore(
+            client = weaviate.Client(embedded_options=EmbeddedOptions())
+            self.database = Weaviate(
                 client=client,
                 embedding=self.embeddings,
-                table_name="data_embedding",
-                query_name="match_data",
+                index_name="Embeddings",
+                text_key="text",
             )
         self.model = model
         if model is None:
@@ -135,9 +137,10 @@ class QABot:
 
         Note: The actual return value will depend on the contents of your database.
         """
+        embedding = self.embeddings.embed_query(question)
         return [
             context.page_content
-            for context in self.database.similarity_search(question, k=3)
+            for context in self.database.similarity_search_by_vector(embedding, k=3)
         ]
 
     def translate_text(self, question, language="EN-US"):

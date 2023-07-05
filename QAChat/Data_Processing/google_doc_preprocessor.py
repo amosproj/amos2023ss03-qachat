@@ -5,10 +5,12 @@
 
 from __future__ import print_function
 import io
+from pdf_reader import PDFReader
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaIoBaseDownload
 from google_auth_oauthlib.flow import InstalledAppFlow
+from QAChat.Common.init_db import init_db
 from QAChat.Data_Processing.pdf_reader import PDFReader
 from google.oauth2 import service_account
 import os
@@ -17,6 +19,7 @@ import os
 class GoogleDocPreProcessor:
     def __init__(self):
         self.creds = None
+        self.pdf_reader = PDFReader()
 
     def export_pdf(self, real_file_id):
         credentials = "credentials_file.json"
@@ -58,8 +61,8 @@ if __name__ == "__main__":
     file_data = g_doc_proc.export_pdf(
         real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs"
     )
-    print(pdf_reader.read_pdf(file_data))
+    print(g_doc_proc.pdf_reader.read_pdf(file_data))
     file_data = g_doc_proc.export_pdf(
         real_file_id="1UxipR3mJfZjdKslGFZrTLmh78pfjKpfW7HxZ4phuWPs"
     )
-    print(pdf_reader.read_pdf(file_data))
+    print(g_doc_proc.pdf_reader.read_pdf(file_data))

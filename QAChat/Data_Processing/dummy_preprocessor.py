@@ -15,7 +15,7 @@ class DummyPreprocessor(DataPreprocessor):
     def load_preprocessed_data(
         self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
-        df = pd.read_csv("../../DummyData/qa.csv", sep=";")
+        df = pd.read_csv("../../DummyData/qa_less_50.csv", sep=";")
         raw_data = []
         for index, row in df.iterrows():
             raw_data.append(
