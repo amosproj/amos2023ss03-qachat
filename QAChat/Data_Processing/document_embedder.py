@@ -172,13 +172,7 @@ class DocumentEmbedder:
         """
         for data in all_data:
             # identify language of text
-            Language.factory("language_detector", func=self.get_lang_detector)
-            if 'sentencizer' not in self.muulti_lang_nlp.pipe_names:
-                self.muulti_lang_nlp.add_pipe('sentencizer')
-            if 'language_detector' not in self.muulti_lang_nlp.pipe_names:
-                self.muulti_lang_nlp.add_pipe('language_detector', last=True)
-            doc = self.muulti_lang_nlp(data.text)
-            language = doc._.language['language']
+            language = self.get_target_language(data.text)
             # choose spacy model after language
             if language == "de":
                 nlp = self.de_lang_nlp
@@ -197,3 +191,18 @@ class DocumentEmbedder:
 
     def get_lang_detector(self, nlp, name):
         return LanguageDetector()
+
+    def get_target_language(self, text):
+        Language.factory("language_detector", func=self.get_lang_detector)
+        if 'sentencizer' not in self.muulti_lang_nlp.pipe_names:
+            self.muulti_lang_nlp.add_pipe('sentencizer')
+        if 'language_detector' not in self.muulti_lang_nlp.pipe_names:
+            self.muulti_lang_nlp.add_pipe('language_detector', last=True)
+        doc = self.muulti_lang_nlp(text)
+        if doc._.language['score'] > 0.8:
+            return doc._.language['language']
+        else:
+            return self.translator.translate_to(
+                text, "EN-US"
+            ).detected_source_lang.lower()
+
