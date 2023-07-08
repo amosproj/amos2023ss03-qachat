@@ -22,3 +22,4 @@ python-dotenv
 weaviate-client
 google-cloud-storage
 prettytable
+spacy_langdetect
