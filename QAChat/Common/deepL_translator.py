@@ -18,10 +18,12 @@ if DEEPL_TOKEN is None:
     load_dotenv(get_tokens_path())
     DEEPL_TOKEN = os.getenv("DEEPL_TOKEN")
 
+
 class Result:
     def __init__(self, text, detected_source_lang):
         self.text = text
         self.detected_source_lang = detected_source_lang
+
 
 class DeepLTranslator:
     def __init__(self):
@@ -32,14 +34,14 @@ class DeepLTranslator:
         spacy.load("xx_ent_wiki_sm")
         self.muulti_lang_nlp = xx_ent_wiki_sm.load()
         Language.factory("language_detector", func=self.get_lang_detector)
-        if 'sentencizer' not in self.muulti_lang_nlp.pipe_names:
-            self.muulti_lang_nlp.add_pipe('sentencizer')
-        if 'language_detector' not in self.muulti_lang_nlp.pipe_names:
-            self.muulti_lang_nlp.add_pipe('language_detector', last=True)
+        if "sentencizer" not in self.muulti_lang_nlp.pipe_names:
+            self.muulti_lang_nlp.add_pipe("sentencizer")
+        if "language_detector" not in self.muulti_lang_nlp.pipe_names:
+            self.muulti_lang_nlp.add_pipe("language_detector", last=True)
 
     def translate_to(self, text, target_lang):
         doc = self.muulti_lang_nlp(text)
-        if doc._.language['language'] == 'en' and doc._.language['score'] > 0.8:
+        if doc._.language["language"] == "en" and doc._.language["score"] > 0.8:
             return Result(text, "EN_US")
         result = self.translator.translate_text(
             text, target_lang=target_lang, ignore_tags="name"

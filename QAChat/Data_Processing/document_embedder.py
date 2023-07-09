@@ -194,15 +194,14 @@ class DocumentEmbedder:
 
     def get_target_language(self, text):
         Language.factory("language_detector", func=self.get_lang_detector)
-        if 'sentencizer' not in self.muulti_lang_nlp.pipe_names:
-            self.muulti_lang_nlp.add_pipe('sentencizer')
-        if 'language_detector' not in self.muulti_lang_nlp.pipe_names:
-            self.muulti_lang_nlp.add_pipe('language_detector', last=True)
+        if "sentencizer" not in self.muulti_lang_nlp.pipe_names:
+            self.muulti_lang_nlp.add_pipe("sentencizer")
+        if "language_detector" not in self.muulti_lang_nlp.pipe_names:
+            self.muulti_lang_nlp.add_pipe("language_detector", last=True)
         doc = self.muulti_lang_nlp(text)
-        if doc._.language['score'] > 0.8:
-            return doc._.language['language']
+        if doc._.language["score"] > 0.8:
+            return doc._.language["language"]
         else:
             return self.translator.translate_to(
                 text, "EN-US"
             ).detected_source_lang.lower()
-
