@@ -15,6 +15,7 @@ from slack_sdk import WebClient
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_bolt import App
 
+from QAChat.Common.asynchronous_processor import AsynchronousProcessor
 from QAChat.Slack_Bot.base_agent import BaseAgent
 from QAChat.Slack_Bot.qa_bot_api_interface import QABotAPIInterface
 from get_tokens import get_tokens_path
@@ -31,47 +32,21 @@ class QAAgent(BaseAgent):
         self.handler = handler or SocketModeHandler(self.app, SLACK_APP_TOKEN)
         self.api_interface = api_interface or QABotAPIInterface()
 
-    def post_most_recent_message(self, channel_id, message_queue):
+    def receive_question(self, question, say, channel_id):
         initial_message = self.client.chat_postMessage(channel=channel_id, text="...")
         initial_ts = initial_message["ts"]
 
-        message = message_queue.get()
-        none_received = False
-
-        while True:
-            # Process the current message
-            self.client.chat_update(
+        asynchronous_processor = AsynchronousProcessor(
+            lambda message: self.client.chat_update(
                 channel=channel_id,
                 ts=initial_ts,
-                text=message
-            )
-
-            if none_received:
-                break
-
-            # Check for a new message in the queue, replacing the old message if there is one
-            while not message_queue.empty():
-                new_message = message_queue.get()
-                if new_message is None:
-                    none_received = True
-                    break
-                message = new_message
-
-            # If the queue is empty, block until a new message arrives
-            if not none_received and message_queue.empty():
-                message = message_queue.get()
-
-    def receive_question(self, question, say, channel_id):
-        message_queue = queue.Queue()
-
-        thread = threading.Thread(target=self.post_most_recent_message, args=(channel_id, message_queue))
-        thread.start()
+                text=message,
+            ),
+        )
 
         for answer in self.api_interface.request(question):
-            message_queue.put(answer)
-
-        message_queue.put(None)
-        thread.join()
+            asynchronous_processor.add(answer)
+        asynchronous_processor.end()
 
     def process_question(self, body, say):
         """

@@ -11,12 +11,12 @@ from typing import List
 from dotenv import load_dotenv
 from huggingface_hub import hf_hub_download
 from langchain import LlamaCpp, PromptTemplate
-from langchain.callbacks import StreamingStdOutCallbackHandler
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from supabase import create_client
 
 from QAChat.Common.deepL_translator import DeepLTranslator
+from QAChat.QA_Bot.stream_LLM_callback_handler import StreamLLMCallbackHandler
 from get_tokens import get_tokens_path
 
 
@@ -153,7 +153,7 @@ class QABot:
     def translate_text(self, question, language="EN-US"):
         return self.translator.translate_to(question, language)
 
-    def answer_question(self, question: str, handler):
+    def answer_question(self, question: str, handler: StreamLLMCallbackHandler | None):
         """
         This method takes a user's question as input and returns an appropriate answer.
 
@@ -170,15 +170,17 @@ class QABot:
         """
 
         print(f"Receive Question: {question}")
-        # translation = self.translate_text(question)
-        # translated_question = translation.text
-        translated_question = question
+        translation = self.translate_text(question)
+        if handler is not None:
+            handler.lang = translation.detected_source_lang
+
+        translated_question = translation.text
         print(f"Translation: {translated_question}")
         context = self.__sim_search(translated_question)
         print(f"Context: {context}")
         answer = self.__answer_question_with_context(translated_question, context, handler)
         print(f"Answer: {answer}")
-        # answer = self.translate_text(answer, translation.detected_source_lang).text
+        answer = self.translate_text(answer, translation.detected_source_lang).text
         print(f"Translated answer: {answer}")
         return {
             "answer": answer,
@@ -189,4 +191,6 @@ class QABot:
 
 if __name__ == '__main__':
     qa_bot = QABot()
-    qa_bot.answer_question("What is the color of the sky?", StreamingStdOutCallbackHandler())
+    start = time()
+    qa_bot.answer_question("Was ist die farbe vom Himmel?", None)
+    print(f"Time: {time() - start}")
