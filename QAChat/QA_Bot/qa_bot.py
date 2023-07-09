@@ -8,31 +8,36 @@ import os
 from time import time
 from typing import List
 
-from dotenv import load_dotenv
 from huggingface_hub import hf_hub_download
 from langchain import LlamaCpp, PromptTemplate
 from langchain.embeddings import HuggingFaceInstructEmbeddings
-from langchain.vectorstores import SupabaseVectorStore
-from supabase import create_client
+from langchain.vectorstores import Weaviate
+from weaviate.embedded import EmbeddedOptions
+import weaviate
+from dotenv import load_dotenv
+from typing import List
 
 from QAChat.Common.deepL_translator import DeepLTranslator
 from QAChat.QA_Bot.stream_LLM_callback_handler import StreamLLMCallbackHandler
 from get_tokens import get_tokens_path
+from QAChat.Common.bucket_managing import download_database
 
 
 class QABot:
     def __init__(
-            self,
-            embeddings=None,
-            database=None,
-            model=None,
-            translator=None,
-            embeddings_gpu=False,
+        self,
+        embeddings=None,
+        database=None,
+        model=None,
+        translator=None,
+        embeddings_gpu=False,
+        repo_id="TheBloke/WizardLM-13B-V1.0-Uncensored-GGML",
+        filename="wizardlm-13b-v1.0-uncensored.ggmlv3.q5_0.bin",
     ):
         self.answer = None
         self.context = None
         load_dotenv(get_tokens_path())
-
+        download_database()
         self.embeddings = embeddings
         if embeddings is None:
             self.embeddings = HuggingFaceInstructEmbeddings(
@@ -42,29 +47,27 @@ class QABot:
 
         self.database = database
         if database is None:
-            client = create_client(
-                os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
-            )
-            self.database = SupabaseVectorStore(
+            client = weaviate.Client(embedded_options=EmbeddedOptions())
+            self.database = Weaviate(
                 client=client,
                 embedding=self.embeddings,
-                table_name="data_embedding",
-                query_name="match_data",
+                index_name="Embeddings",
+                text_key="text",
             )
         self.model = model
         if model is None:
-            self.model = self.get_llama_model()
+            self.model = self.get_llama_model(repo_id=repo_id, filename=filename)
 
         self.translator = translator
         if translator is None:
             self.translator = DeepLTranslator()
 
     def get_llama_model(
-            self,
-            n_ctx=2048,
-            max_tokens=512,
-            repo_id="TheBloke/wizard-mega-13B-GGML",
-            filename="wizard-mega-13B.ggmlv3.q4_0.bin",
+        self,
+        repo_id,
+        filename,
+        n_ctx=2048,
+        max_tokens=512,
     ):
         path = hf_hub_download(repo_id=repo_id, filename=filename)
 
@@ -74,7 +77,8 @@ class QABot:
             n_ctx=n_ctx,
             max_tokens=max_tokens,
             temperature=0,
-            n_gpu_layers=60,
+            n_gpu_layers=100,
+            repeat_penalty=0.9,
             n_batch=256,
         )
 
@@ -97,27 +101,21 @@ class QABot:
         'The sky is blue during a clear day.'
         """
 
-        context_str = "\n\n".join(
-            f"### INFORMATION: {x}" for i, x in enumerate(context)
-        )
+        context_str = "\n\n".join(f"{x}" for i, x in enumerate(context))
 
         template = (
-            "### Instruction: You are a chatbot helping other people to answer questions."
-            "You should answer short and accurately and only answer the question from the user and nothing else.\n"
-            "To answer the question you are provided with the following information:\n"
+            "You are a chatbot, your primary task is to help people by answering their questions. Keep your responses short, precise, and directly related to the user's question, using the following context to guide your answer:\n"
             "{context_str}\n\n"
-            "### Instruction: It is really important to answer the question correctly, and only with the context you have.\n"
-            "Please also filter the context so you only answer with the necessary information.\n"
-            "Please note that you are also not allowed to made up new information.\n"
-            "If the required information to answer the question is not given in the context or you are not sure, you should say that you are not sure."
+            "Try your best to answer based on the given context, and avoid creating new information. If the context does not provide enough details to formulate a response, or if you are unsure, kindly state that you can't provide a certain answer.\n"
             "\n\n"
-            "### USER: {question}\n\n"
-            "### ASSISTANT:"
+            "USER: {question}"
+            "ASSISTANT:"
         )
         prompt = PromptTemplate(
             template=template, input_variables=["question", "context_str"]
         )
 
+        print(prompt.format_prompt(question=question, context_str=context_str))
         answer = self.model.generate_prompt(
             [
                 prompt.format_prompt(question=question, context_str=context_str),
@@ -145,9 +143,10 @@ class QABot:
 
         Note: The actual return value will depend on the contents of your database.
         """
+        embedding = self.embeddings.embed_query(question)
         return [
             context.page_content
-            for context in self.database.similarity_search(question, k=3)
+            for context in self.database.similarity_search_by_vector(embedding, k=3)
         ]
 
     def translate_text(self, question, language="EN-US"):

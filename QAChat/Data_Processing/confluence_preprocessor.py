@@ -9,7 +9,8 @@ from typing import List
 import re
 
 import requests
-import supabase
+from weaviate.embedded import EmbeddedOptions
+import weaviate
 from atlassian import Confluence
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -18,19 +19,16 @@ from QAChat.Data_Processing.google_doc_preprocessor import GoogleDocPreProcessor
 from data_preprocessor import DataPreprocessor
 from document_embedder import DataInformation, DataSource
 from QAChat.Data_Processing.pdf_reader import PDFReader
+from get_tokens import get_tokens_path
+from QAChat.Common.init_db import init_db
 
-load_dotenv("../tokens.env")
+load_dotenv(get_tokens_path())
+
 
 # Get Confluence API credentials from environment variables
 CONFLUENCE_ADDRESS = os.getenv("CONFLUENCE_ADDRESS")
 CONFLUENCE_USERNAME = os.getenv("CONFLUENCE_USERNAME")
 CONFLUENCE_TOKEN = os.getenv("CONFLUENCE_TOKEN")
-
-# Get Supabase API credentials from environment variables
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
-
-print(SUPABASE_URL)
 
 
 class ConfluencePreprocessor(DataPreprocessor):
@@ -47,22 +45,19 @@ class ConfluencePreprocessor(DataPreprocessor):
         self.all_page_information = []
         self.restricted_pages = []
         self.restricted_spaces = []
-        self.supabase_client = supabase.create_client(
-            SUPABASE_URL, SUPABASE_SERVICE_KEY
-        )
+        self.weaviate_client = weaviate.Client(embedded_options=EmbeddedOptions())
         self.last_update_lookup = dict()
         self.chunk_id_lookup_table = dict()
         self.g_docs_proc = GoogleDocPreProcessor()
+
+        init_db(self.weaviate_client)
         self.pdf_reader = PDFReader()
 
     def init_blacklist(self):
         # Retrieve blacklist data from Supabase table
-        blacklist = (
-            self.supabase_client.table("confluence_blacklist")
-            .select("*")
-            .execute()
-            .data
-        )
+        blacklist = self.weaviate_client.query.get(
+            "BlackList", ["identifier", "note"]
+        ).do()["data"]["Get"]["BlackList"]
 
         # Extract restricted spaces and restricted pages from the blacklist data
         for entries in blacklist:
@@ -266,17 +261,19 @@ class ConfluencePreprocessor(DataPreprocessor):
     def init_lookup_tables(self):
         # get the metadata of type Confluence from DB
         data = (
-            self.supabase_client.table("data_embedding")
-            .select("metadata")
-            .eq("metadata->>type", "confluence")
-            .execute()
-            .data
+            self.weaviate_client.query.get(
+                "Embeddings", ["type", "type_id", "last_changed"]
+            )
+            .with_where(
+                {"path": ["type"], "operator": "Equal", "valueString": "confluence"}
+            )
+            .do()["data"]["Get"]["Embeddings"]
         )
 
         for i in data:
-            page_id = i["metadata"]["id"].split("_")[0]
-            chunk_id = i["metadata"]["id"].split("_")[1]
-            last_update = i["metadata"]["last_changed"]
+            page_id = i["type_id"].split("_")[0]
+            chunk_id = i["type_id"].split("_")[1]
+            last_update = i["last_changed"]
 
             # add each ID in dict last_update_lookup
             if page_id not in self.last_update_lookup:
@@ -324,9 +321,14 @@ class ConfluencePreprocessor(DataPreprocessor):
     def remove_from_db(self, id):
         # loop over max number in chunk id and remove all the rows from DB
         for i in range(0, int(self.chunk_id_lookup_table[id]) + 1):
-            self.supabase_client.table("data_embedding").delete().eq(
-                "metadata->>id", str(id) + "_" + str(i)
-            ).execute()
+            self.weaviate_client.batch.delete_objects(
+                "Embeddings",
+                {
+                    "path": ["type_id"],
+                    "operator": "Equal",
+                    "valueString": str(id) + "_" + str(i),
+                },
+            )
 
 
 if __name__ == "__main__":
