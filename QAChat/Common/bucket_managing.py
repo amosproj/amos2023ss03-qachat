@@ -30,7 +30,7 @@ def upload_database():
     for root, dirs, files in os.walk(source_file_folder):
         for file in files:
             local_file = os.path.join(root, file)
-            destination_blob_name = blob_folder + local_file[len(source_file_folder):]
+            destination_blob_name = blob_folder + local_file[len(source_file_folder) :]
             print(f"{local_file} to {destination_blob_name}")
             blob = bucket.blob(destination_blob_name)
             blob.upload_from_filename(local_file)
@@ -53,7 +53,7 @@ def download_database():
         filename = blob.name
 
         source_file_name = (
-                destination_file_folder + "/" + "/".join(str(filename).split("/")[1:])
+            destination_file_folder + "/" + "/".join(str(filename).split("/")[1:])
         )
         directory = os.path.dirname(source_file_name)
         if not os.path.isdir(directory):
