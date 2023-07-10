@@ -32,8 +32,10 @@ class QAAgent(BaseAgent):
 
     def receive_question(self, question, say, channel_id):
         say("...")
-        answer = self.api_interface.request(question)
-        say(answer)
+        #answer = self.api_interface.request(question)
+        #say(answer)
+
+        self.delete_old_messages(channel_id)
         self.delete_processing_message(channel_id)
 
     def process_question(self, body, say):
@@ -85,6 +87,35 @@ class QAAgent(BaseAgent):
                     ts = msg.get("ts")
                     # ...delete a message
                     self.client.chat_delete(channel=channel_id, ts=ts)
+            except SlackApiError:
+                print(f"Error deleting loading message", file=sys.stderr)
+
+    def delete_old_messages(self, channel_id):
+        """
+        This method deletes the '...' in a given channel's conversation history in Slack, previously send from the bot.
+
+        The method does not return any value. In case of a Slack API error during deletion,
+        it prints the error.
+
+        Args:
+            channel_id (str): The ID of the channel from which the message should be deleted.
+
+        Raises:
+            SlackApiError: If there is a problem with the Slack API, e.g.,
+            the channel does not exist.
+        """
+
+        # Get conversation history
+        result = self.client.conversations_history(channel=channel_id)
+
+        messages = result.data.get("messages")
+
+        # Loop through all messages
+        for msg in messages:
+            try:
+                ts = msg.get("ts")
+                # ...delete a message
+                self.client.chat_delete(channel=channel_id, ts=ts)
             except SlackApiError:
                 print(f"Error deleting loading message", file=sys.stderr)
 
