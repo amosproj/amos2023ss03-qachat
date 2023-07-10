@@ -56,7 +56,7 @@ jobs:
 #          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY}}
 #
 #        working-directory: ./Testing
-#        run: python db_intergration_test.py
+#        run: python db_integration_test.py
 
       - name: Run autoformatting
         uses: wearerequired/lint-action@v2
