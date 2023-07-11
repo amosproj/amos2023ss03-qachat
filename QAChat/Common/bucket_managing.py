@@ -13,14 +13,13 @@ blob_folder = "weaviate"
 weaviate_client = weaviate.Client(embedded_options=EmbeddedOptions())
 
 
-
 def upload_database():
     """Uploads a file to the bucket."""
 
     result = weaviate_client.backup.create(
-        backup_id='weaviate',
-        backend='gcs',
-        include_classes=['Embeddings', 'LoadedChannels', 'LastModified', 'BlackList'],
+        backup_id="weaviate",
+        backend="gcs",
+        include_classes=["Embeddings", "LoadedChannels", "LastModified", "BlackList"],
         wait_for_completion=True,
     )
     print(result)
