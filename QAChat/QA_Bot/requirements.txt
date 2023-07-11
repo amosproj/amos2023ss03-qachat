@@ -8,3 +8,5 @@ huggingface_hub
 python-dotenv
 gunicorn
 llama-cpp-python
+weaviate-client
+google-cloud-storage
