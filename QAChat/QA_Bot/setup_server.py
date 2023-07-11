@@ -26,7 +26,10 @@ def calculate():
 
     threading.Thread(target=run_long_running_function).start()
 
-    response = Response(stream_with_context(handler.asynchronous_processor.stream()), mimetype='text/event-stream')
+    response = Response(
+        stream_with_context(handler.asynchronous_processor.stream()),
+        mimetype="text/event-stream",
+    )
     return response
 
 

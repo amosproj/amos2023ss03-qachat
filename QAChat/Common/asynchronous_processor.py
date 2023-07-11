@@ -62,12 +62,12 @@ class AsynchronousProcessor:
                 continue
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     def process(x):
         time.sleep(x)
         print("Process {}".format(x), flush=True)
         return x
-
 
     def add_values(processor):
         print("Add values", flush=True)
@@ -78,7 +78,6 @@ if __name__ == '__main__':
         processor.add(4)
         processor.add(5)
         processor.end()
-
 
     processor = AsynchronousProcessor(process)
 

@@ -54,10 +54,15 @@ class TestQAAgent(unittest.TestCase):
         self.agent.process_question(body, MagicMock())
         sleep(0.1)
         self.mock_api_interface.request.assert_called_with("Hello")
-        self.mock_web_client.chat_postMessage.assert_has_calls([call(channel='Test', text='...')])
+        self.mock_web_client.chat_postMessage.assert_has_calls(
+            [call(channel="Test", text="...")]
+        )
         self.mock_web_client.chat_update.assert_has_calls(
-            [call(channel='Test', ts="1234", text='How can'),
-             call(channel='Test', ts="1234", text='How can I help you?')])
+            [
+                call(channel="Test", ts="1234", text="How can"),
+                call(channel="Test", ts="1234", text="How can I help you?"),
+            ]
+        )
 
     # Tests if the client connects to the Slack Server after starting
     def test_start(self):

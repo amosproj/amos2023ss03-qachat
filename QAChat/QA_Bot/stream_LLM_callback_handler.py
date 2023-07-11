@@ -9,7 +9,6 @@ from QAChat.Common.deepL_translator import DeepLTranslator
 
 
 class StreamLLMCallbackHandler(BaseCallbackHandler):
-
     def __init__(self, translator=None):
         self.text = ""
         self.lang = "EN-US"
@@ -24,6 +23,4 @@ class StreamLLMCallbackHandler(BaseCallbackHandler):
     def send_response(self, text):
         if self.lang != "EN-US":
             text = self.translator.translate_to(text, self.lang).text
-        return json.dumps({
-            "text": text
-        }) + "\n"
+        return json.dumps({"text": text}) + "\n"
