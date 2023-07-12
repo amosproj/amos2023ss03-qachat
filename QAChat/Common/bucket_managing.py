@@ -6,6 +6,7 @@ from weaviate.embedded import EmbeddedOptions
 import weaviate
 from QAChat.Common.init_db import clear_db
 from get_tokens import get_tokens_path
+import shutil
 
 load_dotenv(get_tokens_path())
 bucket_name = "qabot_db_data"

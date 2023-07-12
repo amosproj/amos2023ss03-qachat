@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Jesse Palarus
+
 import json
 import os
 
@@ -11,10 +14,12 @@ load_dotenv(get_tokens_path())
 class QABotAPIInterface:
     def request(self, question):
         url = os.getenv("GOOGLE_CLOUD_QA_BOT")
-        headers = {"Content-type": "application/json"}
 
-        data = {"question": question}
-        print("Sending question to Google Cloud QA Bot")
-        response = requests.post(url, data=json.dumps(data), headers=headers)
-        response_data = response.json()
-        return response_data["answer"]
+        response = requests.post(url, json={"question": question}, stream=True)
+
+        for line in response.iter_lines():
+            # filter out keep-alive new lines
+            if line:
+                decoded_line = line.decode("utf-8")
+                data = json.loads(decoded_line)
+                yield data["text"]
