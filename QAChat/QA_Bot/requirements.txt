@@ -9,3 +9,5 @@ python-dotenv
 gunicorn
 llama-cpp-python
 spacy_langdetect
+weaviate-client
+google-cloud-storage

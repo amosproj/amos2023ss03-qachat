@@ -1,8 +1,9 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2023 Felix Nützel
+# SPDX-FileCopyrightText: 2023 Jesse Palarus
 
 import unittest
-from queue import Queue
+from time import sleep
 from unittest.mock import patch, MagicMock, Mock, call
 
 from QAChat.Slack_Bot.qa_agent import QAAgent
@@ -38,16 +39,30 @@ class TestQAAgent(unittest.TestCase):
             self.mock_api_interface,
         )
 
+    def answer_stream(self):
+        yield "How can"
+        sleep(0.05)
+        yield "How can I help you?"
+
     # Tests if process question is called correctly
     def test_process_question(self):
         body = {"event": {"text": "Hello", "user": "U1", "channel": "Test"}}
+        message = {"ts": "1234"}
 
-        say = MagicMock()
-
-        self.mock_api_interface.request.return_value = "How can I help you?"
-        self.agent.process_question(body, say)
+        self.mock_api_interface.request.return_value = self.answer_stream()
+        self.mock_web_client.chat_postMessage.return_value = message
+        self.agent.process_question(body, MagicMock())
+        sleep(0.1)
         self.mock_api_interface.request.assert_called_with("Hello")
-        say.assert_has_calls([call("..."), call("How can I help you?")])
+        self.mock_web_client.chat_postMessage.assert_has_calls(
+            [call(channel="Test", text="...")]
+        )
+        self.mock_web_client.chat_update.assert_has_calls(
+            [
+                call(channel="Test", ts="1234", text="How can"),
+                call(channel="Test", ts="1234", text="How can I help you?"),
+            ]
+        )
 
     # Tests if the client connects to the Slack Server after starting
     def test_start(self):
