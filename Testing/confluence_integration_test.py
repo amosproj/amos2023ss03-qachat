@@ -13,17 +13,12 @@ import io
 
 from QAChat.Data_Processing.pdf_reader import PDFReader
 
-
 load_dotenv("../QAChat/tokens.env")
 
 # Get Confluence API credentials from environment variables
 CONFLUENCE_ADDRESS = os.getenv("CONFLUENCE_ADDRESS")
 CONFLUENCE_USERNAME = os.getenv("CONFLUENCE_USERNAME")
 CONFLUENCE_TOKEN = os.getenv("CONFLUENCE_TOKEN")
-
-# Get Supabase API credentials from environment variables
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
 
 
 class ConfluenceIntegrationTest(unittest.TestCase):

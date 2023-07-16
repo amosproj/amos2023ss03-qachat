@@ -89,7 +89,7 @@ def test_embedding_speed():
     print(f"Embedding test time: {elapsed_time} seconds.")
 
 
-def test_supabase_speed():
+def test_database_speed():
     qa_bot = QABot(
         translator=mock,
         model=mock,
@@ -102,7 +102,7 @@ def test_supabase_speed():
         qa_bot.database.similarity_search_by_vector(random_embedding, 3)
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print(f"Supabase reading time: {elapsed_time} seconds.")
+    print(f"LLM reading time: {elapsed_time} seconds.")
 
 
 def time_this(original_method):
@@ -144,7 +144,7 @@ def test_overall_performance():
     sum_of_chars = 0
 
     for question in questions_en:
-        output = qa_bot.answer_question(question)
+        output = qa_bot.answer_question(question, None)
         sum_of_chars += len(output["answer"])
     end_time = time.time()
     elapsed_time = end_time - start_time
@@ -158,5 +158,5 @@ if __name__ == "__main__":
     test_llm_speed()
     test_deepl_speed()
     test_embedding_speed()
-    test_supabase_speed()
+    test_database_speed()
     test_overall_performance()

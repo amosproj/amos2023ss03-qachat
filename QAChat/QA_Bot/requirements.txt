@@ -1,6 +1,5 @@
 flask
 langchain
-supabase
 InstructorEmbedding
 sentence-transformers
 deepl
