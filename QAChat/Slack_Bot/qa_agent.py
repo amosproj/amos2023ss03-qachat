@@ -41,8 +41,11 @@ class QAAgent(BaseAgent):
             ),
         )
 
-        for answer in self.api_interface.request(question):
-            asynchronous_processor.add(answer)
+        try:
+            for answer in self.api_interface.request(question):
+                asynchronous_processor.add(answer)
+        except Exception as e:
+            asynchronous_processor.add(f"Ohh there is was an error...\n{e}")
         asynchronous_processor.end()
 
     def process_question(self, body, say):
