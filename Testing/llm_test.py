@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Amela Pucic
+# SPDX-FileCopyrightText: 2023 Jesse Palarus
+
 from unittest.mock import Mock
 
 from QAChat.QA_Bot.qa_bot import QABot

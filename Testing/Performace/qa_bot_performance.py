@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Jesse Palarus
+
 import random
 import time
 from unittest.mock import Mock, create_autospec

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: 2023 Jesse Tim Palarus
+# SPDX-FileCopyrightText: 2023 Jesse Palarus
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 
 from abc import ABC, abstractmethod
@@ -12,7 +12,7 @@ from QAChat.Data_Processing.document_embedder import DataInformation
 class DataPreprocessor(ABC):
     @abstractmethod
     def load_preprocessed_data(
-        self, end_of_timeframe: datetime, start_of_timeframe: datetime
+            self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
         """
         Loads preprocessed data of a specific type that was created or modified

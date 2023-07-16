@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Felix Nützel
+# SPDX-FileCopyrightText: 2023 Jesse Palarus
+
 from dotenv import load_dotenv
 from weaviate.embedded import EmbeddedOptions
 import weaviate

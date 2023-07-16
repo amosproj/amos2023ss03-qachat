@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: 2023 Jesse Tim Palarus
+# SPDX-FileCopyrightText: 2023 Jesse Palarus
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 
 from datetime import datetime
@@ -13,7 +13,7 @@ from document_embedder import DataInformation, DataSource
 
 class DummyPreprocessor(DataPreprocessor):
     def load_preprocessed_data(
-        self, end_of_timeframe: datetime, start_of_timeframe: datetime
+            self, end_of_timeframe: datetime, start_of_timeframe: datetime
     ) -> List[DataInformation]:
         df = pd.read_csv("../../DummyData/qa_less_50.csv", sep=";")
         raw_data = []
