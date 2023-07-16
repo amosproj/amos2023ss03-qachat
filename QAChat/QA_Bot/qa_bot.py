@@ -4,9 +4,7 @@
 # SPDX-FileCopyrightText: 2023 Jesse Palarus
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 
-import os
 from time import time
-from typing import List
 
 from huggingface_hub import hf_hub_download
 from langchain import LlamaCpp, PromptTemplate

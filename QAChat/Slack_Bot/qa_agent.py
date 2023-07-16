@@ -3,10 +3,7 @@
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 # SPDX-FileCopyrightText: 2023 Jesse Palarus
 import os
-import queue
 import re
-import threading
-import time
 
 from threading import Thread
 
