@@ -3,17 +3,19 @@
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 # SPDX-FileCopyrightText: 2023 Jesse Palarus
 import os
-import sys
+import queue
 import re
+import threading
+import time
 
 from threading import Thread
 
-from slack_sdk.errors import SlackApiError
 from dotenv import load_dotenv
 from slack_sdk import WebClient
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_bolt import App
 
+from QAChat.Common.asynchronous_processor import AsynchronousProcessor
 from QAChat.Slack_Bot.base_agent import BaseAgent
 from QAChat.Slack_Bot.qa_bot_api_interface import QABotAPIInterface
 from get_tokens import get_tokens_path
@@ -31,10 +33,20 @@ class QAAgent(BaseAgent):
         self.api_interface = api_interface or QABotAPIInterface()
 
     def receive_question(self, question, say, channel_id):
-        say("...")
-        answer = self.api_interface.request(question)
-        say(answer)
-        self.delete_processing_message(channel_id)
+        initial_message = self.client.chat_postMessage(channel=channel_id, text="...")
+        initial_ts = initial_message["ts"]
+
+        asynchronous_processor = AsynchronousProcessor(
+            lambda message: self.client.chat_update(
+                channel=channel_id,
+                ts=initial_ts,
+                text=message,
+            ),
+        )
+
+        for answer in self.api_interface.request(question):
+            asynchronous_processor.add(answer)
+        asynchronous_processor.end()
 
     def process_question(self, body, say):
         """
@@ -57,36 +69,6 @@ class QAAgent(BaseAgent):
     def start(self):
         self.handler.app.message(re.compile(".*"))(self.process_question)
         self.handler.start()
-
-    def delete_processing_message(self, channel_id):
-        """
-        This method deletes the '...' in a given channel's conversation history in Slack, previously send from the bot.
-
-        The method does not return any value. In case of a Slack API error during deletion,
-        it prints the error.
-
-        Args:
-            channel_id (str): The ID of the channel from which the message should be deleted.
-
-        Raises:
-            SlackApiError: If there is a problem with the Slack API, e.g.,
-            the channel does not exist.
-        """
-
-        # Get conversation history
-        result = self.client.conversations_history(channel=channel_id)
-
-        messages = result.data.get("messages")
-
-        # Loop through all messages
-        for msg in messages:
-            try:
-                if msg.get("text") is not None and msg.get("text") == "...":
-                    ts = msg.get("ts")
-                    # ...delete a message
-                    self.client.chat_delete(channel=channel_id, ts=ts)
-            except SlackApiError:
-                print(f"Error deleting loading message", file=sys.stderr)
 
 
 if __name__ == "__main__":

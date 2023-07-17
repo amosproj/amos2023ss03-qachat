@@ -3,13 +3,13 @@
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 # SPDX-FileCopyrightText: 2023 Emanuel Erben
-import json
-import os
+
+
 from datetime import datetime
 from enum import Enum
-
 import weaviate
-from dateutil import parser
+from spacy.language import Language
+from spacy_langdetect import LanguageDetector
 from dotenv import load_dotenv
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import Weaviate
@@ -20,10 +20,8 @@ import xx_ent_wiki_sm
 import de_core_news_sm
 from typing import List
 from QAChat.Common.init_db import init_db
-
 from QAChat.Common.deepL_translator import DeepLTranslator
 from get_tokens import get_tokens_path
-
 from QAChat.Data_Processing.text_transformer import transform_text_to_chunks
 
 
@@ -118,7 +116,7 @@ class DocumentEmbedder:
         )
 
         # identify names and add name-tags before chunking and translation
-        # all_changed_data = self.identify_names(all_changed_data)
+        all_changed_data = self.identify_names(all_changed_data)
 
         # transform long entries into multiple chunks and translation to english
         all_changed_data = transform_text_to_chunks(all_changed_data)
@@ -155,7 +153,6 @@ class DocumentEmbedder:
                 {"type": typ.value, "last_update": current_time.isoformat()},
                 "LastModified",
             )
-
             print(
                 self.weaviate_client.query.get("Embeddings", ["type_id", "text"])
                 .do()
@@ -175,11 +172,9 @@ class DocumentEmbedder:
         """
         for data in all_data:
             # identify language of text
-            language = self.translator.translate_to(
-                data.text, "EN-US"
-            ).detected_source_lang
+            language = self.get_target_language(data.text)
             # choose spacy model after language
-            if language == "DE":
+            if language == "de":
                 nlp = self.de_lang_nlp
             else:
                 nlp = self.muulti_lang_nlp
@@ -193,3 +188,20 @@ class DocumentEmbedder:
                 already_replaced.append(ent.text)
                 data.text = data.text.replace(ent.text, "<name>" + ent.text + "</name>")
         return all_data
+
+    def get_lang_detector(self, nlp, name):
+        return LanguageDetector()
+
+    def get_target_language(self, text):
+        Language.factory("language_detector", func=self.get_lang_detector)
+        if "sentencizer" not in self.muulti_lang_nlp.pipe_names:
+            self.muulti_lang_nlp.add_pipe("sentencizer")
+        if "language_detector" not in self.muulti_lang_nlp.pipe_names:
+            self.muulti_lang_nlp.add_pipe("language_detector", last=True)
+        doc = self.muulti_lang_nlp(text)
+        if doc._.language["score"] > 0.8:
+            return doc._.language["language"]
+        else:
+            return self.translator.translate_to(
+                text, "EN-US"
+            ).detected_source_lang.lower()

@@ -4,6 +4,9 @@
 # SPDX-FileCopyrightText: 2023 Jesse Palarus
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 
+import os
+from time import time
+from typing import List
 
 from huggingface_hub import hf_hub_download
 from langchain import LlamaCpp, PromptTemplate
@@ -15,6 +18,7 @@ from dotenv import load_dotenv
 from typing import List
 
 from QAChat.Common.deepL_translator import DeepLTranslator
+from QAChat.QA_Bot.stream_LLM_callback_handler import StreamLLMCallbackHandler
 from get_tokens import get_tokens_path
 from QAChat.Common.bucket_managing import download_database
 
@@ -27,8 +31,8 @@ class QABot:
         model=None,
         translator=None,
         embeddings_gpu=False,
-        repo_id="TheBloke/WizardLM-13B-V1.0-Uncensored-GGML",
-        filename="wizardlm-13b-v1.0-uncensored.ggmlv3.q5_0.bin",
+        repo_id="TheBloke/WizardLM-13B-V1-1-SuperHOT-8K-GGML",
+        filename="wizardlm-13b-v1.1-superhot-8k.ggmlv3.q5_0.bin",
     ):
         self.answer = None
         self.context = None
@@ -75,9 +79,12 @@ class QABot:
             temperature=0,
             n_gpu_layers=100,
             repeat_penalty=0.9,
+            n_batch=256,
         )
 
-    def answer_question_with_context(self, question: str, context: List[str]) -> str:
+    def answer_question_with_context(
+        self, question: str, context: List[str], handler=None
+    ) -> str:
         """
         This method takes a question and a list of context strings as input, and attempts to answer the question using the provided context.
 
@@ -116,6 +123,7 @@ class QABot:
                 prompt.format_prompt(question=question, context_str=context_str),
             ],
             stop=["</s>"],
+            callbacks=None if handler is None else [handler],
         )
         return answer.generations[0][0].text.strip()
 
@@ -146,7 +154,7 @@ class QABot:
     def translate_text(self, question, language="EN-US"):
         return self.translator.translate_to(question, language)
 
-    def answer_question(self, question: str):
+    def answer_question(self, question: str, handler: StreamLLMCallbackHandler | None):
         """
         This method takes a user's question as input and returns an appropriate answer.
 
@@ -164,11 +172,16 @@ class QABot:
 
         print(f"Receive Question: {question}")
         translation = self.translate_text(question)
+        if handler is not None:
+            handler.lang = translation.detected_source_lang
+
         translated_question = translation.text
         print(f"Translation: {translated_question}")
         context = self.__sim_search(translated_question)
         print(f"Context: {context}")
-        answer = self.answer_question_with_context(translated_question, context)
+        answer = self.answer_question_with_context(
+            translated_question, context, handler
+        )
         print(f"Answer: {answer}")
         answer = self.translate_text(answer, translation.detected_source_lang).text
         print(f"Translated answer: {answer}")
@@ -177,3 +190,10 @@ class QABot:
             "question": question,
             "context": context,
         }
+
+
+if __name__ == "__main__":
+    qa_bot = QABot()
+    start = time()
+    qa_bot.answer_question("Was ist die farbe vom Himmel?", None)
+    print(f"Time: {time() - start}")

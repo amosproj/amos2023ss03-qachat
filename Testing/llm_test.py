@@ -9,8 +9,8 @@ if __name__ == "__main__":
         embeddings=mock,
         database=mock,
         translator=mock,
-        repo_id="TheBloke/WizardLM-13B-V1.0-Uncensored-GGML",
-        filename="wizardlm-13b-v1.0-uncensored.ggmlv3.q5_0.bin",
+        repo_id="TheBloke/WizardLM-13B-V1-1-SuperHOT-8K-GGML",
+        filename="wizardlm-13b-v1.1-superhot-8k.ggmlv3.q5_0.bin",
     )
 
     with open("answers.txt", "w") as file:

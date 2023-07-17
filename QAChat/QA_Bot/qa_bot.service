@@ -2,10 +2,11 @@
 Description=QABot
 
 [Service]
-ExecStart=sudo /home/ubuntu/miniconda3/bin/python setup_server.py
+ExecStart=/home/ubuntu/miniconda3/bin/python setup_server.py
 WorkingDirectory=/root/amos2023ss03-qachat/QAChat/QA_Bot
 Restart=always
-User=ubuntu
+User=root
+Environment="PYTHONPATH=/root/amos2023ss03-qachat/"
 
 [Install]
 WantedBy=multi-user.target
