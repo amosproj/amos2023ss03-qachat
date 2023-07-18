@@ -43,7 +43,11 @@ class DeepLTranslator:
     def translate_to(self, text, target_lang, use_spacy_to_detect_lang_if_needed=True):
         if use_spacy_to_detect_lang_if_needed:
             doc = self.muulti_lang_nlp(text)
-            if doc._.language["language"] == "en" and doc._.language["score"] > 0.8 and target_lang == "EN-US":
+            if (
+                doc._.language["language"] == "en"
+                and doc._.language["score"] > 0.8
+                and target_lang == "EN-US"
+            ):
                 return Result(text, "EN_US")
 
         result = self.translator.translate_text(
