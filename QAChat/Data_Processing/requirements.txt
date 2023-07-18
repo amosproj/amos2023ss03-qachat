@@ -2,7 +2,6 @@ langchain
 nltk
 deepl
 python-dateutil
-supabase
 pytesseract
 pdf2image
 pdfminer.six

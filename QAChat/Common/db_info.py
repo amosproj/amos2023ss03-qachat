@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 
 from weaviate.embedded import EmbeddedOptions

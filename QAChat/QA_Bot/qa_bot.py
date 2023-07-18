@@ -4,9 +4,7 @@
 # SPDX-FileCopyrightText: 2023 Jesse Palarus
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 
-import os
 from time import time
-from typing import List
 
 from huggingface_hub import hf_hub_download
 from langchain import LlamaCpp, PromptTemplate
@@ -152,7 +150,9 @@ class QABot:
         ]
 
     def translate_text(self, question, language="EN-US"):
-        return self.translator.translate_to(question, language)
+        return self.translator.translate_to(
+            question, language, use_spacy_to_detect_lang_if_needed=False
+        )
 
     def answer_question(self, question: str, handler: StreamLLMCallbackHandler | None):
         """
@@ -183,7 +183,9 @@ class QABot:
             translated_question, context, handler
         )
         print(f"Answer: {answer}")
-        answer = self.translate_text(answer, translation.detected_source_lang).text
+        if translation.detected_source_lang != "EN-US":
+            answer = self.translate_text(answer, translation.detected_source_lang).text
+
         print(f"Translated answer: {answer}")
         return {
             "answer": answer,

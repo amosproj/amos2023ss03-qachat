@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: 2023 Jesse Tim Palarus
+# SPDX-FileCopyrightText: 2023 Jesse Palarus
 # SPDX-FileCopyrightText: 2023 Amela Pucic
 # SPDX-FileCopyrightText: 2023 Felix Nützel
 # SPDX-FileCopyrightText: 2023 Emanuel Erben

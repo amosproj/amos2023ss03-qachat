@@ -1,12 +1,12 @@
-import os
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Felix Nützel
+# SPDX-FileCopyrightText: 2023 Jesse Palarus
 
 from dotenv import load_dotenv
-from google.cloud import storage
 from weaviate.embedded import EmbeddedOptions
 import weaviate
 from QAChat.Common.init_db import clear_db
 from get_tokens import get_tokens_path
-import shutil
 
 load_dotenv(get_tokens_path())
 bucket_name = "qabot_db_data"

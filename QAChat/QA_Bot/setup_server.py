@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2023 Jesse Palarus
 
-import json
 import threading
 
 from flask import Flask, request, stream_with_context, Response

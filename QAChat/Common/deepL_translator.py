@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2023 Emanuel Erben
 # SPDX-FileCopyrightText: 2023 Felix Nützel
+# SPDX-FileCopyrightText: 2023 Jesse Palarus
 
 import os
 
@@ -39,10 +40,16 @@ class DeepLTranslator:
         if "language_detector" not in self.muulti_lang_nlp.pipe_names:
             self.muulti_lang_nlp.add_pipe("language_detector", last=True)
 
-    def translate_to(self, text, target_lang):
-        doc = self.muulti_lang_nlp(text)
-        if doc._.language["language"] == "en" and doc._.language["score"] > 0.8:
-            return Result(text, "EN_US")
+    def translate_to(self, text, target_lang, use_spacy_to_detect_lang_if_needed=True):
+        if use_spacy_to_detect_lang_if_needed:
+            doc = self.muulti_lang_nlp(text)
+            if (
+                doc._.language["language"] == "en"
+                and doc._.language["score"] > 0.8
+                and target_lang == "EN-US"
+            ):
+                return Result(text, "EN_US")
+
         result = self.translator.translate_text(
             text, target_lang=target_lang, ignore_tags="name"
         )
