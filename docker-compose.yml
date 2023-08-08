@@ -1,0 +1,22 @@
+version: '3'
+services:
+  data_processing:
+    build: ./QAChat/Data_Processing
+    volumes:
+      - ./get_tokens.py:/get_tokens.py
+      - ./QAChat/Common:/QAChat/Common
+      - ./QAChat/Data_Processing:/QAChat/Data_Processing
+
+  qa_bot:
+    build: ./QAChat/QA_Bot
+    volumes:
+      - ./get_tokens.py:/get_tokens.py
+      - ./QAChat/Common:/QAChat/Common
+      - ./QAChat/QA_Bot:/QAChat/QA_Bot
+
+  slack_bot:
+    build: ./QAChat/Slack_Bot
+    volumes:
+      - ./get_tokens.py:/get_tokens.py
+      - ./QAChat/Common:/QAChat/Common
+      - ./QAChat/Slack_Bot:/QAChat/Slack_Bot
